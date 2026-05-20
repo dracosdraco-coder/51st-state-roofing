@@ -79,8 +79,8 @@ export default function FloridaPage() {
       <section className="bg-brand-gray-light">
         <div className="section-container">
           <ScrollAnimation type="fade-up">
-            <h2 className="text-3xl font-bold text-brand-dark mb-2">Florida Roofing Services</h2>
-            <p className="text-brand-gray mb-12 max-w-2xl">Every system we install is selected and specified for South Florida&apos;s climate — not a one-size-fits-all catalog option.</p>
+            <h2 className="text-3xl font-bold text-brand-white mb-2">Florida Roofing Services</h2>
+            <p className="text-brand-white mb-12 max-w-2xl">Every system we install is selected and specified for South Florida&apos;s climate — not a one-size-fits-all catalog option.</p>
           </ScrollAnimation>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, i) => {
