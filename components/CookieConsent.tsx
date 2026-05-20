@@ -25,9 +25,9 @@ export default function CookieConsent() {
       gtmScript.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA4_ID}`;
       document.head.appendChild(gtmScript);
 
-      window.dataLayer = window.dataLayer || [];
+      (window as any).dataLayer = (window as any).dataLayer || [];
       function gtag(...args: any[]) {
-        window.dataLayer.push(arguments);
+        (window as any).dataLayer.push(arguments);
       }
       (window as any).gtag = gtag;
       gtag('js', new Date());

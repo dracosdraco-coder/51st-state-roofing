@@ -160,7 +160,7 @@ export default function CommercialRoofingPage() {
                 'Building': Building,
                 'Droplet': Droplet,
               };
-              const IconComponent = iconMap[service.icon];
+              const IconComponent = iconMap[service.icon as keyof typeof iconMap];
               return (
               <ScrollAnimation key={index} type="fade-up" delay={index * 0.1}>
                 <Link

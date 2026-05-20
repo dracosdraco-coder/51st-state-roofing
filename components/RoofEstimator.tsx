@@ -354,7 +354,7 @@ export default function RoofEstimator({ pageSource = 'website', showTitle = true
                     'Home': Home,
                     'HelpCircle': HelpCircle,
                   };
-                  const IconComponent = iconMap[type.icon];
+                  const IconComponent = iconMap[type.icon as keyof typeof iconMap];
                   return (
                   <motion.button
                     key={type.id}
