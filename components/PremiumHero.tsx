@@ -44,7 +44,8 @@ export default function PremiumHero({
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover z-0"
+            disablePictureInPicture
+            className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
           >
             <source src={videoSrc} type="video/mp4" />
           </video>

@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import PremiumHero from '@/components/PremiumHero';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import CTABlock from '@/components/CTABlock';
 import TrustBar from '@/components/TrustBar';
-import { CheckCircle, MapPin, Award, Wind, Snowflake, Sun, Droplets, Building, Layers, Shield, Search } from 'lucide-react';
+import { CheckCircle, MapPin, Wind, Snowflake, Sun, Droplets, Building, Layers, Shield, Search } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Premium Commercial Roofing North Carolina | Charlotte, Raleigh | 51st State',
@@ -21,19 +22,13 @@ export default function NorthCarolinaPage() {
 
   return (
     <>
-      {/* Premium Hero */}
       <PremiumHero
         headline="Premium Commercial Roofing Across North Carolina"
-        subheadline="Serving Charlotte, Raleigh, Greensboro, and beyond with luxury commercial roofing solutions. Engineered for North Carolina's extreme weather—from winter snow to spring storms."
-        primaryCTA={{
-          label: 'Free Premium Inspection',
-          href: '/contact',
-        }}
-        secondaryCTA={{
-          label: 'Call Now',
-          href: 'tel:+19198714455',
-        }}
+        subheadline="Serving Charlotte, Raleigh, Greensboro, and beyond. Engineered for North Carolina's extreme weather — from winter snow to spring storms."
+        primaryCTA={{ label: 'Free Premium Inspection', href: '/contact' }}
+        secondaryCTA={{ label: 'Call Now', href: 'tel:+19198714455' }}
         phone="(919) 871-4455"
+        videoSrc="/home_video.mp4"
       />
 
       {/* Trust Bar */}
@@ -259,10 +254,49 @@ export default function NorthCarolinaPage() {
         </div>
       </section>
 
+      {/* Project Photos */}
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
+          <ScrollAnimation type="fade-up">
+            <h2 className="text-3xl font-bold text-brand-dark mb-2">Our Work</h2>
+            <p className="text-brand-gray mb-10">Recent commercial projects across North Carolina.</p>
+          </ScrollAnimation>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { src: '/roof1.avif', alt: 'Commercial roof — North Carolina', label: 'Commercial Roofing' },
+              { src: '/ceiling%201.jpg', alt: 'Ceiling restoration project', label: 'Interior Ceiling' },
+              { src: '/ceiling%202.jpg', alt: 'Ceiling work in progress', label: 'Interior Ceiling' },
+              { src: '/ceiling%204.jpg', alt: 'Completed ceiling restoration', label: 'Interior Ceiling' },
+              { src: '/interior.jpg', alt: 'Interior build-out', label: 'Interior' },
+              { src: '/interior%202.jpeg', alt: 'Interior project', label: 'Interior' },
+              { src: '/interior%203.jpg', alt: 'Interior finish work', label: 'Interior' },
+              { src: '/interior%204.jpg', alt: 'Interior completed', label: 'Interior' },
+            ].map((photo, i) => (
+              <ScrollAnimation key={i} type="fade-up" delay={i * 0.05}>
+                <div className="relative h-60 rounded-xl overflow-hidden group">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                    <span className="text-white text-sm font-semibold">{photo.label}</span>
+                  </div>
+                </div>
+              </ScrollAnimation>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/gallery" className="btn-primary inline-block">View Full Gallery</Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Block */}
       <CTABlock
         headline="Ready for Premium Commercial Roofing?"
-        subheadline="Get a free inspection from North Carolina's luxury roofing specialist. Winter-ready systems, summer-tested durability."
+        subheadline="Get a free inspection from North Carolina's roofing specialist. Winter-ready systems, summer-tested durability."
         primaryCTA={{ label: 'Request Inspection', href: '/contact' }}
       />
     </>
