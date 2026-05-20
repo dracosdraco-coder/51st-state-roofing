@@ -71,6 +71,7 @@ export default function FloridaPage() {
         primaryCTA={{ label: 'Get Free Inspection', href: '/contact' }}
         secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
         phone="(561) 985-2484"
+        videoSrc="/home_video.mp4"
       />
       <TrustBar />
 

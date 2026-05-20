@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight, Phone } from 'lucide-react';
 
@@ -18,6 +19,7 @@ interface PremiumHeroProps {
   };
   phone?: string;
   showPhone?: boolean;
+  videoSrc?: string;
 }
 
 export default function PremiumHero({
@@ -27,36 +29,57 @@ export default function PremiumHero({
   secondaryCTA,
   phone = '(561) 985-2484',
   showPhone = true,
+  videoSrc,
 }: PremiumHeroProps) {
-  return (
-    <section className="relative bg-gradient-to-b from-brand-blue-pale via-white to-white pt-24 pb-32 md:pt-40 md:pb-48 overflow-hidden">
-      {/* Elegant background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-blue/5 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-blue/5 rounded-full blur-3xl -z-10" />
+  const dark = !!videoSrc;
 
-      <div className="section-container">
+  return (
+    <section className={`relative pt-24 pb-32 md:pt-40 md:pb-48 overflow-hidden ${dark ? 'bg-brand-dark' : 'bg-gradient-to-b from-brand-blue-pale via-white to-white'}`}>
+
+      {/* Video background */}
+      {videoSrc && (
+        <>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-brand-dark/70 z-0" />
+        </>
+      )}
+
+      {/* Light mode background blobs */}
+      {!videoSrc && (
+        <>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-brand-blue/5 rounded-full blur-3xl -z-10" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-blue/5 rounded-full blur-3xl -z-10" />
+        </>
+      )}
+
+      <div className="section-container relative z-10">
         <div className="max-w-4xl">
-          {/* Animated headline */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="hero-text text-brand-dark mb-6"
+            className={`hero-text mb-6 ${dark ? 'text-white' : 'text-brand-dark'}`}
           >
             {headline}
           </motion.h1>
 
-          {/* Animated subheadline */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="hero-subtitle text-brand-gray max-w-2xl mb-12"
+            className={`hero-subtitle max-w-2xl mb-12 ${dark ? 'text-gray-300' : 'text-brand-gray'}`}
           >
             {subheadline}
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -69,10 +92,7 @@ export default function PremiumHero({
                 className="btn-primary inline-flex items-center justify-center gap-2 group"
               >
                 {primaryCTA.label}
-                <motion.span
-                  whileHover={{ x: 4 }}
-                  transition={{ duration: 0.3 }}
-                >
+                <motion.span whileHover={{ x: 4 }} transition={{ duration: 0.3 }}>
                   <ArrowRight size={18} />
                 </motion.span>
               </Link>
@@ -81,7 +101,7 @@ export default function PremiumHero({
             {secondaryCTA && (
               <Link
                 href={secondaryCTA.href}
-                className="btn-secondary inline-flex items-center justify-center gap-2"
+                className={`inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-md ${dark ? 'bg-white/10 border border-white/30 text-white hover:bg-white/20' : 'btn-secondary'}`}
               >
                 {secondaryCTA.icon}
                 {secondaryCTA.label}
@@ -89,7 +109,6 @@ export default function PremiumHero({
             )}
           </motion.div>
 
-          {/* Phone number */}
           {showPhone && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -97,10 +116,10 @@ export default function PremiumHero({
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex items-center gap-2"
             >
-              <Phone size={18} className="text-brand-blue" />
+              <Phone size={18} className={dark ? 'text-white' : 'text-brand-blue'} />
               <a
-                href={`tel:${phone}`}
-                className="text-brand-blue font-semibold hover:text-brand-blue-light transition-colors"
+                href={`tel:+1${phone.replace(/\D/g, '')}`}
+                className={`font-semibold transition-colors ${dark ? 'text-white hover:text-gray-200' : 'text-brand-blue hover:text-brand-blue-light'}`}
               >
                 {phone}
               </a>
@@ -109,12 +128,20 @@ export default function PremiumHero({
         </div>
       </div>
 
-      {/* Floating accent */}
+      {/* Floating circle with logo */}
       <motion.div
         animate={{ y: [0, -20, 0] }}
         transition={{ duration: 4, repeat: Infinity }}
-        className="absolute right-10 top-20 w-40 h-40 border-2 border-brand-blue/20 rounded-full hidden lg:block"
-      />
+        className="absolute right-10 top-20 w-40 h-40 rounded-full hidden lg:flex items-center justify-center overflow-hidden border-2 border-brand-blue/20 bg-white/80 backdrop-blur-sm z-10"
+      >
+        <Image
+          src="/51statelogo.png"
+          alt="51st State Construction"
+          width={120}
+          height={120}
+          className="object-contain p-3"
+        />
+      </motion.div>
     </section>
   );
 }

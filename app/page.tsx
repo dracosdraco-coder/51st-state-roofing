@@ -44,36 +44,31 @@ const localBusinessSchema = {
 
 const markets = [
   {
-    icon: Layers,
-    title: 'Commercial Roofing — Florida',
-    description: 'TPO, metal, and flat roofing systems for South Florida commercial properties. Hurricane-rated, Miami-Dade NOA compliant, same-day inspections.',
-    href: '/florida',
-    tag: 'Miami-Dade · Broward · Palm Beach',
-    color: 'from-blue-900 to-brand-dark',
-  },
-  {
-    icon: MapPin,
-    title: 'Commercial Roofing — North Carolina',
-    description: 'Winter-rated commercial roofing for Charlotte, Raleigh, and Greensboro. Built for temperature extremes, heavy rain, and spring storm season.',
-    href: '/north-carolina',
-    tag: 'Charlotte · Raleigh · Greensboro',
-    color: 'from-slate-800 to-brand-dark',
-  },
-  {
     icon: HardHat,
     title: 'General Contracting',
     description: 'Ground-up construction, tenant improvements, and commercial renovations — managed under one contract from permits through punch list.',
     href: '/general-contracting',
     tag: 'Florida & North Carolina',
-    color: 'from-gray-800 to-brand-dark',
+    color: 'from-brand-dark to-gray-900',
+    featured: true,
+  },
+  {
+    icon: Layers,
+    title: 'Commercial Roofing',
+    description: 'TPO, metal, and flat roofing systems for South Florida and North Carolina commercial properties. Hurricane-rated, HVHZ certified, PE quality control.',
+    href: '/florida',
+    tag: 'Florida · North Carolina',
+    color: 'from-brand-blue to-blue-900',
+    featured: true,
   },
   {
     icon: Award,
     title: 'Concrete Restoration',
-    description: 'ICRI-certified structural repair, waterproofing, and protective coating systems for parking structures, marine environments, and commercial buildings.',
+    description: 'ICRI-certified structural repair, EIFS, waterproofing, and protective coatings for commercial and industrial properties.',
     href: '/concrete-restoration',
     tag: 'ICRI · AIA CE Provider · COCPB',
-    color: 'from-brand-blue to-blue-900',
+    color: 'from-slate-700 to-brand-dark',
+    featured: false,
   },
   {
     icon: HardHat,
@@ -82,6 +77,7 @@ const markets = [
     href: '/millwork-interiors',
     tag: 'Florida & North Carolina',
     color: 'from-zinc-700 to-brand-dark',
+    featured: false,
   },
 ];
 
@@ -141,12 +137,34 @@ export default function Home() {
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">What We Do</h2>
               <p className="text-lg text-brand-gray max-w-2xl mx-auto">
-                Four focused service lines. One company that manages all of it.
+                General contracting and commercial roofing at the core — backed by concrete restoration and custom millwork capabilities.
               </p>
             </div>
           </ScrollAnimation>
+          {/* Featured two: GC + Roofing — larger cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            {markets.filter(m => m.featured).map((market, i) => {
+              const Icon = market.icon;
+              return (
+                <ScrollAnimation key={i} type="fade-up" delay={i * 0.1}>
+                  <Link href={market.href} className={`group block bg-gradient-to-br ${market.color} text-white rounded-2xl p-10 hover:shadow-2xl transition-all hover:-translate-y-1 h-full`}>
+                    <div className="flex items-start justify-between mb-6">
+                      <Icon size={44} className="text-white/80 group-hover:text-white transition-colors" />
+                      <span className="text-xs text-white/50 bg-white/10 px-3 py-1 rounded-full">{market.tag}</span>
+                    </div>
+                    <h3 className="text-2xl font-bold mb-3 group-hover:text-white">{market.title}</h3>
+                    <p className="text-white/70 leading-relaxed mb-6 group-hover:text-white/90">{market.description}</p>
+                    <div className="flex items-center gap-2 text-white/60 group-hover:text-white font-semibold transition-colors">
+                      Learn More <ArrowRight size={16} />
+                    </div>
+                  </Link>
+                </ScrollAnimation>
+              );
+            })}
+          </div>
+          {/* Supporting services — smaller cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {markets.map((market, i) => {
+            {markets.filter(m => !m.featured).map((market, i) => {
               const Icon = market.icon;
               return (
                 <ScrollAnimation key={i} type="fade-up" delay={i * 0.1}>
