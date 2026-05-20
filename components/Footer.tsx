@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
 
 export default function Footer() {
@@ -13,11 +14,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-brand-blue rounded-lg flex items-center justify-center text-white font-bold">
-                51
-              </div>
-              <span className="font-bold text-xl">51st State Construction</span>
+            <div className="mb-4">
+              <Image
+                src="/51statelogo.png"
+                alt="51st State Construction"
+                width={180}
+                height={60}
+                className="object-contain brightness-0 invert"
+              />
             </div>
             <p className="text-gray-400 text-sm mb-4">
               Commercial construction specialists serving Florida & North Carolina since 2012.

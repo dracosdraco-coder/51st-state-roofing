@@ -64,15 +64,15 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/">
             <Image
               src="/51statelogo.png"
               alt="51st State Construction"
-              width={160}
-              height={48}
-              className="h-10 w-auto object-contain"
+              width={200}
+              height={60}
+              className="h-14 w-auto object-contain"
               priority
             />
           </Link>

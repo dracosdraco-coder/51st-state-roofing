@@ -34,7 +34,7 @@ export default function PremiumHero({
   const dark = !!videoSrc;
 
   return (
-    <section className={`relative pt-24 pb-32 md:pt-40 md:pb-48 overflow-hidden ${dark ? 'bg-brand-dark' : 'bg-gradient-to-b from-brand-blue-pale via-white to-white'}`}>
+    <section className={`relative pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden ${dark ? 'bg-brand-dark' : 'bg-gradient-to-b from-brand-blue-pale via-white to-white'}`}>
 
       {/* Video background */}
       {videoSrc && (
@@ -132,14 +132,14 @@ export default function PremiumHero({
       <motion.div
         animate={{ y: [0, -20, 0] }}
         transition={{ duration: 4, repeat: Infinity }}
-        className="absolute right-10 top-20 w-40 h-40 rounded-full hidden lg:flex items-center justify-center overflow-hidden border-2 border-brand-blue/20 bg-white/80 backdrop-blur-sm z-10"
+        className={`absolute right-10 top-16 w-72 h-72 rounded-full hidden lg:flex items-center justify-center overflow-hidden border-2 z-10 ${dark ? 'border-white/20 bg-transparent' : 'border-brand-blue/20 bg-white/80 backdrop-blur-sm'}`}
       >
         <Image
           src="/51statelogo.png"
           alt="51st State Construction"
-          width={120}
-          height={120}
-          className="object-contain p-3"
+          width={260}
+          height={260}
+          className={`object-contain p-4 ${dark ? 'brightness-0 invert opacity-70' : ''}`}
         />
       </motion.div>
     </section>
