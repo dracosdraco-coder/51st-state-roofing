@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { MapPin, Shield, Wrench, Search, Layers, CheckCircle, Phone } from 'lucide-react';
+import PremiumHero from '@/components/PremiumHero';
+import TrustBar from '@/components/TrustBar';
+import { MapPin, Shield, Wrench, Search, Layers, CheckCircle } from 'lucide-react';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import CTABlock from '@/components/CTABlock';
 
@@ -62,41 +64,19 @@ const reasons = [
 
 export default function FloridaPage() {
   return (
-    <main>
-      {/* Hero */}
-      <section className="bg-brand-dark text-white py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <div className="flex items-center gap-2 text-brand-blue text-sm font-semibold mb-4">
-            <MapPin size={16} />
-            South Florida Market
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Commercial Roofing<br />
-            <span className="text-brand-blue">Built for Florida</span>
-          </h1>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl">
-            Miami-Dade, Broward, and Palm Beach county&apos;s trusted commercial roofing contractor since 2012. Hurricane-rated systems, fast turnaround, and zero surprises.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/contact" className="btn-primary text-center">
-              Get Free Inspection
-            </Link>
-            <a href="tel:+15619852484" className="flex items-center justify-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-brand-dark transition-colors">
-              <Phone size={18} />
-              (561) 985-2484
-            </a>
-          </div>
-          <div className="flex flex-wrap gap-6 mt-10 text-sm text-gray-400">
-            <span className="flex items-center gap-2"><CheckCircle size={14} className="text-brand-blue" /> Licensed CGC1527726</span>
-            <span className="flex items-center gap-2"><CheckCircle size={14} className="text-brand-blue" /> HVHZ & Coastal Certified</span>
-            <span className="flex items-center gap-2"><CheckCircle size={14} className="text-brand-blue" /> PE Quality Control</span>
-          </div>
-        </div>
-      </section>
+    <>
+      <PremiumHero
+        headline="Commercial Roofing Built for Florida"
+        subheadline="Miami-Dade, Broward, and Palm Beach county's trusted commercial roofing contractor. Hurricane-rated systems, HVHZ certified, and PE quality control on every job."
+        primaryCTA={{ label: 'Get Free Inspection', href: '/contact' }}
+        secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
+        phone="(561) 985-2484"
+      />
+      <TrustBar />
 
       {/* Services */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
           <ScrollAnimation type="fade-up">
             <h2 className="text-3xl font-bold text-brand-dark mb-2">Florida Roofing Services</h2>
             <p className="text-brand-gray mb-12 max-w-2xl">Every system we install is selected and specified for South Florida&apos;s climate — not a one-size-fits-all catalog option.</p>
@@ -119,8 +99,8 @@ export default function FloridaPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
+      <section>
+        <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollAnimation type="fade-right">
               <h2 className="text-3xl font-bold text-brand-dark mb-6">Why Florida Property Managers Choose Us</h2>
@@ -158,8 +138,8 @@ export default function FloridaPage() {
       </section>
 
       {/* Service Areas */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
           <ScrollAnimation type="fade-up">
             <h2 className="text-3xl font-bold text-brand-dark mb-2">Service Areas</h2>
             <p className="text-brand-gray mb-12">We serve commercial properties throughout South Florida&apos;s tri-county area.</p>
@@ -189,6 +169,6 @@ export default function FloridaPage() {
         subheadline="Same-day estimates. No pressure. Just straight talk about your roof."
         primaryCTA={{ label: 'Schedule Inspection', href: '/contact' }}
       />
-    </main>
+    </> 
   );
 }

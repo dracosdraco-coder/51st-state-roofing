@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
@@ -65,13 +66,15 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 font-bold text-2xl">
-            <div className="w-8 h-8 bg-brand-blue rounded-lg flex items-center justify-center text-white font-bold text-sm">
-              51
-            </div>
-            <span className="hidden sm:inline text-brand-dark text-base font-bold leading-tight">
-              51st State Construction
-            </span>
+          <Link href="/">
+            <Image
+              src="/51statelogo.png"
+              alt="51st State Construction"
+              width={160}
+              height={48}
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}

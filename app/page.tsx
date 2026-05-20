@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import PremiumHero from '@/components/PremiumHero';
 import TrustBar from '@/components/TrustBar';
 import CTABlock from '@/components/CTABlock';
 import TestimonialBlock from '@/components/TestimonialBlock';
 import ScrollAnimation from '@/components/ScrollAnimation';
-import { Phone, CheckCircle, ArrowRight, MapPin, HardHat, Layers, Award } from 'lucide-react';
+import { CheckCircle, ArrowRight, MapPin, HardHat, Layers, Award } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: '51st State Construction | Commercial Roofing, Concrete Restoration & General Contracting',
@@ -108,42 +109,13 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
       />
 
-      {/* Hero */}
-      <section className="relative bg-brand-dark text-white pt-16 pb-20 md:pt-24 md:pb-28">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <div className="max-w-3xl">
-            <ScrollAnimation type="fade-up" delay={0}>
-              <div className="flex items-center gap-2 text-brand-blue text-sm font-semibold mb-4">
-                <CheckCircle size={14} />
-                Licensed · ICRI Certified · AIA CE Provider
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Commercial Construction<br />
-                <span className="text-brand-blue">You Can Count On</span>
-              </h1>
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                Roofing, concrete restoration, and general contracting for commercial properties across Florida and North Carolina. One team, full accountability.
-              </p>
-            </ScrollAnimation>
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <Link href="/contact" className="bg-brand-blue text-white px-8 py-4 rounded-lg font-semibold hover:bg-brand-blue-light transition-all inline-flex items-center justify-center gap-2 shadow-xl">
-                Get Free Estimate <ArrowRight size={18} />
-              </Link>
-              <a href="tel:+15619852484" className="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 transition-all inline-flex items-center justify-center gap-2">
-                <Phone size={18} /> (561) 985-2484
-              </a>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {stats.map((s, i) => (
-                <div key={i}>
-                  <div className="text-2xl font-bold text-brand-blue">{s.stat}</div>
-                  <div className="text-xs text-gray-400 mt-0.5">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <PremiumHero
+        headline="Commercial Construction You Can Count On"
+        subheadline="Roofing, concrete restoration, general contracting, and custom millwork across Florida and North Carolina. One team, full accountability, licensed and certified."
+        primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
+        secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
+        phone="(561) 985-2484"
+      />
 
       {/* Certifications Bar */}
       <section className="bg-brand-blue-pale border-y border-blue-100 py-6">

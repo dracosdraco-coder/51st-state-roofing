@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { CheckCircle, Phone, Hammer, Layers, Palette, Ruler, Star, Package } from 'lucide-react';
+import PremiumHero from '@/components/PremiumHero';
+import TrustBar from '@/components/TrustBar';
+import { CheckCircle, Hammer, Layers, Palette, Ruler, Star, Package } from 'lucide-react';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import CTABlock from '@/components/CTABlock';
 
@@ -60,41 +62,19 @@ const process = [
 
 export default function MillworkInteriorsPage() {
   return (
-    <main>
-      {/* Hero */}
-      <section className="bg-brand-dark text-white py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <div className="flex items-center gap-2 text-brand-blue text-sm font-semibold mb-4">
-            <Hammer size={16} />
-            Custom Millwork & Interior Design Build
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Turn-Key Interiors,<br />
-            <span className="text-brand-blue">Built to Spec</span>
-          </h1>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl">
-            Custom millwork, architectural stonework, specialty finishes, and complete interior design-build — delivered by craftsmen who work directly with your architect, designer, or directly from your vision.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/contact" className="btn-primary text-center">
-              Start Your Project
-            </Link>
-            <a href="tel:+15619852484" className="flex items-center justify-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-brand-dark transition-colors">
-              <Phone size={18} />
-              (561) 985-2484
-            </a>
-          </div>
-          <div className="flex flex-wrap gap-6 mt-10 text-sm text-gray-400">
-            <span className="flex items-center gap-2"><CheckCircle size={14} className="text-brand-blue" /> Licensed CGC1527726</span>
-            <span className="flex items-center gap-2"><CheckCircle size={14} className="text-brand-blue" /> Custom Fabrication</span>
-            <span className="flex items-center gap-2"><CheckCircle size={14} className="text-brand-blue" /> Engineering Support</span>
-          </div>
-        </div>
-      </section>
+    <>
+      <PremiumHero
+        headline="Custom Millwork & Turn-Key Interiors"
+        subheadline="Architectural millwork, stonework fabrication, specialty finishes, and complete interior design-build — from concept to installed, under one contract."
+        primaryCTA={{ label: 'Start Your Project', href: '/contact' }}
+        secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
+        phone="(561) 985-2484"
+      />
+      <TrustBar />
 
       {/* Services */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
           <ScrollAnimation type="fade-up">
             <h2 className="text-3xl font-bold text-brand-dark mb-2">What We Build</h2>
             <p className="text-brand-gray mb-12 max-w-2xl">From a single custom piece to a complete interior fit-out — we handle design, fabrication, and installation under one contract.</p>
@@ -117,8 +97,8 @@ export default function MillworkInteriorsPage() {
       </section>
 
       {/* Who We Work With */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
+      <section>
+        <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollAnimation type="fade-right">
               <h2 className="text-3xl font-bold text-brand-dark mb-4">Who We Work With</h2>
@@ -161,8 +141,8 @@ export default function MillworkInteriorsPage() {
       </section>
 
       {/* Process */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
           <ScrollAnimation type="fade-up">
             <h2 className="text-3xl font-bold text-brand-dark mb-2">From Concept to Installed</h2>
             <p className="text-brand-gray mb-12 max-w-2xl">A clear process that keeps your designer, architect, and ownership team informed at every stage.</p>
@@ -186,6 +166,6 @@ export default function MillworkInteriorsPage() {
         subheadline="Tell us what you&apos;re trying to build. We&apos;ll review your drawings or concept and put together a realistic scope and timeline."
         primaryCTA={{ label: 'Start the Conversation', href: '/contact' }}
       />
-    </main>
+    </>
   );
 }

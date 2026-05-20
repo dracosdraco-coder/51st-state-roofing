@@ -3,6 +3,7 @@ import Link from 'next/link';
 import TrustBar from '@/components/TrustBar';
 import CTABlock from '@/components/CTABlock';
 import ScrollAnimation from '@/components/ScrollAnimation';
+import PremiumHero from '@/components/PremiumHero';
 import { ArrowRight, Zap, Shield, Clock, Layers, Search, Wrench, Building, Droplet, CheckCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -90,28 +91,13 @@ const serviceOptions = [
 export default function CommercialRoofingPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-gradient-to-r from-brand-dark via-gray-800 to-brand-dark text-white">
-        <div className="section-container">
-          <h1 className="hero-text text-white mb-4">
-            Commercial <span className="text-brand-blue">Roofing Services</span> for South Florida
-          </h1>
-          <p className="hero-subtitle text-gray-300 mb-8">
-            From TPO and metal systems to emergency repairs, we handle all commercial roofing needs.
-            Licensed, insured, and ready to serve.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/contact" className="btn-primary">
-              Get Free Estimate
-            </Link>
-            <a href="tel:+15619852484" className="btn-secondary">
-              Call (561) 985-2484
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Bar */}
+      <PremiumHero
+        headline="Commercial Roofing Services for South Florida"
+        subheadline="From TPO and metal systems to maintenance and repairs — 51st State Construction handles all commercial roofing needs. Licensed, insured, and ready to serve."
+        primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
+        secondaryCTA={{ label: 'Call (561) 985-2484', href: 'tel:+15619852484' }}
+        phone="(561) 985-2484"
+      />
       <TrustBar />
 
       {/* Overview Section */}

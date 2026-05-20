@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import PremiumHero from '@/components/PremiumHero';
 import { CheckCircle, ExternalLink, Award, Shield, BookOpen } from 'lucide-react';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import CTABlock from '@/components/CTABlock';
@@ -98,31 +99,17 @@ const trustPoints = [
 
 export default function CertificationsPage() {
   return (
-    <main>
-      {/* Hero */}
-      <section className="bg-brand-dark text-white py-20 md:py-24">
-        <div className="max-w-6xl mx-auto px-4 md:px-8 text-center">
-          <div className="flex items-center justify-center gap-2 text-brand-blue text-sm font-semibold mb-4">
-            <Award size={16} />
-            Certifications & Accreditations
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            The Credentials Behind<br />
-            <span className="text-brand-blue">Our Work</span>
-          </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-            Certifications earned through demonstrated technical competency — not purchased memberships. Here is what each one means and why it matters for your project.
-          </p>
-          <div className="flex flex-wrap justify-center gap-8 mt-8">
-            <Image src="/ICRI_CONCRETE.png" alt="ICRI Concrete Repair" width={120} height={70} className="object-contain brightness-90 hover:brightness-100 transition-all" />
-            <Image src="/AIA_credit.png" alt="AIA Continuing Education" width={120} height={70} className="object-contain brightness-90 hover:brightness-100 transition-all" />
-            <Image src="/COCPB.png" alt="COCPB Certification" width={120} height={70} className="object-contain brightness-90 hover:brightness-100 transition-all" />
-          </div>
-        </div>
-      </section>
+    <>
+      <PremiumHero
+        headline="Certifications & Accreditations"
+        subheadline="ICRI member, AIA continuing education provider, COCPB certified, and PBCC member. Here is what each credential means and why it matters for your project."
+        primaryCTA={{ label: 'View Our Services', href: '/concrete-restoration' }}
+        secondaryCTA={{ label: 'Contact Us', href: '/contact' }}
+        showPhone={false}
+      />
 
       {/* Certifications Detail */}
-      <section className="py-20 bg-white">
+      <section>
         <div className="max-w-6xl mx-auto px-4 md:px-8 space-y-16">
           {certifications.map((cert, i) => {
             const CategoryIcon = cert.categoryIcon;
@@ -190,8 +177,8 @@ export default function CertificationsPage() {
       </section>
 
       {/* Why It Matters */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollAnimation type="fade-right">
               <h2 className="text-3xl font-bold text-brand-dark mb-6">Certifications You Can Trust</h2>
@@ -255,6 +242,6 @@ export default function CertificationsPage() {
         subheadline="Bring your concrete restoration or commercial construction project to a contractor that can back up its claims."
         primaryCTA={{ label: 'Request a Consultation', href: '/contact' }}
       />
-    </main>
+    </>
   );
 }

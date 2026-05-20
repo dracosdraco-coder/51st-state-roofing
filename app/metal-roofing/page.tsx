@@ -6,6 +6,7 @@ import RoofEstimator from '@/components/RoofEstimator';
 import CTABlock from '@/components/CTABlock';
 import FAQAccordion from '@/components/FAQAccordion';
 import ScrollAnimation from '@/components/ScrollAnimation';
+import PremiumHero from '@/components/PremiumHero';
 import { CheckCircle, Hammer, ShieldCheck, Zap } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -64,27 +65,13 @@ const faqItems = [
 export default function MetalRoofingPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-gradient-to-r from-brand-dark via-gray-800 to-brand-dark text-white">
-        <div className="section-container">
-          <h1 className="hero-text text-white mb-4">
-            Premium <span className="text-brand-blue">Metal Standing Seam</span> Roofing
-          </h1>
-          <p className="hero-subtitle text-gray-300 mb-8">
-            Invest in a roof that lasts 40+ years. Hurricane-rated, energy-efficient, and built for South Florida
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 mb-4">
-            <Link href="/contact" className="btn-primary">
-              Get Free Estimate
-            </Link>
-            <a href="tel:+15619852484" className="btn-secondary">
-              (561) 985-2484
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Bar */}
+      <PremiumHero
+        headline="Premium Metal Standing Seam Roofing"
+        subheadline="Invest in a roof that lasts 40+ years. Hurricane-rated, energy-efficient, and built for South Florida's toughest conditions."
+        primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
+        secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
+        phone="(561) 985-2484"
+      />
       <TrustBar />
 
       {/* What is Metal Roofing Section */}

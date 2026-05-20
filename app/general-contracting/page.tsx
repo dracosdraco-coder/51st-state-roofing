@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { HardHat, Building2, Wrench, ClipboardList, CheckCircle, Phone, Users } from 'lucide-react';
+import PremiumHero from '@/components/PremiumHero';
+import TrustBar from '@/components/TrustBar';
+import { HardHat, Building2, Wrench, ClipboardList, CheckCircle, Users } from 'lucide-react';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import CTABlock from '@/components/CTABlock';
 
@@ -60,41 +62,19 @@ const process = [
 
 export default function GeneralContractingPage() {
   return (
-    <main>
-      {/* Hero */}
-      <section className="bg-brand-dark text-white py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <div className="flex items-center gap-2 text-brand-blue text-sm font-semibold mb-4">
-            <HardHat size={16} />
-            General Contracting
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Commercial Construction<br />
-            <span className="text-brand-blue">Done Right, Start to Finish</span>
-          </h1>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl">
-            51st State Construction manages the full scope — design coordination, permitting, subcontractors, and quality control — so your project delivers on time and on budget.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/contact" className="btn-primary text-center">
-              Start Your Project
-            </Link>
-            <a href="tel:+15619852484" className="flex items-center justify-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-brand-dark transition-colors">
-              <Phone size={18} />
-              (561) 985-2484
-            </a>
-          </div>
-          <div className="flex flex-wrap gap-6 mt-10 text-sm text-gray-400">
-            <span className="flex items-center gap-2"><CheckCircle size={14} className="text-brand-blue" /> Licensed CGC1527726</span>
-            <span className="flex items-center gap-2"><CheckCircle size={14} className="text-brand-blue" /> FL & NC Markets</span>
-            <span className="flex items-center gap-2"><CheckCircle size={14} className="text-brand-blue" /> Single-Source Accountability</span>
-          </div>
-        </div>
-      </section>
+    <>
+      <PremiumHero
+        headline="Commercial Construction Done Right, Start to Finish"
+        subheadline="51st State Construction manages the full scope — design coordination, permitting, subcontractors, and quality control — so your project delivers on time and on budget."
+        primaryCTA={{ label: 'Start Your Project', href: '/contact' }}
+        secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
+        phone="(561) 985-2484"
+      />
+      <TrustBar />
 
       {/* Services */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
           <ScrollAnimation type="fade-up">
             <h2 className="text-3xl font-bold text-brand-dark mb-2">GC Services</h2>
             <p className="text-brand-gray mb-12 max-w-2xl">From a single tenant improvement to a multi-phase ground-up build, we bring the same standards to every scope.</p>
@@ -117,8 +97,8 @@ export default function GeneralContractingPage() {
       </section>
 
       {/* Sectors */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
+      <section>
+        <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollAnimation type="fade-right">
               <h2 className="text-3xl font-bold text-brand-dark mb-4">Sectors We Serve</h2>
@@ -157,8 +137,8 @@ export default function GeneralContractingPage() {
       </section>
 
       {/* Process */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
           <ScrollAnimation type="fade-up">
             <h2 className="text-3xl font-bold text-brand-dark mb-2">How We Work</h2>
             <p className="text-brand-gray mb-12">A transparent process with no surprises — from first call to final walkthrough.</p>
@@ -182,6 +162,6 @@ export default function GeneralContractingPage() {
         subheadline="Tell us what you're building. We'll put together a realistic scope, budget, and timeline — no obligation."
         primaryCTA={{ label: 'Start the Conversation', href: '/contact' }}
       />
-    </main>
+    </>
   );
 }

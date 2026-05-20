@@ -4,6 +4,7 @@ import TrustBar from '@/components/TrustBar';
 import CTABlock from '@/components/CTABlock';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import FAQAccordion from '@/components/FAQAccordion';
+import PremiumHero from '@/components/PremiumHero';
 import { CheckCircle, Camera, AlertCircle, ClipboardList } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -66,27 +67,13 @@ const faqItems = [
 export default function RoofInspectionPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-gradient-to-r from-brand-dark via-gray-800 to-brand-dark text-white">
-        <div className="section-container">
-          <h1 className="hero-text text-white mb-4">
-            Professional <span className="text-brand-blue">Roof Inspections</span>
-          </h1>
-          <p className="hero-subtitle text-gray-300 mb-8">
-            Comprehensive assessments to identify damage, prevent costly repairs, and protect your investment
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 mb-4">
-            <Link href="/contact" className="btn-primary">
-              Schedule Free Inspection
-            </Link>
-            <a href="tel:+15619852484" className="btn-secondary">
-              Call (561) 985-2484
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Bar */}
+      <PremiumHero
+        headline="Professional Roof Inspections"
+        subheadline="Comprehensive assessments to identify damage early, prevent costly repairs, and protect your commercial investment."
+        primaryCTA={{ label: 'Schedule Free Inspection', href: '/contact' }}
+        secondaryCTA={{ label: 'Call (561) 985-2484', href: 'tel:+15619852484' }}
+        phone="(561) 985-2484"
+      />
       <TrustBar />
 
       {/* Why Inspections Matter */}
