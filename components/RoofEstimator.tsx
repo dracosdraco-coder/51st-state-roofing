@@ -1,8 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, Building, Home, HelpCircle, Grid3x3 } from 'lucide-react';
+import { Layers, Building, Home, HelpCircle, Grid3x3, CheckCircle } from 'lucide-react';
 import {
   trackEstimatorStep,
   trackEstimatorCompleted,
