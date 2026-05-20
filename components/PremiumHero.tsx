@@ -137,9 +137,9 @@ export default function PremiumHero({
         <Image
           src="/51statelogo.png"
           alt="51st State Construction"
-          width={260}
-          height={260}
-          className={`object-contain p-4 ${dark ? 'brightness-0 invert opacity-70' : ''}`}
+          width={160}
+          height={160}
+          className={`object-contain p-6 ${dark ? 'brightness-0 invert opacity-70' : ''}`}
         />
       </motion.div>
     </section>

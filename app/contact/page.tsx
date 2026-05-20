@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import PremiumHero from '@/components/PremiumHero';
 import TrustBar from '@/components/TrustBar';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import { Phone, Mail, MapPin } from 'lucide-react';
@@ -13,21 +14,12 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-brand-dark via-gray-800 to-brand-dark text-white py-20">
-        <div className="section-container">
-          <ScrollAnimation type="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Get Your Free <span className="text-brand-blue">Roofing Estimate</span>
-            </h1>
-            <p className="text-xl text-gray-300 max-w-2xl">
-              Contact 51st State Construction today for professional commercial roofing services
-            </p>
-          </ScrollAnimation>
-        </div>
-      </section>
-
-      {/* Trust Bar */}
+      <PremiumHero
+        headline="Get a Free Estimate"
+        subheadline="Contact 51st State Construction for roofing, concrete restoration, general contracting, or millwork. We'll get back to you same day."
+        primaryCTA={{ label: 'Call (561) 985-2484', href: 'tel:+15619852484' }}
+        showPhone={false}
+      />
       <TrustBar />
 
       {/* Contact Section */}
@@ -48,7 +40,7 @@ export default function ContactPage() {
                     <a href="tel:+15619852484" className="text-brand-gray hover:text-brand-blue transition-colors">
                       (561) 985-2484
                     </a>
-                    <p className="text-sm text-brand-gray mt-1">24/7 Emergency Support Available</p>
+                    <p className="text-sm text-brand-gray mt-1">Mon–Fri 8am–5pm · Weekend by appointment</p>
                   </div>
                 </div>
 
@@ -178,7 +170,7 @@ export default function ContactPage() {
               </button>
 
               <p className="text-xs text-brand-gray text-center">
-                We'll respond within 2 hours during business hours. 24/7 emergency line available.
+                We'll respond within one business day.
               </p>
             </form>
           </ScrollAnimation>

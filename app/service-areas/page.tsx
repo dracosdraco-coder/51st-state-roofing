@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import PremiumHero from '@/components/PremiumHero';
 import CTABlock from '@/components/CTABlock';
 import { MapPin, Clock, Phone } from 'lucide-react';
 
@@ -35,17 +36,12 @@ const serviceAreas = [
 export default function ServiceAreasPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-brand-dark text-white">
-        <div className="section-container text-center">
-          <h1 className="hero-text text-white mb-4">
-            Service <span className="text-brand-blue">Areas</span>
-          </h1>
-          <p className="hero-subtitle text-gray-300">
-            Commercial roofing services throughout South Florida
-          </p>
-        </div>
-      </section>
+      <PremiumHero
+        headline="Service Areas"
+        subheadline="Commercial roofing services throughout South Florida — Miami-Dade, Broward, and Palm Beach counties."
+        primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
+        phone="(561) 985-2484"
+      />
 
       {/* Service Areas Grid */}
       <section className="section-container">

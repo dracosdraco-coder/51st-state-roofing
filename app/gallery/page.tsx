@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import PremiumHero from '@/components/PremiumHero';
 import CTABlock from '@/components/CTABlock';
 
 export const metadata: Metadata = {
@@ -19,17 +20,12 @@ const projects = [
 export default function GalleryPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-brand-dark text-white">
-        <div className="section-container text-center">
-          <h1 className="hero-text text-white mb-4">
-            Project <span className="text-brand-blue">Gallery</span>
-          </h1>
-          <p className="hero-subtitle text-gray-300">
-            Quality craftsmanship on over 500 South Florida commercial roofing projects
-          </p>
-        </div>
-      </section>
+      <PremiumHero
+        headline="Project Gallery"
+        subheadline="Quality craftsmanship on over 500 commercial construction projects across Florida and North Carolina."
+        primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
+        showPhone={false}
+      />
 
       {/* Gallery Grid */}
       <section className="section-container">

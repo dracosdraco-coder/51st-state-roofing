@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import PremiumHero from '@/components/PremiumHero';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import CTABlock from '@/components/CTABlock';
 
@@ -54,17 +55,11 @@ const blogPosts = [
 export default function BlogPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-brand-dark text-white">
-        <div className="section-container text-center">
-          <h1 className="hero-text text-white mb-4">
-            Roofing <span className="text-brand-blue">Blog</span>
-          </h1>
-          <p className="hero-subtitle text-gray-300">
-            Tips, insights, and expert advice for commercial roofing
-          </p>
-        </div>
-      </section>
+      <PremiumHero
+        headline="Insights & Resources"
+        subheadline="Tips, technical guides, and expert advice on commercial roofing, concrete restoration, and construction."
+        showPhone={false}
+      />
 
       {/* Blog Posts Grid */}
       <section className="section-container">
