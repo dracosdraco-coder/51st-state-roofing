@@ -6,7 +6,7 @@ import ScrollAnimation from '@/components/ScrollAnimation';
 import { ArrowRight, Zap, Shield, Clock, Layers, Search, Wrench, Building, Droplet, CheckCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Commercial Roofing Services | 51st State Roofing | South Florida',
+  title: 'Commercial Roofing Services | 51st State Construction | South Florida',
   description:
     'Complete commercial roofing solutions: TPO, metal, flat roofs, and inspections. Licensed contractor serving Miami-Dade, Broward, and Palm Beach counties.',
   keywords: 'commercial roofing services, TPO roofing, metal roofing, flat roof, South Florida',
@@ -104,8 +104,8 @@ export default function CommercialRoofingPage() {
             <Link href="/contact" className="btn-primary">
               Get Free Estimate
             </Link>
-            <a href="tel:+19542478528" className="btn-secondary">
-              Call (954) 247-8528
+            <a href="tel:+15619852484" className="btn-secondary">
+              Call (561) 985-2484
             </a>
           </div>
         </div>
@@ -201,7 +201,7 @@ export default function CommercialRoofingPage() {
       <section className="section-container">
         <ScrollAnimation type="fade-up">
           <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-12 text-center">
-            Why Choose 51st State Roofing?
+            Why Choose 51st State Construction?
           </h2>
         </ScrollAnimation>
 

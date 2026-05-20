@@ -4,7 +4,7 @@ import { Calendar, User, ArrowLeft, Share2 } from 'lucide-react';
 import CTABlock from '@/components/CTABlock';
 
 export const metadata: Metadata = {
-  title: 'Blog Post | 51st State Roofing',
+  title: 'Blog Post | 51st State Construction',
   description: 'Read the latest roofing insights and industry tips.',
 };
 
@@ -33,9 +33,9 @@ const blogContent: any = {
       <p>Areas around vents, pipes, and HVAC units are vulnerable. We seal any gaps or deterioration to prevent water intrusion.</p>
 
       <h2>Emergency Preparedness</h2>
-      <p>Have our emergency number saved: (954) 247-8528. If your roof sustains damage during a hurricane, we can respond quickly to prevent further water damage.</p>
+      <p>Have our emergency number saved: (561) 985-2484. If your roof sustains damage during a hurricane, we can respond quickly to prevent further water damage.</p>
 
-      <p>Don't wait until hurricane season is here. Contact 51st State Roofing today for a free pre-season inspection.</p>
+      <p>Don't wait until hurricane season is here. Contact 51st State Construction today for a free pre-season inspection.</p>
     `,
   },
   'tpo-vs-metal-roofing': {
@@ -174,8 +174,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 Request Free Estimate
               </Link>
               <div className="mt-4 pt-4 border-t border-gray-300 text-center">
-                <a href="tel:+19542478528" className="text-brand-blue font-bold hover:text-brand-blue-dark">
-                  (954) 247-8528
+                <a href="tel:+15619852484" className="text-brand-blue font-bold hover:text-brand-blue-dark">
+                  (561) 985-2484
                 </a>
               </div>
             </div>
@@ -214,7 +214,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <div>
               <h3 className="font-bold text-brand-dark mb-2">{post.author}</h3>
               <p className="text-brand-gray">
-                {post.author} is a roofing expert at 51st State Roofing with 15+ years of experience in commercial
+                {post.author} is a roofing expert at 51st State Construction with 15+ years of experience in commercial
                 roofing systems and South Florida construction standards.
               </p>
             </div>
@@ -225,7 +225,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       {/* CTA Block */}
       <CTABlock
         headline="Ready to Upgrade Your Commercial Roof?"
-        subheadline="Contact 51st State Roofing for a free inspection and expert recommendations."
+        subheadline="Contact 51st State Construction for a free inspection and expert recommendations."
         primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
       />
     </>

@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { getServiceAreas, getBlogPosts } from '@/lib/sanity';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://51stateroofing.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://51stateconstruction.com';
 
   // Static routes
   const staticRoutes: MetadataRoute.Sitemap = [

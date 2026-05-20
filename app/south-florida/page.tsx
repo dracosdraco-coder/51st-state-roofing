@@ -30,9 +30,9 @@ export default function SouthFloridaPage() {
         }}
         secondaryCTA={{
           label: 'Call Now',
-          href: 'tel:+19542478528',
+          href: 'tel:+15619852484',
         }}
-        phone="(954) 247-8528"
+        phone="(561) 985-2484"
       />
 
       {/* Trust Bar */}

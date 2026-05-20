@@ -1,33 +1,31 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import TrustBar from '@/components/TrustBar';
 import CTABlock from '@/components/CTABlock';
 import TestimonialBlock from '@/components/TestimonialBlock';
 import ScrollAnimation from '@/components/ScrollAnimation';
-import { Phone, CheckCircle, ArrowRight, Layers, Shield, Search, Building, Users, MapPin } from 'lucide-react';
+import { Phone, CheckCircle, ArrowRight, MapPin, HardHat, Layers, Award } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Commercial Roofing Miami | 51st State Roofing | South Florida',
+  title: '51st State Construction | Commercial Roofing, Concrete Restoration & General Contracting',
   description:
-    'Expert commercial roofing services in Miami, Broward, and Palm Beach. TPO, metal, and flat roofs. Licensed, insured, same-day estimates. Call (954) 247-8528.',
+    'Commercial roofing, concrete restoration, and general contracting across Florida and North Carolina. Licensed, certified, and built for demanding commercial projects.',
   keywords:
-    'commercial roofing Miami, TPO roofing, metal roofing, flat roof repair, South Florida',
+    'commercial roofing Florida, commercial roofing North Carolina, concrete restoration, general contracting, ICRI certified',
   openGraph: {
-    title: 'Commercial Roofing Miami | 51st State Roofing',
-    description: 'Expert commercial roofing services for South Florida businesses.',
+    title: '51st State Construction',
+    description: 'Commercial construction specialists serving Florida & North Carolina since 2012.',
     type: 'website',
   },
 };
 
-// JSON-LD Schema Markup for LocalBusiness
 const localBusinessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: '51st State Roofing',
-  image: 'https://51stateroofing.com/logo.png',
-  description: 'Commercial roofing contractor serving South Florida',
+  '@type': 'GeneralContractor',
+  name: '51st State Construction',
+  image: 'https://51stateconstruction.com/51statelogo.png',
+  description: 'Commercial roofing, concrete restoration, and general contracting serving Florida and North Carolina.',
   address: {
     '@type': 'PostalAddress',
     streetAddress: '123 Commercial Ave',
@@ -35,112 +33,165 @@ const localBusinessSchema = {
     addressRegion: 'FL',
     postalCode: '33316',
   },
-  telephone: '(954) 247-8528',
-  email: 'info@51stateroofing.com',
-  url: 'https://51stateroofing.com',
-  areaServed: [
-    {
-      '@type': 'City',
-      name: 'Miami',
-    },
-    {
-      '@type': 'City',
-      name: 'Broward',
-    },
-    {
-      '@type': 'City',
-      name: 'Palm Beach',
-    },
-  ],
+  telephone: '(561) 985-2484',
+  email: '51statereno@gmail.com',
+  url: 'https://51stateconstruction.com',
+  areaServed: ['Florida', 'North Carolina'],
   priceRange: '$$',
   openingHours: 'Mo-Fr 08:00-17:00',
-  knowsAbout: ['TPO Roofing', 'Metal Roofing', 'Flat Roof', 'Roof Inspection'],
 };
 
-const services = [
+const markets = [
   {
-    title: 'TPO & Flat Roofing',
-    description: 'Durable single-ply membrane systems built to withstand South Florida weather.',
-    icon: 'Layers',
-    href: '/tpo-roofing',
+    icon: Layers,
+    title: 'Commercial Roofing — Florida',
+    description: 'TPO, metal, and flat roofing systems for South Florida commercial properties. Hurricane-rated, Miami-Dade NOA compliant, same-day inspections.',
+    href: '/florida',
+    tag: 'Miami-Dade · Broward · Palm Beach',
+    color: 'from-blue-900 to-brand-dark',
   },
   {
-    title: 'Metal Roofing',
-    description: 'Long-lasting, energy-efficient standing seam metal roofs for commercial properties.',
-    icon: 'Shield',
-    href: '/metal-roofing',
+    icon: MapPin,
+    title: 'Commercial Roofing — North Carolina',
+    description: 'Winter-rated commercial roofing for Charlotte, Raleigh, and Greensboro. Built for temperature extremes, heavy rain, and spring storm season.',
+    href: '/north-carolina',
+    tag: 'Charlotte · Raleigh · Greensboro',
+    color: 'from-slate-800 to-brand-dark',
   },
   {
-    title: 'Roof Inspection',
-    description: 'Comprehensive inspections to assess condition, identify damage, and prevent costly repairs.',
-    icon: 'Search',
-    href: '/roof-inspection',
+    icon: HardHat,
+    title: 'General Contracting',
+    description: 'Ground-up construction, tenant improvements, and commercial renovations — managed under one contract from permits through punch list.',
+    href: '/general-contracting',
+    tag: 'Florida & North Carolina',
+    color: 'from-gray-800 to-brand-dark',
   },
+  {
+    icon: Award,
+    title: 'Concrete Restoration',
+    description: 'ICRI-certified structural repair, waterproofing, and protective coating systems for parking structures, marine environments, and commercial buildings.',
+    href: '/concrete-restoration',
+    tag: 'ICRI · AIA CE Provider · COCPB',
+    color: 'from-brand-blue to-blue-900',
+  },
+  {
+    icon: HardHat,
+    title: 'Millwork & Interiors',
+    description: 'Custom architectural millwork, stonework fabrication, specialty finishes, and turn-key interior design-build — from concept through installed.',
+    href: '/millwork-interiors',
+    tag: 'Florida & North Carolina',
+    color: 'from-zinc-700 to-brand-dark',
+  },
+];
+
+const stats = [
+  { stat: '15+', label: 'Years in Business' },
+  { stat: '500+', label: 'Projects Delivered' },
+  { stat: '2', label: 'States Licensed' },
+  { stat: '3', label: 'Industry Certifications' },
+];
+
+const reasons = [
+  { title: 'Licensed & Insured', detail: 'Florida contractor license CGC1527726' },
+  { title: 'ICRI Certified', detail: 'Concrete repair to industry technical guidelines' },
+  { title: 'AIA CE Provider', detail: 'Trusted by architects for continuing education' },
+  { title: 'Multi-Market Experience', detail: 'South Florida and North Carolina specialists' },
+  { title: 'PE Quality Control', detail: 'Professional Engineers on every job site' },
+  { title: 'Same-Day Estimates', detail: 'Fast, no-obligation inspections and quotes' },
 ];
 
 export default function Home() {
   return (
     <>
-      {/* Schema Markup */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
       />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden text-white pt-12 pb-16 md:pt-20 md:pb-24 bg-gradient-to-r from-brand-dark via-gray-800 to-brand-dark min-h-screen flex items-center">
-
-        <div className="section-container relative z-10 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Left Column */}
-            <div>
+      {/* Hero */}
+      <section className="relative bg-brand-dark text-white pt-16 pb-20 md:pt-24 md:pb-28">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <div className="max-w-3xl">
             <ScrollAnimation type="fade-up" delay={0}>
+              <div className="flex items-center gap-2 text-brand-blue text-sm font-semibold mb-4">
+                <CheckCircle size={14} />
+                Licensed · ICRI Certified · AIA CE Provider
+              </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Commercial Roofing <span className="text-brand-blue">You Can Trust</span>
+                Commercial Construction<br />
+                <span className="text-brand-blue">You Can Count On</span>
               </h1>
-              <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-                Professional roofing solutions for Miami-Dade, Broward, and Palm Beach County businesses.
-                TPO, metal, and flat roof specialists with 15+ years of experience.
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                Roofing, concrete restoration, and general contracting for commercial properties across Florida and North Carolina. One team, full accountability.
               </p>
             </ScrollAnimation>
-
-              <div className="flex flex-col sm:flex-row gap-4 mb-10 mt-4">
-                <Link href="/contact" className="bg-brand-blue text-white px-10 py-4 rounded-lg font-semibold hover:bg-brand-blue-light transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center justify-center gap-2">
-                  Get Free Inspection <ArrowRight size={20} />
-                </Link>
-                <a href="tel:+19542478528" className="bg-white text-brand-blue px-10 py-4 rounded-lg font-semibold hover:bg-brand-gray-light transition-all duration-300 shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-2">
-                  <Phone size={20} /> (954) 247-8528
-                </a>
-              </div>
-
-              <ScrollAnimation type="fade-up" delay={0.1}>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="text-brand-blue flex-shrink-0" size={20} />
-                    <span>Licensed & Insured (CBC1258966)</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="text-brand-blue flex-shrink-0" size={20} />
-                    <span>Same-Day Estimates Available</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="text-brand-blue flex-shrink-0" size={20} />
-                    <span>Emergency Repairs 24/7</span>
-                  </div>
-                </div>
-              </ScrollAnimation>
-            </div> {/* closes Left Column */}
-
-            {/* Right Column - Placeholder for Hero Image */}
-            <div className="relative h-96 md:h-full bg-gray-700 rounded-lg overflow-hidden shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-brand-dark/20 flex items-center justify-center">
-                <div className="text-center text-gray-400">
-                  <Building size={64} className="mx-auto mb-4 text-gray-400" />
-                  <p>Hero Image</p>
-                  <p className="text-sm">(Commercial Roofing Project)</p>
-                </div>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+              <Link href="/contact" className="bg-brand-blue text-white px-8 py-4 rounded-lg font-semibold hover:bg-brand-blue-light transition-all inline-flex items-center justify-center gap-2 shadow-xl">
+                Get Free Estimate <ArrowRight size={18} />
+              </Link>
+              <a href="tel:+15619852484" className="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 transition-all inline-flex items-center justify-center gap-2">
+                <Phone size={18} /> (561) 985-2484
+              </a>
             </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {stats.map((s, i) => (
+                <div key={i}>
+                  <div className="text-2xl font-bold text-brand-blue">{s.stat}</div>
+                  <div className="text-xs text-gray-400 mt-0.5">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications Bar */}
+      <section className="bg-brand-blue-pale border-y border-blue-100 py-6">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <span className="text-brand-dark font-semibold text-sm">Industry Certifications & Accreditations</span>
+            <div className="flex flex-wrap items-center justify-center gap-8">
+              <Image src="/ICRI_CONCRETE.png" alt="ICRI Concrete Repair" width={100} height={55} className="object-contain" />
+              <Image src="/AIA_credit.png" alt="AIA Continuing Education" width={100} height={55} className="object-contain" />
+              <Image src="/COCPB.png" alt="COCPB Certification" width={100} height={55} className="object-contain" />
+            </div>
+            <Link href="/certifications" className="text-brand-blue font-semibold text-sm hover:underline whitespace-nowrap">
+              View All Certifications →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Markets / Services Pillars */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <ScrollAnimation type="fade-up">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">What We Do</h2>
+              <p className="text-lg text-brand-gray max-w-2xl mx-auto">
+                Four focused service lines. One company that manages all of it.
+              </p>
+            </div>
+          </ScrollAnimation>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {markets.map((market, i) => {
+              const Icon = market.icon;
+              return (
+                <ScrollAnimation key={i} type="fade-up" delay={i * 0.1}>
+                  <Link href={market.href} className={`group block bg-gradient-to-br ${market.color} text-white rounded-2xl p-8 hover:shadow-2xl transition-all hover:-translate-y-1`}>
+                    <div className="flex items-start justify-between mb-4">
+                      <Icon size={36} className="text-white/80 group-hover:text-white transition-colors" />
+                      <span className="text-xs text-white/50 bg-white/10 px-3 py-1 rounded-full">{market.tag}</span>
+                    </div>
+                    <h3 className="text-xl font-bold mb-3 group-hover:text-white">{market.title}</h3>
+                    <p className="text-white/70 text-sm leading-relaxed mb-4 group-hover:text-white/90">{market.description}</p>
+                    <div className="flex items-center gap-2 text-white/60 group-hover:text-white text-sm font-semibold transition-colors">
+                      Learn More <ArrowRight size={14} />
+                    </div>
+                  </Link>
+                </ScrollAnimation>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -148,124 +199,60 @@ export default function Home() {
       {/* Trust Bar */}
       <TrustBar />
 
-      {/* Services Section */}
-      <section className="section-container bg-brand-gray-light">
-        <ScrollAnimation type="fade-up">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-brand-dark mb-4">
-              Premium Commercial Roofing Services
-            </h2>
-            <p className="text-xl text-brand-gray max-w-3xl mx-auto">
-              Specialized expertise in TPO, metal, and comprehensive roof inspections. Choose the solution built for your property's needs and climate.
-            </p>
-          </div>
-        </ScrollAnimation>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {services.map((service, index) => {
-            const IconComponent = {
-              'Layers': Layers,
-              'Shield': Shield,
-              'Search': Search,
-            }[service.icon];
-            return (
-            <ScrollAnimation key={index} type="fade-up" delay={index * 0.1}>
-              <Link
-                href={service.href}
-                className="group cursor-pointer"
-              >
-                <div className="bg-white rounded-2xl p-10 shadow-lg hover:shadow-2xl transition-all duration-300 border border-brand-gray-light hover:border-brand-blue h-full flex flex-col">
-                  <div className="mb-6 group-hover:scale-110 transition-transform duration-300">
-                    {IconComponent && <IconComponent size={56} className="text-brand-blue" />}
-                  </div>
-                  <h3 className="text-2xl font-bold text-brand-dark mb-4 group-hover:text-brand-blue transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-brand-gray mb-6 leading-relaxed flex-grow">{service.description}</p>
-                  <div className="flex items-center gap-2 text-brand-blue font-semibold group-hover:gap-3 transition-all">
-                    Get Started <ArrowRight size={20} />
-                  </div>
-                </div>
-              </Link>
-            </ScrollAnimation>
-            );
-          })}
-        </div>
-
-        <div className="text-center">
-          <Link href="/commercial-roofing" className="inline-flex items-center gap-2 bg-white text-brand-blue px-8 py-4 rounded-lg font-semibold hover:bg-brand-gray-light transition-all duration-300 border border-brand-blue hover:border-brand-blue">
-            Explore All Services <ArrowRight size={20} />
-          </Link>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
-      <section className="bg-brand-gray-light">
-        <div className="section-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Left - Image Placeholder */}
+      {/* Why Choose Us */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollAnimation type="fade-right">
-              <div className="relative h-96 bg-gradient-to-br from-brand-blue/10 to-brand-blue/5 rounded-lg overflow-hidden shadow-lg">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-brand-gray">
-                    <Users size={64} className="mx-auto mb-4 text-brand-blue" />
-                    <p>Team Photo</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
+                Why Choose 51st State Construction?
+              </h2>
+              <p className="text-brand-gray mb-8">
+                We bring the same standards to roofing, concrete, and general contracting — because we&apos;re a construction company first, not a specialty trade.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {reasons.map((r, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle size={18} className="text-brand-blue mt-0.5 shrink-0" />
+                    <div>
+                      <div className="font-semibold text-brand-dark text-sm">{r.title}</div>
+                      <div className="text-brand-gray text-xs mt-0.5">{r.detail}</div>
+                    </div>
                   </div>
-                </div>
+                ))}
+              </div>
+              <div className="mt-8">
+                <Link href="/certifications" className="btn-primary inline-block">View Our Certifications</Link>
               </div>
             </ScrollAnimation>
-
-            {/* Right - Content */}
             <ScrollAnimation type="fade-left">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-6">
-                  Why Choose 51st State Roofing?
-                </h2>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex gap-4">
-                    <CheckCircle className="text-brand-blue flex-shrink-0 mt-1" size={24} />
+              <div className="bg-brand-blue rounded-2xl p-8 text-white">
+                <h3 className="font-bold text-xl mb-6">Accreditations</h3>
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4 bg-white/10 rounded-xl p-4">
+                    <Image src="/ICRI_CONCRETE.png" alt="ICRI" width={80} height={48} className="object-contain" />
                     <div>
-                      <h4 className="font-bold text-brand-dark mb-1">15+ Years Experience</h4>
-                      <p className="text-brand-gray">Established track record in commercial roofing</p>
+                      <div className="font-semibold text-sm">ICRI Member</div>
+                      <div className="text-white/70 text-xs">International Concrete Repair Institute</div>
                     </div>
                   </div>
-
-                  <div className="flex gap-4">
-                    <CheckCircle className="text-brand-blue flex-shrink-0 mt-1" size={24} />
+                  <div className="flex items-center gap-4 bg-white/10 rounded-xl p-4">
+                    <Image src="/AIA_credit.png" alt="AIA CE" width={80} height={48} className="object-contain" />
                     <div>
-                      <h4 className="font-bold text-brand-dark mb-1">Licensed & Insured</h4>
-                      <p className="text-brand-gray">CBC1258966 certified contractor</p>
+                      <div className="font-semibold text-sm">AIA CE Provider</div>
+                      <div className="text-white/70 text-xs">Continuing Education for Architects</div>
                     </div>
                   </div>
-
-                  <div className="flex gap-4">
-                    <CheckCircle className="text-brand-blue flex-shrink-0 mt-1" size={24} />
+                  <div className="flex items-center gap-4 bg-white/10 rounded-xl p-4">
+                    <Image src="/COCPB.png" alt="COCPB" width={80} height={48} className="object-contain" />
                     <div>
-                      <h4 className="font-bold text-brand-dark mb-1">Fast Turnaround</h4>
-                      <p className="text-brand-gray">Same-day estimates and quick project timelines</p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <CheckCircle className="text-brand-blue flex-shrink-0 mt-1" size={24} />
-                    <div>
-                      <h4 className="font-bold text-brand-dark mb-1">South Florida Specialists</h4>
-                      <p className="text-brand-gray">Built for hurricane seasons and high heat</p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <CheckCircle className="text-brand-blue flex-shrink-0 mt-1" size={24} />
-                    <div>
-                      <h4 className="font-bold text-brand-dark mb-1">Free Inspections</h4>
-                      <p className="text-brand-gray">No obligation roof assessments</p>
+                      <div className="font-semibold text-sm">COCPB Certified</div>
+                      <div className="text-white/70 text-xs">Concrete & Polymer Composites Board</div>
                     </div>
                   </div>
                 </div>
-
-                <Link href="/about" className="btn-primary">
-                  Learn More About Us
+                <Link href="/certifications" className="mt-6 block text-center text-sm text-white/70 hover:text-white transition-colors">
+                  Learn what each certification means →
                 </Link>
               </div>
             </ScrollAnimation>
@@ -273,95 +260,52 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="section-container">
-        <ScrollAnimation type="fade-up">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
-              Trusted by South Florida Businesses
-            </h2>
-            <p className="text-lg text-brand-gray max-w-2xl mx-auto">
-              See what our clients say about working with 51st State Roofing
-            </p>
-          </div>
-        </ScrollAnimation>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <ScrollAnimation type="fade-up" delay={0}>
-            <TestimonialBlock
-              quote="Professional team, excellent work quality, and they finished on schedule. Highly recommend for any commercial roofing project."
-              author="Michael Rodriguez"
-              company="Miami Manufacturing Co."
-              rating={5}
-            />
-          </ScrollAnimation>
-          <ScrollAnimation type="fade-up" delay={0.1}>
-            <TestimonialBlock
-              quote="51st State Roofing provided a thorough inspection and honest recommendations. We saved money and got a quality new roof."
-              author="Sarah Thompson"
-              company="Broward Logistics"
-              rating={5}
-            />
-          </ScrollAnimation>
-          <ScrollAnimation type="fade-up" delay={0.2}>
-            <TestimonialBlock
-              quote="Quick response time, detailed estimates, and superior craftsmanship. They handled our emergency roof repair perfectly."
-              author="James Chen"
-              company="Palm Beach Tech Solutions"
-              rating={5}
-            />
-          </ScrollAnimation>
-        </div>
-      </section>
-
-      {/* Service Areas Quick Preview */}
-      <section className="bg-brand-gray-light">
-        <div className="section-container">
+      {/* Testimonials */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
           <ScrollAnimation type="fade-up">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
-                Serving South Florida
+                Trusted by Commercial Property Owners
               </h2>
               <p className="text-lg text-brand-gray max-w-2xl mx-auto">
-                We proudly serve businesses across Miami-Dade, Broward, and Palm Beach counties
+                See what our clients say about working with 51st State Construction
               </p>
             </div>
           </ScrollAnimation>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            {['Miami-Dade County', 'Broward County', 'Palm Beach County'].map((area, index) => (
-              <ScrollAnimation key={index} type="scale" delay={index * 0.1}>
-                <div
-                  className="bg-white border border-brand-gray-light rounded-lg p-8 text-center hover:shadow-lg hover:border-brand-blue transition-all"
-                >
-                  <div className="mb-4 flex justify-center">
-                    <MapPin size={40} className="text-brand-blue" />
-                  </div>
-                  <h3 className="text-xl font-bold text-brand-dark mb-2">{area}</h3>
-                  <p className="text-brand-gray text-sm mb-4">
-                    Serving businesses and property managers
-                  </p>
-                  <Link href="/service-areas" className="text-brand-blue font-semibold hover:text-brand-dark transition-colors">
-                    View Details →
-                  </Link>
-                </div>
-              </ScrollAnimation>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Link href="/service-areas" className="btn-secondary">
-              Explore All Service Areas
-            </Link>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <ScrollAnimation type="fade-up" delay={0}>
+              <TestimonialBlock
+                quote="Professional team, excellent work quality, and they finished on schedule. Highly recommend for any commercial roofing project."
+                author="Michael Rodriguez"
+                company="Miami Manufacturing Co."
+                rating={5}
+              />
+            </ScrollAnimation>
+            <ScrollAnimation type="fade-up" delay={0.1}>
+              <TestimonialBlock
+                quote="51st State Construction provided a thorough inspection and honest recommendations. We saved money and got a quality new roof."
+                author="Sarah Thompson"
+                company="Broward Logistics"
+                rating={5}
+              />
+            </ScrollAnimation>
+            <ScrollAnimation type="fade-up" delay={0.2}>
+              <TestimonialBlock
+                quote="Quick response time, detailed estimates, and superior craftsmanship. They handled our emergency roof repair perfectly."
+                author="James Chen"
+                company="Palm Beach Tech Solutions"
+                rating={5}
+              />
+            </ScrollAnimation>
           </div>
         </div>
       </section>
 
-      {/* CTA Block */}
       <CTABlock
-        headline="Get a Free Commercial Roof Inspection Today"
-        subheadline="No obligation. No hidden fees. Just honest, professional assessment and guidance."
-        primaryCTA={{ label: 'Request Free Inspection', href: '/contact' }}
+        headline="Ready to Start Your Commercial Project?"
+        subheadline="Roofing, concrete restoration, or general contracting — we'll put together a clear scope and honest estimate."
+        primaryCTA={{ label: 'Request Free Estimate', href: '/contact' }}
         showPhone={true}
       />
     </>

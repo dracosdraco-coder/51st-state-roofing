@@ -4,7 +4,7 @@ import CTABlock from '@/components/CTABlock';
 import { MapPin, Clock, Phone } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Service Areas | 51st State Roofing | South Florida',
+  title: 'Service Areas | 51st State Construction | South Florida',
   description: 'Commercial roofing services in Miami-Dade, Broward, and Palm Beach counties.',
 };
 
@@ -111,7 +111,7 @@ export default function ServiceAreasPage() {
               <div>
                 <h3 className="font-bold text-brand-dark mb-1">Local Team</h3>
                 <p className="text-sm text-brand-gray">
-                  Call our main line: (954) 247-8528
+                  Call our main line: (561) 985-2484
                 </p>
               </div>
             </div>

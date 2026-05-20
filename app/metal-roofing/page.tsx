@@ -9,7 +9,7 @@ import ScrollAnimation from '@/components/ScrollAnimation';
 import { CheckCircle, Hammer, ShieldCheck, Zap } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Metal Roofing | Standing Seam Systems | 51st State Roofing',
+  title: 'Metal Roofing | Standing Seam Systems | 51st State Construction',
   description:
     'Premium standing seam metal roofing for commercial buildings. 40+ year lifespan, hurricane-rated, energy-efficient. Free estimates in South Florida.',
   keywords: 'metal roofing, standing seam, commercial metal roof, Miami metal roofing',
@@ -77,8 +77,8 @@ export default function MetalRoofingPage() {
             <Link href="/contact" className="btn-primary">
               Get Free Estimate
             </Link>
-            <a href="tel:+19542478528" className="btn-secondary">
-              (954) 247-8528
+            <a href="tel:+15619852484" className="btn-secondary">
+              (561) 985-2484
             </a>
           </div>
         </div>
@@ -192,7 +192,7 @@ export default function MetalRoofingPage() {
       {/* CTA Block */}
       <CTABlock
         headline="Invest in a Metal Roof That Lasts Decades"
-        subheadline="Get a free estimate for premium standing seam metal roofing from 51st State Roofing."
+        subheadline="Get a free estimate for premium standing seam metal roofing from 51st State Construction."
         primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
       />
     </>

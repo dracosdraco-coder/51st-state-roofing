@@ -5,7 +5,7 @@ export default function TrustBar() {
     {
       icon: Award,
       label: 'Licensed & Insured',
-      description: 'CBC1258966',
+      description: 'CGC1527726',
     },
     {
       icon: Search,

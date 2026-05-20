@@ -3,7 +3,7 @@ import Link from 'next/link';
 import CTABlock from '@/components/CTABlock';
 
 export const metadata: Metadata = {
-  title: 'Commercial Roofing in [City] | 51st State Roofing',
+  title: 'Commercial Roofing in [City] | 51st State Construction',
   description: 'Commercial roofing services in [City], South Florida. Free estimates available.',
 };
 
@@ -45,8 +45,8 @@ export default function ServiceAreaPage({ params }: { params: { slug: string } }
             <Link href="/contact" className="btn-primary">
               Get Free Estimate
             </Link>
-            <a href="tel:+19542478528" className="btn-secondary">
-              (954) 247-8528
+            <a href="tel:+15619852484" className="btn-secondary">
+              (561) 985-2484
             </a>
           </div>
         </div>
@@ -146,7 +146,7 @@ export default function ServiceAreaPage({ params }: { params: { slug: string } }
       {/* CTA Block */}
       <CTABlock
         headline={`Ready for Expert Roofing in ${area.title}?`}
-        subheadline="Contact 51st State Roofing today for your free commercial roof inspection and estimate."
+        subheadline="Contact 51st State Construction today for your free commercial roof inspection and estimate."
         primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
       />
     </>

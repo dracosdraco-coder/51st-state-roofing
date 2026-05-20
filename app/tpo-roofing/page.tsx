@@ -9,7 +9,7 @@ import ScrollAnimation from '@/components/ScrollAnimation';
 import { CheckCircle, Zap, Droplet, Leaf } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'TPO Roofing | Single-Ply Flat Roof Installation | 51st State Roofing',
+  title: 'TPO Roofing | Single-Ply Flat Roof Installation | 51st State Construction',
   description:
     'Professional TPO roofing installation and repair in South Florida. Energy-efficient single-ply membranes for commercial buildings. Free estimates.',
   keywords: 'TPO roofing, flat roof, single-ply membrane, TPO installation Miami, Broward roofing',
@@ -82,8 +82,8 @@ export default function TPORoofingPage() {
             <Link href="/contact" className="btn-primary">
               Get Free Estimate
             </Link>
-            <a href="tel:+19542478528" className="btn-secondary">
-              (954) 247-8528
+            <a href="tel:+15619852484" className="btn-secondary">
+              (561) 985-2484
             </a>
           </div>
         </div>
@@ -271,7 +271,7 @@ export default function TPORoofingPage() {
       {/* CTA Block */}
       <CTABlock
         headline="Ready to Upgrade to TPO Roofing?"
-        subheadline="Get a free estimate from 51st State Roofing. Energy-efficient, durable, and built for South Florida."
+        subheadline="Get a free estimate from 51st State Construction. Energy-efficient, durable, and built for South Florida."
         primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
       />
     </>

@@ -6,7 +6,7 @@ import ScrollAnimation from '@/components/ScrollAnimation';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Contact 51st State Roofing | Free Estimate | South Florida',
+  title: 'Contact 51st State Construction | Free Estimate | South Florida',
   description: 'Get a free commercial roofing estimate. Contact us today for inspections, repairs, or new installations. Licensed contractor in Miami, Broward, Palm Beach.',
 };
 
@@ -21,7 +21,7 @@ export default function ContactPage() {
               Get Your Free <span className="text-brand-blue">Roofing Estimate</span>
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl">
-              Contact 51st State Roofing today for professional commercial roofing services
+              Contact 51st State Construction today for professional commercial roofing services
             </p>
           </ScrollAnimation>
         </div>
@@ -45,8 +45,8 @@ export default function ContactPage() {
                   <Phone className="w-6 h-6 text-brand-blue flex-shrink-0 mt-1" />
                   <div>
                     <h3 className="font-semibold text-brand-dark mb-2">Phone</h3>
-                    <a href="tel:+19542478528" className="text-brand-gray hover:text-brand-blue transition-colors">
-                      (954) 247-8528
+                    <a href="tel:+15619852484" className="text-brand-gray hover:text-brand-blue transition-colors">
+                      (561) 985-2484
                     </a>
                     <p className="text-sm text-brand-gray mt-1">24/7 Emergency Support Available</p>
                   </div>
@@ -56,8 +56,8 @@ export default function ContactPage() {
                   <Mail className="w-6 h-6 text-brand-blue flex-shrink-0 mt-1" />
                   <div>
                     <h3 className="font-semibold text-brand-dark mb-2">Email</h3>
-                    <a href="mailto:info@51stateroofing.com" className="text-brand-gray hover:text-brand-blue transition-colors">
-                      info@51stateroofing.com
+                    <a href="mailto:51statereno@gmail.com" className="text-brand-gray hover:text-brand-blue transition-colors">
+                      51statereno@gmail.com
                     </a>
                     <p className="text-sm text-brand-gray mt-1">Response within 2 hours</p>
                   </div>
@@ -78,7 +78,7 @@ export default function ContactPage() {
               <div className="mt-12 p-6 bg-brand-gray-light rounded-lg">
                 <h3 className="font-semibold text-brand-dark mb-3">License Information</h3>
                 <p className="text-sm text-brand-gray">
-                  <strong>Florida License:</strong> CBC1258966<br />
+                  <strong>Florida License:</strong> CGC1527726<br />
                   <strong>Fully Insured & Bonded</strong>
                 </p>
               </div>
@@ -109,7 +109,7 @@ export default function ContactPage() {
                   type="tel"
                   name="phone"
                   required
-                  placeholder="(954) 247-8528"
+                  placeholder="(561) 985-2484"
                   className="w-full border border-brand-gray-light rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all duration-300 bg-brand-gray-light"
                 />
               </div>
@@ -196,10 +196,10 @@ export default function ContactPage() {
               Call us anytime—we're available 24/7 for emergencies
             </p>
             <a
-              href="tel:+19542478528"
+              href="tel:+15619852484"
               className="inline-block bg-brand-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-brand-blue-light transition-all duration-300 shadow-lg hover:shadow-xl"
             >
-              Call (954) 247-8528
+              Call (561) 985-2484
             </a>
           </ScrollAnimation>
         </div>

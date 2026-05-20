@@ -25,7 +25,7 @@ export default function PremiumHero({
   subheadline,
   primaryCTA,
   secondaryCTA,
-  phone = '(954) 247-8528',
+  phone = '(561) 985-2484',
   showPhone = true,
 }: PremiumHeroProps) {
   return (

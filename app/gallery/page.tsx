@@ -3,7 +3,7 @@ import Image from 'next/image';
 import CTABlock from '@/components/CTABlock';
 
 export const metadata: Metadata = {
-  title: 'Project Gallery | 51st State Roofing | South Florida',
+  title: 'Project Gallery | 51st State Construction | South Florida',
   description: 'View our completed commercial roofing projects in Miami, Broward, and Palm Beach.',
 };
 

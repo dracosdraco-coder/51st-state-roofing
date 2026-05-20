@@ -31,9 +31,9 @@ export default function NorthCarolinaPage() {
         }}
         secondaryCTA={{
           label: 'Call Now',
-          href: 'tel:+19542478528',
+          href: 'tel:+19198714455',
         }}
-        phone="(954) 247-8528"
+        phone="(919) 871-4455"
       />
 
       {/* Trust Bar */}

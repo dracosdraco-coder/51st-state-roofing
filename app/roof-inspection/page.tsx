@@ -7,7 +7,7 @@ import FAQAccordion from '@/components/FAQAccordion';
 import { CheckCircle, Camera, AlertCircle, ClipboardList } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Professional Roof Inspections | 51st State Roofing | South Florida',
+  title: 'Professional Roof Inspections | 51st State Construction | South Florida',
   description:
     'Comprehensive commercial roof inspections in Miami, Broward, Palm Beach. Identify damage early, get detailed reports, insurance documentation. Free estimates.',
   keywords: 'roof inspection, commercial roof inspection, Miami roofing inspection, damage assessment',
@@ -79,8 +79,8 @@ export default function RoofInspectionPage() {
             <Link href="/contact" className="btn-primary">
               Schedule Free Inspection
             </Link>
-            <a href="tel:+19542478528" className="btn-secondary">
-              Call (954) 247-8528
+            <a href="tel:+15619852484" className="btn-secondary">
+              Call (561) 985-2484
             </a>
           </div>
         </div>

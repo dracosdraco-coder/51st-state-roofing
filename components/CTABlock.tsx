@@ -17,7 +17,7 @@ interface Props {
 
 export default function CTABlock({
   headline = 'Ready to Get Your Commercial Roof Inspected?',
-  subheadline = "Contact 51st State Roofing today for a free estimate and professional assessment.",
+  subheadline = "Contact 51st State Construction today for a free estimate and professional assessment.",
   primaryCTA = { label: 'Request Free Estimate', href: '/contact' },
   secondaryCTA,
   showPhone = true,
@@ -43,11 +43,11 @@ export default function CTABlock({
             <div className="hidden sm:block border-l border-gray-600 pl-6">
               <p className="text-sm text-gray-400 mb-1">Or call us directly:</p>
               <a
-                href="tel:+19542478528"
+                href="tel:+15619852484"
                 className="flex items-center gap-2 text-2xl font-bold text-brand-blue hover:text-white transition-colors"
               >
                 <Phone size={20} />
-                (954) 247-8528
+                (561) 985-2484
               </a>
             </div>
           )}
@@ -57,11 +57,11 @@ export default function CTABlock({
           <div className="sm:hidden mt-6 border-t border-gray-700 pt-6">
             <p className="text-sm text-gray-400 mb-2">Or call us directly:</p>
             <a
-              href="tel:+19542478528"
+              href="tel:+15619852484"
               className="inline-flex items-center gap-2 text-2xl font-bold text-brand-blue hover:text-white transition-colors"
             >
               <Phone size={20} />
-              (954) 247-8528
+              (561) 985-2484
             </a>
           </div>
         )}

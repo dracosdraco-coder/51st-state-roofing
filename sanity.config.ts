@@ -5,7 +5,7 @@ import schemas from './sanity/schemas';
 
 export default defineConfig({
   name: 'default',
-  title: '51st State Roofing',
+  title: '51st State Construction',
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   plugins: [deskTool(), visionTool()],

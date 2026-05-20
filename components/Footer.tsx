@@ -17,21 +17,21 @@ export default function Footer() {
               <div className="w-8 h-8 bg-brand-blue rounded-lg flex items-center justify-center text-white font-bold">
                 51
               </div>
-              <span className="font-bold text-xl">51st State Roofing</span>
+              <span className="font-bold text-xl">51st State Construction</span>
             </div>
             <p className="text-gray-400 text-sm mb-4">
-              Commercial roofing specialists serving South Florida since 2012.
+              Commercial construction specialists serving Florida & North Carolina since 2012.
             </p>
             <div className="flex gap-4">
-              <a href="https://facebook.com/51stateroofing" target="_blank" rel="noopener noreferrer"
+              <a href="https://facebook.com/51stateconstruction" target="_blank" rel="noopener noreferrer"
                 className="text-gray-400 hover:text-brand-blue transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href="https://instagram.com/51stateroofing" target="_blank" rel="noopener noreferrer"
+              <a href="https://instagram.com/51stateconstruction" target="_blank" rel="noopener noreferrer"
                 className="text-gray-400 hover:text-brand-blue transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="https://linkedin.com/company/51stateroofing" target="_blank" rel="noopener noreferrer"
+              <a href="https://linkedin.com/company/51stateconstruction" target="_blank" rel="noopener noreferrer"
                 className="text-gray-400 hover:text-brand-blue transition-colors">
                 <Linkedin size={20} />
               </a>
@@ -43,28 +43,33 @@ export default function Footer() {
             <h4 className="font-bold text-lg mb-4">Services</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>
-                <Link href="/commercial-roofing" className="hover:text-brand-blue transition-colors">
-                  Commercial Roofing
+                <Link href="/florida" className="hover:text-brand-blue transition-colors">
+                  Roofing — Florida
                 </Link>
               </li>
               <li>
-                <Link href="/tpo-roofing" className="hover:text-brand-blue transition-colors">
-                  TPO & Flat Roofing
+                <Link href="/north-carolina" className="hover:text-brand-blue transition-colors">
+                  Roofing — North Carolina
                 </Link>
               </li>
               <li>
-                <Link href="/metal-roofing" className="hover:text-brand-blue transition-colors">
-                  Metal Roofing
+                <Link href="/general-contracting" className="hover:text-brand-blue transition-colors">
+                  General Contracting
                 </Link>
               </li>
               <li>
-                <Link href="/roof-inspection" className="hover:text-brand-blue transition-colors">
-                  Roof Inspection
+                <Link href="/concrete-restoration" className="hover:text-brand-blue transition-colors">
+                  Concrete Restoration
                 </Link>
               </li>
               <li>
-                <Link href="/service-areas" className="hover:text-brand-blue transition-colors">
-                  Service Areas
+                <Link href="/millwork-interiors" className="hover:text-brand-blue transition-colors">
+                  Millwork & Interiors
+                </Link>
+              </li>
+              <li>
+                <Link href="/certifications" className="hover:text-brand-blue transition-colors">
+                  Certifications
                 </Link>
               </li>
             </ul>
@@ -102,25 +107,25 @@ export default function Footer() {
             <h4 className="font-bold text-lg mb-4">Contact</h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="tel:+19542478528" className="text-brand-blue font-semibold hover:text-white transition-colors">
-                  (954) 247-8528
+                <a href="tel:+15619852484" className="text-brand-blue font-semibold hover:text-white transition-colors">
+                  (561) 985-2484
                 </a>
               </li>
               <li>
-                <a href="mailto:info@51stateroofing.com" className="text-gray-400 hover:text-brand-blue transition-colors">
-                  info@51stateroofing.com
+                <a href="mailto:51statereno@gmail.com" className="text-gray-400 hover:text-brand-blue transition-colors">
+                  51statereno@gmail.com
                 </a>
               </li>
               <li className="text-gray-400 pt-2">
-                <strong>Service Areas:</strong>
+                <strong>Markets:</strong>
                 <div className="mt-2 space-y-1">
-                  <div>Miami-Dade County</div>
-                  <div>Broward County</div>
-                  <div>Palm Beach County</div>
+                  <div>South Florida</div>
+                  <div>North Carolina</div>
+                  <div>General Contracting</div>
                 </div>
               </li>
               <li className="text-gray-400 pt-2">
-                <strong>License:</strong> CBC1258966
+                <strong>License:</strong> CGC1527726
               </li>
             </ul>
           </div>
@@ -129,7 +134,7 @@ export default function Footer() {
         {/* Bottom Footer */}
         <div className="border-t border-gray-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-            <p>&copy; {currentYear} 51st State Roofing. All rights reserved.</p>
+            <p>&copy; {currentYear} 51st State Construction. All rights reserved.</p>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-brand-blue transition-colors">
                 Privacy Policy

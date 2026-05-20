@@ -221,8 +221,8 @@ export default function RoofEstimator({ pageSource = 'website', showTitle = true
         </p>
         <div className="bg-brand-gray-light p-6 rounded-lg mb-6">
           <p className="text-sm text-brand-gray mb-2">Can't wait? Call us now:</p>
-          <a href="tel:+19542478528" className="text-2xl font-bold text-brand-blue hover:text-brand-blue-dark">
-            (954) 247-8528
+          <a href="tel:+15619852484" className="text-2xl font-bold text-brand-blue hover:text-brand-blue-dark">
+            (561) 985-2484
           </a>
         </div>
         <button

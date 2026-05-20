@@ -4,7 +4,7 @@ import { Calendar, User, ArrowRight } from 'lucide-react';
 import CTABlock from '@/components/CTABlock';
 
 export const metadata: Metadata = {
-  title: 'Blog | 51st State Roofing | Commercial Roofing Insights',
+  title: 'Blog | 51st State Construction | Commercial Roofing Insights',
   description: 'Industry news, tips, and guides for commercial roofing in South Florida.',
 };
 
