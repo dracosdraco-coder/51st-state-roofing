@@ -5,6 +5,7 @@ import PremiumHero from '@/components/PremiumHero';
 import TrustBar from '@/components/TrustBar';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Contact 51st State Construction | Free Estimate | South Florida',
@@ -79,100 +80,7 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <ScrollAnimation type="fade-left">
-            <form className="space-y-6">
-              <div>
-                <label className="block text-sm font-semibold text-brand-dark mb-2">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  placeholder="Your name"
-                  className="w-full border border-brand-gray-light rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all duration-300 bg-brand-gray-light"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-brand-dark mb-2">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  required
-                  placeholder="(561) 985-2484"
-                  className="w-full border border-brand-gray-light rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all duration-300 bg-brand-gray-light"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-brand-dark mb-2">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="your@email.com"
-                  className="w-full border border-brand-gray-light rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all duration-300 bg-brand-gray-light"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-brand-dark mb-2">
-                  Business Name (Optional)
-                </label>
-                <input
-                  type="text"
-                  name="company"
-                  placeholder="Your business name"
-                  className="w-full border border-brand-gray-light rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all duration-300 bg-brand-gray-light"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-brand-dark mb-2">
-                  Service Needed
-                </label>
-                <select
-                  name="service"
-                  required
-                  className="w-full border border-brand-gray-light rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all duration-300 bg-brand-gray-light"
-                >
-                  <option value="">Select a service</option>
-                  <option value="tpo">TPO & Flat Roofing</option>
-                  <option value="metal">Metal Standing Seam</option>
-                  <option value="inspection">Roof Inspection</option>
-                  <option value="repair">Roof Repair</option>
-                  <option value="replacement">Roof Replacement</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-brand-dark mb-2">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  placeholder="Tell us about your roofing needs"
-                  rows={5}
-                  className="w-full border border-brand-gray-light rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all duration-300 bg-brand-gray-light resize-none"
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-brand-blue text-white py-3 rounded-lg font-semibold hover:bg-brand-blue-light transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                Request Free Estimate
-              </button>
-
-              <p className="text-xs text-brand-gray text-center">
-                We'll respond within one business day.
-              </p>
-            </form>
+            <ContactForm />
           </ScrollAnimation>
         </div>
       </section>
