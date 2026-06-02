@@ -5,6 +5,8 @@ import TrustBar from '@/components/TrustBar';
 import { CheckCircle, Hammer, Layers, Palette, Ruler, Star, Package } from 'lucide-react';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import CTABlock from '@/components/CTABlock';
+import InspectionScheduler from '@/components/InspectionScheduler';
+import Estimator from '@/components/Estimator';
 
 export const metadata: Metadata = {
   title: 'Custom Millwork & Interior Design Build | 51st State Construction',
@@ -158,6 +160,30 @@ export default function MillworkInteriorsPage() {
               </ScrollAnimation>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Estimator */}
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-brand-dark mb-2">Estimate Your Project</h2>
+              <p className="text-brand-gray">Get a ballpark range for your interior or exterior finish scope.</p>
+            </div>
+            <Estimator defaultCategory="interior-finishes" market="FL" />
+          </div>
+        </div>
+      </section>
+
+      {/* Inspection Scheduler */}
+      <section className="section-container">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-brand-dark mb-2">Schedule a Site Visit</h2>
+            <p className="text-brand-gray">Our interior specialists will review your space and drawings on-site.</p>
+          </div>
+          <InspectionScheduler defaultInspectorType="interior" locationMarket="NATIONAL" />
         </div>
       </section>
 

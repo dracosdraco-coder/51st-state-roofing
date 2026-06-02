@@ -7,6 +7,9 @@ import CTABlock from '@/components/CTABlock';
 import TestimonialBlock from '@/components/TestimonialBlock';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import { CheckCircle, ArrowRight, HardHat, Layers, Award, Hammer } from 'lucide-react';
+import { getTestimonials } from '@/lib/sanity';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: '51st State Construction | Commercial Roofing, Concrete Restoration & General Contracting',
@@ -84,12 +87,20 @@ const reasons = [
 
 const projectPhotos = [
   { src: '/roof1.avif', alt: 'Commercial roofing — North Carolina', label: 'Commercial Roofing' },
-  { src: '/ceiling%201.jpg', alt: 'Ceiling restoration', label: 'Ceiling Restoration' },
+  { src: '/ceiling%201.jpg', alt: 'Interior & exterior finish work', label: 'Interior & Exterior Finishes' },
   { src: '/interior%203.jpg', alt: 'Interior build-out', label: 'Interior' },
-  { src: '/ceiling%202.jpg', alt: 'Ceiling work', label: 'Ceiling Restoration' },
+  { src: '/ceiling%202.jpg', alt: 'Interior finish work in progress', label: 'Interior & Exterior Finishes' },
 ];
 
-export default function Home() {
+const fallbackTestimonials = [
+  { quote: 'Professional team, excellent work quality, and they finished on schedule. Highly recommend for any commercial roofing project.', authorName: 'Michael Rodriguez', company: 'Miami Manufacturing Co.', rating: 5 },
+  { quote: '51st State Construction provided a thorough inspection and honest recommendations. We saved money and got a quality result.', authorName: 'Sarah Thompson', company: 'Broward Logistics', rating: 5 },
+  { quote: 'Quick response time, detailed estimates, and superior craftsmanship. They handled our project perfectly.', authorName: 'James Chen', company: 'Palm Beach Tech Solutions', rating: 5 },
+];
+
+export default async function Home() {
+  const sanityTestimonials = await getTestimonials();
+  const testimonials = sanityTestimonials?.length ? sanityTestimonials : fallbackTestimonials;
   return (
     <>
       <script
@@ -251,7 +262,7 @@ export default function Home() {
           <ScrollAnimation type="fade-left">
             <div className="grid grid-cols-2 gap-4 h-full">
               <div className="relative rounded-2xl overflow-hidden h-64">
-                <Image src="/ceiling%204.jpg" alt="Ceiling restoration project" fill className="object-cover" />
+                <Image src="/ceiling%204.jpg" alt="Interior & exterior finish project" fill className="object-cover" />
               </div>
               <div className="relative rounded-2xl overflow-hidden h-64 mt-8">
                 <Image src="/interior%204.jpg" alt="Interior project" fill className="object-cover" />
@@ -260,7 +271,7 @@ export default function Home() {
                 <Image src="/interior.jpg" alt="Interior build-out" fill className="object-cover" />
               </div>
               <div className="relative rounded-2xl overflow-hidden h-48 -mt-4">
-                <Image src="/ceiling%201.jpg" alt="Ceiling work" fill className="object-cover" />
+                <Image src="/ceiling%201.jpg" alt="Interior finish work" fill className="object-cover" />
               </div>
             </div>
           </ScrollAnimation>
@@ -278,30 +289,16 @@ export default function Home() {
             </div>
           </ScrollAnimation>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ScrollAnimation type="fade-up" delay={0}>
-              <TestimonialBlock
-                quote="Professional team, excellent work quality, and they finished on schedule. Highly recommend for any commercial roofing project."
-                author="Michael Rodriguez"
-                company="Miami Manufacturing Co."
-                rating={5}
-              />
-            </ScrollAnimation>
-            <ScrollAnimation type="fade-up" delay={0.1}>
-              <TestimonialBlock
-                quote="51st State Construction provided a thorough inspection and honest recommendations. We saved money and got a quality result."
-                author="Sarah Thompson"
-                company="Broward Logistics"
-                rating={5}
-              />
-            </ScrollAnimation>
-            <ScrollAnimation type="fade-up" delay={0.2}>
-              <TestimonialBlock
-                quote="Quick response time, detailed estimates, and superior craftsmanship. They handled our project perfectly."
-                author="James Chen"
-                company="Palm Beach Tech Solutions"
-                rating={5}
-              />
-            </ScrollAnimation>
+            {testimonials.slice(0, 3).map((t: any, i: number) => (
+              <ScrollAnimation key={t._id || i} type="fade-up" delay={i * 0.1}>
+                <TestimonialBlock
+                  quote={t.quote}
+                  author={t.authorName}
+                  company={t.company}
+                  rating={t.rating ?? 5}
+                />
+              </ScrollAnimation>
+            ))}
           </div>
         </div>
       </section>

@@ -171,14 +171,17 @@ export async function getTestimonials() {
 export async function getSiteSettings() {
   const query = `*[_type == "siteSettings"][0] {
     phone,
+    phoneNC,
     email,
     address,
+    addressNC,
     licenseNumber,
     googleReviewLink,
     socialLinks {
       facebook,
       instagram,
-      linkedin
+      linkedin,
+      googleBusiness
     }
   }`;
 
@@ -188,6 +191,25 @@ export async function getSiteSettings() {
   } catch (error) {
     console.error('Error fetching site settings:', error);
     return null;
+  }
+}
+
+/**
+ * Fetch FAQs for a specific page
+ */
+export async function getFAQs(pageKey: string) {
+  const query = `*[_type == "faq" && pageKey == $pageKey] | order(order asc) {
+    _id,
+    question,
+    answer
+  }`;
+
+  try {
+    const faqs = await sanityClient.fetch(query, { pageKey });
+    return faqs || [];
+  } catch (error) {
+    console.error(`Error fetching FAQs for ${pageKey}:`, error);
+    return [];
   }
 }
 

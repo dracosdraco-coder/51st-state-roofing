@@ -16,6 +16,25 @@ export default {
       initialValue: 'FL',
     },
     {
+      name: 'market',
+      title: 'Market',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Florida', value: 'FL' },
+          { title: 'North Carolina', value: 'NC' },
+          { title: 'National', value: 'NATIONAL' },
+        ],
+      },
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'googleBusinessLocationId',
+      title: 'Google Business Location ID',
+      type: 'string',
+      description: 'From GBP dashboard → Business info. Used to attribute leads to the correct listing.',
+    },
+    {
       name: 'county',
       title: 'County',
       type: 'string',
@@ -55,4 +74,10 @@ export default {
       type: 'string',
     },
   ],
+  preview: {
+    select: {
+      title: 'city',
+      subtitle: 'market',
+    },
+  },
 };

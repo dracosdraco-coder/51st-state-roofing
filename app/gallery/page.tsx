@@ -4,19 +4,21 @@ import Link from 'next/link';
 import PremiumHero from '@/components/PremiumHero';
 import CTABlock from '@/components/CTABlock';
 import ScrollAnimation from '@/components/ScrollAnimation';
+import { getGalleryProjects, getSanityImageUrl } from '@/lib/sanity';
 
 export const metadata: Metadata = {
   title: 'Project Gallery | 51st State Construction',
   description: 'Commercial roofing, interior, and restoration projects across Florida and North Carolina.',
 };
 
-const categories = [
+export const revalidate = 60;
+
+// Fallback photos shown until Sanity projects are added
+const fallbackCategories = [
   {
     label: 'Commercial Roofing',
     market: 'North Carolina',
-    photos: [
-      { src: '/roof1.avif', alt: 'Commercial roofing project — North Carolina' },
-    ],
+    photos: [{ src: '/roof1.avif', alt: 'Commercial roofing project — North Carolina' }],
   },
   {
     label: 'Interior & Millwork',
@@ -29,19 +31,31 @@ const categories = [
     ],
   },
   {
-    label: 'Ceiling Restoration',
+    label: 'Interior & Exterior Finishes',
     market: 'Florida & North Carolina',
     photos: [
-      { src: '/ceiling%201.jpg', alt: 'Ceiling restoration' },
-      { src: '/ceiling%202.jpg', alt: 'Ceiling work in progress' },
-      { src: '/ceiling%204.jpg', alt: 'Completed ceiling restoration' },
+      { src: '/ceiling%201.jpg', alt: 'Interior finish work — specialty ceiling' },
+      { src: '/ceiling%202.jpg', alt: 'Interior finish work in progress' },
+      { src: '/ceiling%204.jpg', alt: 'Completed interior & exterior finish' },
     ],
   },
 ];
 
-const allPhotos = categories.flatMap(c => c.photos.map(p => ({ ...p, label: c.label })));
+const categoryLabels: Record<string, string> = {
+  'commercial-roofing': 'Commercial Roofing',
+  'metal-roofing': 'Metal Roofing',
+  'tpo-roofing': 'TPO Roofing',
+  'roof-inspection': 'Roof Inspection',
+  'concrete-restoration': 'Concrete Restoration',
+  'interior-exterior-finishes': 'Interior & Exterior Finishes',
+  'millwork-interiors': 'Millwork & Interiors',
+  'general-contracting': 'General Contracting',
+};
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const sanityProjects = await getGalleryProjects();
+  const hasSanityProjects = sanityProjects && sanityProjects.length > 0;
+
   return (
     <>
       <PremiumHero
@@ -59,72 +73,139 @@ export default function GalleryPage() {
             <p className="text-gray-400 text-sm mb-6">Florida market — commercial roofing in action</p>
           </ScrollAnimation>
           <div className="relative rounded-2xl overflow-hidden aspect-video max-w-4xl mx-auto">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              disablePictureInPicture
-              className="w-full h-full object-cover pointer-events-none"
-            >
+            <video autoPlay muted loop playsInline disablePictureInPicture
+              className="w-full h-full object-cover pointer-events-none">
               <source src="/home_video.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
       </section>
 
-      {/* All Photos */}
-      <section className="section-container">
-        <ScrollAnimation type="fade-up">
-          <h2 className="text-3xl font-bold text-brand-dark mb-2">All Projects</h2>
-          <p className="text-brand-gray mb-10">Roofing, interiors, and ceiling restoration across both markets.</p>
-        </ScrollAnimation>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {allPhotos.map((photo, i) => (
-            <ScrollAnimation key={i} type="fade-up" delay={i * 0.05}>
-              <div className="relative h-64 rounded-xl overflow-hidden group bg-gray-100">
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="text-white text-sm font-semibold">{photo.label}</span>
-                </div>
-              </div>
-            </ScrollAnimation>
-          ))}
-        </div>
-      </section>
-
-      {/* By Category */}
-      {categories.map((cat, ci) => (
-        <section key={ci} className={ci % 2 === 0 ? 'bg-brand-gray-light' : 'bg-white'}>
-          <div className="section-container">
+      {hasSanityProjects ? (
+        // ── Sanity-powered gallery ──────────────────────────────
+        <>
+          <section className="section-container">
             <ScrollAnimation type="fade-up">
-              <div className="flex items-baseline gap-4 mb-8">
-                <h2 className="text-2xl font-bold text-brand-dark">{cat.label}</h2>
-                <span className="text-sm text-brand-gray">{cat.market}</span>
-              </div>
+              <h2 className="text-3xl font-bold text-brand-dark mb-2">All Projects</h2>
+              <p className="text-brand-gray mb-10">
+                Roofing, interior & exterior finishes across both markets.
+              </p>
             </ScrollAnimation>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {cat.photos.map((photo, pi) => (
-                <ScrollAnimation key={pi} type="fade-up" delay={pi * 0.08}>
-                  <div className="relative h-56 rounded-xl overflow-hidden group bg-gray-100">
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sanityProjects.map((project: any, i: number) => {
+                const imageUrl = getSanityImageUrl(project.mainImage || project.afterImage);
+                return (
+                  <ScrollAnimation key={project._id} type="fade-up" delay={i * 0.05}>
+                    <div className="relative h-64 rounded-xl overflow-hidden group bg-gray-100">
+                      {imageUrl ? (
+                        <Image
+                          src={imageUrl}
+                          alt={project.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-brand-blue-pale flex items-center justify-center">
+                          <span className="text-brand-gray text-sm">No image</span>
+                        </div>
+                      )}
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <p className="text-white text-sm font-semibold">{project.title}</p>
+                        {project.category && (
+                          <p className="text-gray-300 text-xs mt-0.5">
+                            {categoryLabels[project.category] || project.category}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </ScrollAnimation>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* By market */}
+          {['FL', 'NC'].map((market, mi) => {
+            const marketProjects = sanityProjects.filter(
+              (p: any) => p.market === market || p.market === 'NATIONAL'
+            );
+            if (!marketProjects.length) return null;
+            return (
+              <section key={market} className={mi % 2 === 0 ? 'bg-brand-gray-light' : 'bg-white'}>
+                <div className="section-container">
+                  <ScrollAnimation type="fade-up">
+                    <h2 className="text-2xl font-bold text-brand-dark mb-2">
+                      {market === 'FL' ? 'Florida Projects' : 'North Carolina Projects'}
+                    </h2>
+                  </ScrollAnimation>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {marketProjects.slice(0, 8).map((project: any, pi: number) => {
+                      const imgUrl = getSanityImageUrl(project.mainImage || project.afterImage);
+                      return (
+                        <ScrollAnimation key={project._id} type="fade-up" delay={pi * 0.08}>
+                          <div className="relative h-56 rounded-xl overflow-hidden group bg-gray-100">
+                            {imgUrl ? (
+                              <Image src={imgUrl} alt={project.title} fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                            ) : (
+                              <div className="w-full h-full bg-brand-blue-pale" />
+                            )}
+                          </div>
+                        </ScrollAnimation>
+                      );
+                    })}
+                  </div>
+                </div>
+              </section>
+            );
+          })}
+        </>
+      ) : (
+        // ── Fallback: hardcoded local photos ───────────────────
+        <>
+          <section className="section-container">
+            <ScrollAnimation type="fade-up">
+              <h2 className="text-3xl font-bold text-brand-dark mb-2">All Projects</h2>
+              <p className="text-brand-gray mb-10">Roofing, interior & exterior finishes across both markets.</p>
+            </ScrollAnimation>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {fallbackCategories.flatMap(c => c.photos.map(p => ({ ...p, label: c.label }))).map((photo, i) => (
+                <ScrollAnimation key={i} type="fade-up" delay={i * 0.05}>
+                  <div className="relative h-64 rounded-xl overflow-hidden group bg-gray-100">
+                    <Image src={photo.src} alt={photo.alt} fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="text-white text-sm font-semibold">{photo.label}</span>
+                    </div>
                   </div>
                 </ScrollAnimation>
               ))}
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+          {fallbackCategories.map((cat, ci) => (
+            <section key={ci} className={ci % 2 === 0 ? 'bg-brand-gray-light' : 'bg-white'}>
+              <div className="section-container">
+                <ScrollAnimation type="fade-up">
+                  <div className="flex items-baseline gap-4 mb-8">
+                    <h2 className="text-2xl font-bold text-brand-dark">{cat.label}</h2>
+                    <span className="text-sm text-brand-gray">{cat.market}</span>
+                  </div>
+                </ScrollAnimation>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {cat.photos.map((photo, pi) => (
+                    <ScrollAnimation key={pi} type="fade-up" delay={pi * 0.08}>
+                      <div className="relative h-56 rounded-xl overflow-hidden group bg-gray-100">
+                        <Image src={photo.src} alt={photo.alt} fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                      </div>
+                    </ScrollAnimation>
+                  ))}
+                </div>
+              </div>
+            </section>
+          ))}
+        </>
+      )}
 
       <CTABlock
         headline="Ready to Add Your Project to Our Gallery?"

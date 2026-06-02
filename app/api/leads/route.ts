@@ -1,37 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sendLeadToProjectex } from '@/lib/projex';
-
-interface LeadRequest {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  companyName?: string;
-  roofType?: string;
-  roofSize?: string;
-  propertyAddress?: string;
-  additionalNotes?: string;
-  pageSource?: string;
-  utmSource?: string;
-  utmCampaign?: string;
-  utmMedium?: string;
-  utmContent?: string;
-  utmTerm?: string;
-}
+import {
+  sendLeadToProjectex,
+  sendLeadToGoogleSheets,
+  sendLeadToUCM,
+  getGBPLocationId,
+  type LeadData,
+} from '@/lib/projex';
 
 /**
  * POST /api/leads
- * Receives lead submissions from the estimator and contact forms.
- * - Validates required fields
- * - Sends to Projex CRM via webhook
- * - Sends confirmation email (optional - via Resend)
- * - Logs to console in development
+ * Receives lead submissions from all forms on the site.
+ * Dispatches in parallel to: Projex CRM, Google Sheets, UCM.
+ * One destination failing does not block the others.
  */
 export async function POST(request: NextRequest) {
   try {
-    const body: LeadRequest = await request.json();
+    const body: LeadData = await request.json();
 
-    // Validate required fields
     const { firstName, lastName, email, phone } = body;
 
     if (!firstName?.trim() || !lastName?.trim() || !email?.trim() || !phone?.trim()) {
@@ -41,51 +26,55 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Invalid email format' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Invalid email format' }, { status: 400 });
     }
 
-    // Log submission in development
+    // Attach the GBP location ID based on the submitted market
+    const enrichedLead: LeadData = {
+      ...body,
+      googleBusinessLocationId: getGBPLocationId(body.locationMarket),
+    };
+
     if (process.env.NODE_ENV === 'development') {
-      console.log('📨 New Lead Submission:');
-      console.log(JSON.stringify(body, null, 2));
+      console.log('New Lead Submission:', JSON.stringify(enrichedLead, null, 2));
     }
 
-    // Send to Projex CRM
-    const projectexSuccess = await sendLeadToProjectex(body);
+    // Fan out to all destinations in parallel — failures are logged but do not block
+    const [projexResult, sheetsResult, ucmResult] = await Promise.allSettled([
+      sendLeadToProjectex(enrichedLead),
+      sendLeadToGoogleSheets(enrichedLead),
+      sendLeadToUCM(enrichedLead),
+    ]);
 
-    if (!projectexSuccess) {
-      console.warn('Projex webhook failed but lead received');
-      // Continue anyway - the lead was logged
+    if (projexResult.status === 'rejected' || projexResult.value === false) {
+      console.warn('Projex delivery failed');
+    }
+    if (sheetsResult.status === 'rejected' || sheetsResult.value === false) {
+      console.warn('Google Sheets delivery failed');
+    }
+    if (ucmResult.status === 'rejected' || ucmResult.value === false) {
+      console.warn('UCM delivery failed');
     }
 
-    // TODO: Send confirmation email via Resend API
-    // if (process.env.RESEND_API_KEY) {
-    //   await sendConfirmationEmail(email, firstName, lastName);
-    // }
-
-    // Generate leadId (could be UUID or database ID in production)
     const leadId = `LEAD_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
     return NextResponse.json(
       {
         success: true,
         leadId,
-        message: 'Lead submission received. We will contact you within 1 business hour.',
+        message: 'Lead submission received. We will contact you within 24 hours.',
+        dispatched: {
+          projex: projexResult.status === 'fulfilled' && projexResult.value,
+          googleSheets: sheetsResult.status === 'fulfilled' && sheetsResult.value,
+          ucm: ucmResult.status === 'fulfilled' && ucmResult.value,
+        },
       },
       { status: 201 }
     );
   } catch (error) {
     console.error('Error processing lead:', error);
-
-    return NextResponse.json(
-      { error: 'Failed to process lead submission' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to process lead submission' }, { status: 500 });
   }
 }

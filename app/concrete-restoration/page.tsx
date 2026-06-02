@@ -6,6 +6,8 @@ import TrustBar from '@/components/TrustBar';
 import { CheckCircle, Shield, Wrench, Droplets, Building2, Search, Award } from 'lucide-react';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import CTABlock from '@/components/CTABlock';
+import InspectionScheduler from '@/components/InspectionScheduler';
+import Estimator from '@/components/Estimator';
 
 export const metadata: Metadata = {
   title: 'Concrete Restoration & Repair | 51st State Construction',
@@ -183,6 +185,30 @@ export default function ConcreteRestorationPage() {
               </ScrollAnimation>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Estimator */}
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-brand-dark mb-2">Estimate Your Restoration</h2>
+              <p className="text-brand-gray">Ballpark pricing for concrete, EIFS, and waterproofing scopes.</p>
+            </div>
+            <Estimator defaultCategory="siding-exterior" market="FL" />
+          </div>
+        </div>
+      </section>
+
+      {/* Inspection Scheduler */}
+      <section className="section-container">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-brand-dark mb-2">Schedule an Assessment</h2>
+            <p className="text-brand-gray">Our certified restoration specialists will assess the damage on-site.</p>
+          </div>
+          <InspectionScheduler defaultInspectorType="commercial" locationMarket="NATIONAL" />
         </div>
       </section>
 

@@ -40,6 +40,8 @@ const mobileLinks = [
   { href: '/general-contracting', label: 'General Contracting' },
   { href: '/concrete-restoration', label: 'Concrete Restoration' },
   { href: '/millwork-interiors', label: 'Millwork & Interiors' },
+  { href: '/estimator', label: 'Instant Estimator' },
+  { href: '/locations', label: 'Find a Location' },
   { href: '/certifications', label: 'Certifications' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/blog', label: 'Blog' },
@@ -105,6 +107,12 @@ export default function Navbar() {
               )}
             </div>
 
+            <Link href="/estimator" className="text-brand-gray hover:text-brand-dark transition-colors text-sm font-medium">
+              Estimator
+            </Link>
+            <Link href="/locations" className="text-brand-gray hover:text-brand-dark transition-colors text-sm font-medium">
+              Locations
+            </Link>
             <Link href="/certifications" className="text-brand-gray hover:text-brand-dark transition-colors text-sm font-medium">
               Certifications
             </Link>

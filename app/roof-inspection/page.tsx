@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import TrustBar from '@/components/TrustBar';
 import CTABlock from '@/components/CTABlock';
+import InspectionScheduler from '@/components/InspectionScheduler';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import FAQAccordion from '@/components/FAQAccordion';
 import PremiumHero from '@/components/PremiumHero';
@@ -129,6 +130,17 @@ export default function RoofInspectionPage() {
             </h2>
           </ScrollAnimation>
           <FAQAccordion items={faqItems} title="Inspection FAQs" />
+        </div>
+      </section>
+
+      {/* Inspection Scheduler */}
+      <section className="section-container">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-brand-dark mb-2">Book Your Inspection</h2>
+            <p className="text-brand-gray">Select your preferred window — we respond within 24–72 hours.</p>
+          </div>
+          <InspectionScheduler defaultInspectorType="roofing" locationMarket="FL" />
         </div>
       </section>
 

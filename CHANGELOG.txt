@@ -1,0 +1,243 @@
+51st State Construction — Changelog
+Format: [STATUS] ITEM — File(s) — Description
+Statuses: [ ] TODO  [~] IN PROGRESS  [x] DONE
+
+Last updated: 2026-05-28
+
+=============================================================
+PHASE 1 — CONTENT & TERMINOLOGY FIXES
+=============================================================
+
+[x] 1.1  RENAME "Ceiling Restoration" → "Interior & Exterior Finishes"
+         Files changed:
+           - app/gallery/page.tsx — category label, image alts, description copy
+           - app/page.tsx — homepage gallery image labels and alt text
+           - app/north-carolina/page.tsx — gallery item labels and alt text
+
+[x] 1.2  Verified Navbar — no "Ceiling Restoration" label found
+         File: components/Navbar.tsx — no changes needed
+
+[x] 1.3  Gallery page description copy updated
+         File: app/gallery/page.tsx
+         From: "Roofing, interiors, and ceiling restoration across both markets."
+         To:   "Roofing, interior & exterior finishes across both markets."
+
+
+=============================================================
+PHASE 2A — MULTI-DESTINATION LEAD PIPELINE
+=============================================================
+
+[x] 2.1  Expanded LeadData interface with new fields
+         File: lib/projex.ts
+         Added: serviceType, inspectorType, preferredWindow, locationMarket,
+                googleBusinessLocationId, estimateCategory, estimateResult
+
+[x] 2.2  Added Google Sheets webhook dispatch
+         File: lib/projex.ts — sendLeadToGoogleSheets()
+         File: app/api/leads/route.ts — included in Promise.allSettled fan-out
+
+[x] 2.3  Added UCM webhook dispatch
+         File: lib/projex.ts — sendLeadToUCM()
+         File: app/api/leads/route.ts — included in Promise.allSettled fan-out
+
+[x] 2.4  Updated /api/leads to fan out in parallel (all 3 destinations)
+         File: app/api/leads/route.ts — Promise.allSettled, enriched lead with GBP ID
+
+[x] 2.5  Added env vars to .env.local.example
+         Added: GOOGLE_SHEETS_WEBHOOK_URL, UCM_WEBHOOK_URL,
+                GOOGLE_BUSINESS_LOCATION_ID_NC, GOOGLE_BUSINESS_LOCATION_ID_FL,
+                NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+
+[ ] 2.6  CREATE GOOGLE APPS SCRIPT WEB APP (manual external step)
+         Action: Set up Apps Script in target Google Sheet.
+         Accepts POST JSON → appends row. Paste URL into GOOGLE_SHEETS_WEBHOOK_URL.
+         See: https://developers.google.com/apps-script/guides/web
+
+[ ] 2.7  TEST dual-device real-time submission
+         QA: Submit from two devices simultaneously.
+         Verify both rows appear in Google Sheet + Projex within seconds.
+
+
+=============================================================
+PHASE 2B — LOCATION SPECIFICITY
+=============================================================
+
+[x] 3.1  locationMarket prop wired through InspectionScheduler (Phase 2D)
+         Each location page passes its market to the scheduler hidden field.
+
+[x] 3.2  GBP location ID mapping
+         File: lib/projex.ts — getGBPLocationId() maps NC/FL to env vars
+         File: app/api/leads/route.ts — attached to enrichedLead before dispatch
+
+[x] 3.3  Sanity serviceArea schema — added market + googleBusinessLocationId fields
+         File: sanity/schemas/serviceArea.ts
+
+[x] 3.4  LocalBusiness JSON-LD schema markup on all location pages
+         Files:
+           - app/florida/page.tsx — RoofingContractor, FL address, FL areaServed
+           - app/south-florida/page.tsx — RoofingContractor, FL address
+           - app/north-carolina/page.tsx — RoofingContractor, NC address, NC areaServed
+
+
+=============================================================
+PHASE 2C — CMS / SITE CONTROLLER (SANITY STUDIO)
+=============================================================
+
+[x] 4.1  Expanded siteSettings Sanity schema
+         File: sanity/schemas/siteSettings.ts
+         Added groups: Contact & Business, Homepage Copy, Service Sections, Social & Links
+         Added fields: heroHeadline, heroSubheadline, CTAs, servicePages array with
+                       per-page copy blocks (all 8 service pages), phoneNC, addressNC,
+                       googleBusiness social link
+
+[x] 4.2  Expanded galleryProject schema with category taxonomy + market field
+         File: sanity/schemas/galleryProject.ts
+         Added: category (8 options incl. "Interior & Exterior Finishes"),
+                market (FL/NC/NATIONAL), mainImage, additionalImages, featured flag
+
+[x] 4.3  Expanded serviceArea schema with market + GBP fields
+         File: sanity/schemas/serviceArea.ts
+         Added: market, googleBusinessLocationId, preview block
+
+[ ] 4.4  Wire homepage hero/services copy from Sanity (next sprint)
+         Files: app/page.tsx — replace hardcoded strings with GROQ queries
+         Requires: NEXT_PUBLIC_SANITY_PROJECT_ID, NEXT_PUBLIC_SANITY_DATASET set
+
+[ ] 4.5  Confirm Sanity Studio accessible at /studio
+         Action: Test /studio in dev. Document URL + login for editors.
+
+
+=============================================================
+PHASE 2D — INSPECTION SCHEDULER COMPONENT
+=============================================================
+
+[x] 5.1  Created InspectionScheduler component
+         File: components/InspectionScheduler.tsx (NEW)
+         Props: defaultInspectorType, locationMarket
+         Features: inspector type selector (4 types), 24/48/72hr window selector,
+                   contact fields, UTM passthrough, success/error states
+
+[x] 5.2  Added InspectionScheduler to all service pages
+         Files (all updated with import + section before CTABlock):
+           - app/roof-inspection/page.tsx — roofing / FL
+           - app/commercial-roofing/page.tsx — commercial / FL
+           - app/metal-roofing/page.tsx — roofing / FL
+           - app/tpo-roofing/page.tsx — roofing / FL
+           - app/millwork-interiors/page.tsx — interior / NATIONAL
+           - app/concrete-restoration/page.tsx — commercial / NATIONAL
+           - app/general-contracting/page.tsx — commercial / NATIONAL
+
+[x] 5.3  /api/leads updated to accept and forward inspectorType + preferredWindow
+         File: app/api/leads/route.ts — fields pass through to all 3 destinations
+
+
+=============================================================
+PHASE 2E — ESTIMATOR EXPANSION
+=============================================================
+
+[x] 6.1  Created multi-category Estimator component
+         File: components/Estimator.tsx (NEW)
+         Categories: TPO Roofing, Metal Roofing, Flat Roofing, Siding & Exterior,
+                     Interior & Exterior Finishes, Large Commercial
+         Props: defaultCategory, market (FL/NC/NATIONAL)
+         Features: material tier selector, complexity selector, calculated range,
+                   email estimate capture (fires /api/leads with estimateResult)
+
+[x] 6.2  Created market-specific pricing data
+         File: lib/estimatorData.ts (NEW)
+         Contains: FL and NC pricing ranges per category, multipliers for material
+                   tier and complexity, calculateEstimate() helper
+         NOTE: Pricing ranges must be reviewed and confirmed before going live.
+
+[x] 6.3  Replaced RoofEstimator with new Estimator on roofing pages
+         Files: app/metal-roofing/page.tsx, app/tpo-roofing/page.tsx
+
+[x] 6.4  Added Estimator to additional service pages
+         Files: app/commercial-roofing/page.tsx, app/millwork-interiors/page.tsx,
+                app/concrete-restoration/page.tsx
+         Location pages: app/florida/page.tsx, app/south-florida/page.tsx,
+                         app/north-carolina/page.tsx
+
+
+=============================================================
+PHASE 3A — SERVICE AREA MAP
+=============================================================
+
+[x] 7.1  Created ServiceAreaMap component
+         File: components/ServiceAreaMap.tsx (NEW)
+         Props: market (FL | NC)
+         Features: Google Maps embed (uses NEXT_PUBLIC_GOOGLE_MAPS_API_KEY),
+                   graceful fallback city grid if no API key configured,
+                   city chip list below map
+
+[x] 7.2  Added ServiceAreaMap to all location pages
+         Files:
+           - app/florida/page.tsx — FL map + estimator + scheduler before CTABlock
+           - app/south-florida/page.tsx — FL map + estimator + scheduler before CTABlock
+           - app/north-carolina/page.tsx — NC map + estimator + scheduler before CTABlock
+
+[x] 7.3  GeoCoordinates included in LocalBusiness JSON-LD (Phase 2B)
+         FL center: 26.1224, -80.1373 (Fort Lauderdale)
+         NC center: 35.2271, -80.8431 (Charlotte)
+
+[ ] 7.4  Commission hero imagery per service category (external / creative)
+         Action: Photography or licensed stock for all 6 service categories.
+         Replace placeholder public/ images when assets are ready.
+
+
+=============================================================
+PHASE 3B — CAMPAIGN LANDING PAGES
+=============================================================
+
+[x] 8.1  Campaign landing page route created
+         Files:
+           - app/lp/[slug]/page.tsx — static params, metadata (noindex), campaign data
+           - app/lp/[slug]/LandingPageClient.tsx — client component, UTM capture
+         Available slugs (routes):
+           /lp/roofing-fl     — Florida roofing
+           /lp/roofing-nc     — North Carolina roofing
+           /lp/tpo-fl         — TPO roofing FL
+           /lp/metal-fl       — Metal roofing FL
+           /lp/interior-fl    — Interior & Exterior Finishes FL
+           /lp/commercial-nc  — Commercial GC NC
+
+[x] 8.2  UTM passthrough wired
+         LandingPageClient reads all utm_* URL params on mount.
+         InspectionScheduler reads them from window.location.search on submit.
+         All UTM fields pass through /api/leads to Projex, Sheets, and UCM.
+
+[x] 8.3  Landing pages are noindex (robots: index false)
+         These pages are for paid ad traffic only — not for organic indexing.
+
+
+=============================================================
+NEXT TASKS (IDENTIFIED DURING THIS SPRINT)
+=============================================================
+
+[ ] N1   Set up Google Apps Script web app and paste URL into GOOGLE_SHEETS_WEBHOOK_URL
+         (Manual external step — see item 2.6)
+
+[ ] N2   Confirm Sanity Studio at /studio works in dev and production
+
+[ ] N3   Review and approve pricing ranges in lib/estimatorData.ts before going live
+
+[ ] N4   Add NEXT_PUBLIC_GOOGLE_MAPS_API_KEY to Vercel project settings
+         (ServiceAreaMap gracefully falls back to city grid without it)
+
+[ ] N5   Wire homepage hero/services copy from Sanity (app/page.tsx → GROQ)
+         Prerequisite: Sanity project ID + token set in env
+
+[ ] N6   Commission/source hero imagery for all 6 service categories
+         Replace placeholder ceiling/interior public/ images
+
+[ ] N7   Facebook and Google ad creative specs — per campaign slug
+         Target each /lp/* page with the matching utm_campaign value
+
+[ ] N8   Add UTM param passing to the Estimator email form
+         (InspectionScheduler already does this; Estimator needs same treatment)
+
+[ ] N9   Before/after gallery format in Sanity galleryProject schema
+         Schema has beforeImage/afterImage — need a BeforeAfterSlider component
+
+[ ] N10  Add the Estimator to roof-inspection and general-contracting pages
+         (Currently only has the scheduler)

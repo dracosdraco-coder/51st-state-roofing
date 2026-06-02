@@ -10,22 +10,46 @@ export default {
       validation: (Rule: any) => Rule.required(),
     },
     {
-      name: 'projectType',
-      title: 'Project Type',
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      validation: (Rule: any) => Rule.required(),
+      options: {
+        list: [
+          { title: 'Commercial Roofing', value: 'commercial-roofing' },
+          { title: 'Metal Roofing', value: 'metal-roofing' },
+          { title: 'TPO Roofing', value: 'tpo-roofing' },
+          { title: 'Roof Inspection', value: 'roof-inspection' },
+          { title: 'Concrete Restoration', value: 'concrete-restoration' },
+          { title: 'Interior & Exterior Finishes', value: 'interior-exterior-finishes' },
+          { title: 'Millwork & Interiors', value: 'millwork-interiors' },
+          { title: 'General Contracting', value: 'general-contracting' },
+        ],
+      },
+    },
+    {
+      name: 'market',
+      title: 'Market',
       type: 'string',
       options: {
         list: [
-          { title: 'TPO Roofing', value: 'tpo' },
-          { title: 'Metal Roofing', value: 'metal' },
-          { title: 'Flat Roof', value: 'flat' },
-          { title: 'Inspection', value: 'inspection' },
+          { title: 'Florida', value: 'FL' },
+          { title: 'North Carolina', value: 'NC' },
+          { title: 'Both Markets', value: 'NATIONAL' },
         ],
       },
     },
     {
       name: 'location',
-      title: 'Location',
+      title: 'Location (City, State)',
       type: 'string',
+    },
+    {
+      name: 'mainImage',
+      title: 'Main Image',
+      type: 'image',
+      options: { hotspot: true },
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: 'beforeImage',
@@ -40,9 +64,22 @@ export default {
       options: { hotspot: true },
     },
     {
+      name: 'additionalImages',
+      title: 'Additional Images',
+      type: 'array',
+      of: [{ type: 'image', options: { hotspot: true } }],
+    },
+    {
       name: 'description',
       title: 'Description',
       type: 'text',
+      rows: 4,
+    },
+    {
+      name: 'featured',
+      title: 'Featured on Homepage',
+      type: 'boolean',
+      initialValue: false,
     },
     {
       name: 'completionDate',
@@ -50,4 +87,11 @@ export default {
       type: 'date',
     },
   ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'category',
+      media: 'mainImage',
+    },
+  },
 };

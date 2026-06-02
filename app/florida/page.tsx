@@ -5,10 +5,46 @@ import TrustBar from '@/components/TrustBar';
 import { MapPin, Shield, Wrench, Search, Layers, CheckCircle } from 'lucide-react';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import CTABlock from '@/components/CTABlock';
+import ServiceAreaMap from '@/components/ServiceAreaMap';
+import InspectionScheduler from '@/components/InspectionScheduler';
+import Estimator from '@/components/Estimator';
 
 export const metadata: Metadata = {
   title: 'Commercial Roofing Florida | 51st State Construction',
   description: 'Licensed commercial roofing contractor serving Miami-Dade, Broward, and Palm Beach counties. TPO, metal, flat roofing, and roof inspections.',
+};
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'RoofingContractor',
+  name: '51st State Construction — Florida',
+  image: 'https://51stateconstruction.com/51statelogo.png',
+  description: 'Licensed commercial roofing contractor serving Miami-Dade, Broward, and Palm Beach counties.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '123 Commercial Ave',
+    addressLocality: 'Fort Lauderdale',
+    addressRegion: 'FL',
+    postalCode: '33316',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 26.1224,
+    longitude: -80.1373,
+  },
+  telephone: '(561) 985-2484',
+  email: '51statereno@gmail.com',
+  url: 'https://51stateconstruction.com/florida',
+  areaServed: [
+    { '@type': 'County', name: 'Miami-Dade County', containedIn: 'Florida' },
+    { '@type': 'County', name: 'Broward County', containedIn: 'Florida' },
+    { '@type': 'County', name: 'Palm Beach County', containedIn: 'Florida' },
+  ],
+  priceRange: '$$',
+  openingHours: 'Mo-Fr 08:00-17:00',
+  hasMap: 'https://maps.google.com/?q=51st+State+Construction+Fort+Lauderdale+FL',
+  sameAs: ['https://51stateconstruction.com'],
 };
 
 const services = [
@@ -65,6 +101,10 @@ const reasons = [
 export default function FloridaPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
       <PremiumHero
         headline="Commercial Roofing Built for Florida"
         subheadline="Miami-Dade, Broward, and Palm Beach county's trusted commercial roofing contractor. Hurricane-rated systems, HVHZ certified, and PE quality control on every job."
@@ -162,6 +202,39 @@ export default function FloridaPage() {
               </ScrollAnimation>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Service Area Map */}
+      <section className="section-container">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-brand-dark mb-2">Our Florida Service Area</h2>
+          <p className="text-brand-gray">We serve Miami-Dade, Broward, and Palm Beach counties — and surrounding communities.</p>
+        </div>
+        <ServiceAreaMap market="FL" />
+      </section>
+
+      {/* Estimator */}
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-brand-dark mb-2">Estimate Your Project</h2>
+              <p className="text-brand-gray">Real Florida market pricing — get a ballpark in seconds.</p>
+            </div>
+            <Estimator defaultCategory="roofing-tpo" market="FL" />
+          </div>
+        </div>
+      </section>
+
+      {/* Inspection Scheduler */}
+      <section className="section-container">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-brand-dark mb-2">Book Your Inspection</h2>
+            <p className="text-brand-gray">Select your preferred response window — we confirm within hours.</p>
+          </div>
+          <InspectionScheduler defaultInspectorType="roofing" locationMarket="FL" />
         </div>
       </section>
 

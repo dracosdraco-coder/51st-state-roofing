@@ -2,12 +2,16 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import TrustBar from '@/components/TrustBar';
-import RoofEstimator from '@/components/RoofEstimator';
+import Estimator from '@/components/Estimator';
 import CTABlock from '@/components/CTABlock';
+import InspectionScheduler from '@/components/InspectionScheduler';
 import FAQAccordion from '@/components/FAQAccordion';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import PremiumHero from '@/components/PremiumHero';
 import { CheckCircle, Zap, Droplet, Leaf } from 'lucide-react';
+import { getFAQs } from '@/lib/sanity';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'TPO Roofing | Single-Ply Flat Roof Installation | 51st State Construction',
@@ -67,7 +71,10 @@ const faqItems = [
   },
 ];
 
-export default function TPORoofingPage() {
+export default async function TPORoofingPage() {
+  const sanityFaqs = await getFAQs('tpo-roofing');
+  const faqs = sanityFaqs.length ? sanityFaqs : faqItems;
+
   return (
     <>
       <PremiumHero
@@ -202,7 +209,7 @@ export default function TPORoofingPage() {
       {/* Estimator */}
       <section className="bg-brand-gray-light">
         <div className="section-container">
-          <RoofEstimator pageSource="tpo-roofing-page" showTitle={true} />
+          <Estimator defaultCategory="roofing-tpo" market="FL" />
         </div>
       </section>
 
@@ -251,8 +258,19 @@ export default function TPORoofingPage() {
       <section className="bg-brand-gray-light">
         <FAQAccordion
           title="TPO Roofing Questions"
-          items={faqItems}
+          items={faqs}
         />
+      </section>
+
+      {/* Inspection Scheduler */}
+      <section className="section-container">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-brand-dark mb-2">Book Your Inspection</h2>
+            <p className="text-brand-gray">Select your preferred window — we respond within 24–72 hours.</p>
+          </div>
+          <InspectionScheduler defaultInspectorType="roofing" locationMarket="FL" />
+        </div>
       </section>
 
       {/* CTA Block */}

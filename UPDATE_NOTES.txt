@@ -1,0 +1,177 @@
+51st State Construction — Update Notes
+Date: 2026-05-28
+Author: Ethan Hinds
+Status: In Planning
+
+=============================================================
+ITEM 1 — RENAME: Ceiling Restoration → Interior & Exterior Finishes
+=============================================================
+The "Ceiling Restoration" label is too narrow and does not reflect the full scope
+of work we deliver. It needs to be renamed and recategorized everywhere on the site
+as "Interior & Exterior Finishes" to cover the full range — interior ceiling work,
+drywall, specialty finishes, stucco, EIFS, cladding, and exterior envelope work.
+
+Affected locations:
+- app/page.tsx (gallery images, alt text, labels)
+- app/gallery/page.tsx (category label, image alts, description copy)
+- app/north-carolina/page.tsx (gallery labels and alt text)
+- components/Navbar.tsx (if a dedicated service link exists)
+- Any sitemap, schema, or SEO meta that references ceiling restoration
+
+Action: Audit all instances of "Ceiling Restoration" / "ceiling restoration" and
+replace with "Interior & Exterior Finishes" — both in display labels and in SEO
+alt text.
+
+
+=============================================================
+ITEM 2 — DATA INTEGRATION: Google Business + UCM + Projex Real-Time Pipeline
+=============================================================
+Goal: When a form is submitted on any device, the lead should appear immediately
+in Google (Google Business Profile lead capture / Google Sheets via Apps Script)
+AND flow into Projex CRM. Two people should be able to open forms on two different
+devices and see both submissions land in real time.
+
+This is a multi-destination webhook pipeline:
+  Website Form → /api/leads → [Projex webhook] + [Google Sheets webhook/Apps Script]
+                            → [Google Business Profile (if lead form enabled)]
+                            → [UCM / other future receivers]
+
+Architecture:
+- /api/leads route.ts already sends to Projex via NEXT_PUBLIC_PROJEX_WEBHOOK_URL
+- Add a secondary dispatch to Google Sheets via Google Apps Script web app URL
+  (env var: GOOGLE_SHEETS_WEBHOOK_URL)
+- Add UCM webhook dispatch (env var: UCM_WEBHOOK_URL)
+- All destinations fire in parallel (Promise.allSettled) — one failure does not
+  block the others
+- Lead schema in lib/projex.ts needs: serviceType, locationMarket, inspectorType
+  fields added to support downstream routing
+
+Env vars to add:
+  GOOGLE_SHEETS_WEBHOOK_URL=
+  UCM_WEBHOOK_URL=
+  (existing) NEXT_PUBLIC_PROJEX_WEBHOOK_URL=
+
+
+=============================================================
+ITEM 3 — LOCATION SPECIFICITY: Data Sets & Google Business Alignment
+=============================================================
+Currently the site has location pages (/florida, /south-florida, /north-carolina,
+/service-areas/[slug]) but the lead data and Google Business listings do not
+distinguish which market a lead came from. This creates ambiguity in the CRM and
+on the GBP dashboard.
+
+Required changes:
+- Every form submission must include a "locationMarket" field: "NC" | "FL" | "NATIONAL"
+- Each location page passes its market code into the form and to /api/leads
+- Google Business Profile (GBP) has separate listings per market (NC and FL).
+  The code must tag each lead with the correct GBP location ID so the submission
+  can be attributed to the right listing.
+- Sanity serviceArea schema should carry a "market" field and map to the correct
+  GBP location ID
+- Sitemap and SEO metadata for each location page must use location-specific
+  business name, address, and schema.org LocalBusiness markup
+
+New env vars:
+  GOOGLE_BUSINESS_LOCATION_ID_NC=
+  GOOGLE_BUSINESS_LOCATION_ID_FL=
+
+
+=============================================================
+ITEM 4 — CMS / SITE CONTROLLER UI (Content Management System)
+=============================================================
+The word for what is needed is a CMS — Content Management System.
+The project already uses Sanity (sanity.config.ts, sanity/schemas/) as the CMS
+backbone. The goal is to fully unlock it so all blog posts, gallery images, and
+page copy can be edited through the Sanity Studio UI without touching code.
+
+Current state:
+- Sanity schemas exist: blogPost, galleryProject, siteSettings, serviceArea,
+  testimonial
+- But much of the site copy (hero text, service descriptions, CTAs) is still
+  hardcoded in .tsx files
+
+Plan:
+1. Expand siteSettings schema to include hero copy, service section copy, and CTA
+   text for each page — all editable in Sanity Studio
+2. Expand galleryProject schema to include category tag (maps to Item 1 rename)
+3. Wire each page to pull its copy from Sanity at build time via lib/sanity.ts
+4. Blog is already schema'd — verify the blog page is fully pulling from Sanity,
+   not hardcoded
+5. Deploy Sanity Studio at /studio (already configured via sanity.config.ts)
+6. Document the Studio URL and login for non-developer content editors
+
+Result: Any authorized user can log into the Studio URL, update text or upload
+gallery photos, and the site rebuilds/revalidates automatically — no code needed.
+
+
+=============================================================
+ITEM 5 — INSPECTION SCHEDULER: Per-Page Forms with 24-72hr Windows + Inspector Types
+=============================================================
+Each service page should have a "Schedule Inspection" section with a dedicated form.
+The form must:
+- Capture standard lead fields (name, phone, email, address)
+- Let the customer select inspection type:
+    [ ] Roofing
+    [ ] Siding
+    [ ] Interior Finishes
+    [ ] Large Commercial
+- Show available time windows (24hr / 48hr / 72hr from today)
+- On submit: route to /api/leads with inspectorType and preferredWindow fields
+- In Projex and Google Sheets, the inspector type determines which team member
+  the lead is assigned to
+
+New component: components/InspectionScheduler.tsx
+This component should be dropped into each service page and accepts a
+defaultInspectorType prop so the Roofing page pre-selects "Roofing," etc.
+
+Backend: /api/leads needs to accept and forward inspectorType and preferredWindow
+
+
+=============================================================
+ITEM 6 — ESTIMATOR EXPANSION: Elite Pricing Tool per Building Aspect
+=============================================================
+The site already has components/RoofEstimator.tsx. This needs to be expanded into
+a full multi-category estimator that covers:
+  - Roofing (existing)
+  - Siding / Exterior Cladding
+  - Interior Finishes (drywall, specialty ceilings, millwork)
+  - Commercial / Large-Scale
+
+The estimator should:
+- Use local market pricing data for NC and FL respectively (tied to Item 3)
+- Show a ranged estimate (e.g., "$12,400 – $18,700") based on sq ft, material
+  selection, and market
+- Present results in a polished, confidence-inspiring UI — not a plain calculator
+- Optionally let the user email themselves the estimate (calls /api/leads with
+  estimateResult field)
+
+New or refactored component: components/Estimator.tsx
+  Accepts: category, market (NC | FL), and user inputs
+  Returns: a formatted estimate range + CTA to schedule inspection
+
+
+=============================================================
+ITEM 7 — PHASING PLAN: Maps, Visuals & Ad Creative (Next Edits)
+=============================================================
+After Items 1-6 are complete, the next phase focuses on conversion and advertising
+assets:
+
+Phase 3A — Maps & Local Presence
+  - Embed a Google Maps component on each location page showing the service area
+  - Add schema.org GeoCoordinates and areaServed markup per market
+  - Service area polygon overlays for NC and FL markets
+
+Phase 3B — Stunning Visuals
+  - Commission or source hero-quality imagery for each service category
+  - Video reel of completed projects for the homepage background
+  - Before/after gallery format in the CMS-driven gallery
+
+Phase 3C — Google & Facebook Ad Creative
+  - Design specifications for Google Display and Performance Max campaigns
+  - Facebook/Meta ad creative: static and carousel formats per service
+  - Landing pages per ad campaign (e.g., /lp/roofing-nc, /lp/roofing-fl)
+    — these are stripped-down pages with one CTA, no nav distractions
+  - UTM parameter tracking is already scaffolded in /api/leads; ensure every
+    ad links use utm_source, utm_medium, utm_campaign, utm_content, utm_term
+
+This phasing plan should be revisited after Items 1-6 ship.

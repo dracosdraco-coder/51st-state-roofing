@@ -5,6 +5,9 @@ import Image from 'next/image';
 import PremiumHero from '@/components/PremiumHero';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import CTABlock from '@/components/CTABlock';
+import ServiceAreaMap from '@/components/ServiceAreaMap';
+import InspectionScheduler from '@/components/InspectionScheduler';
+import Estimator from '@/components/Estimator';
 import TrustBar from '@/components/TrustBar';
 import { CheckCircle, MapPin, Wind, Snowflake, Sun, Droplets, Building, Layers, Shield, Search } from 'lucide-react';
 
@@ -12,6 +15,40 @@ export const metadata: Metadata = {
   title: 'Premium Commercial Roofing North Carolina | Charlotte, Raleigh | 51st State',
   description:
     'Luxury commercial roofing across North Carolina. Charlotte, Raleigh, Durham, Greensboro. Built for winter, storm, and extreme weather performance.',
+};
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'RoofingContractor',
+  name: '51st State Construction — North Carolina',
+  image: 'https://51stateconstruction.com/51statelogo.png',
+  description: 'Premium commercial roofing contractor serving Charlotte, Raleigh, Durham, Greensboro, and all of North Carolina.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '4201 Congress St',
+    addressLocality: 'Charlotte',
+    addressRegion: 'NC',
+    postalCode: '28209',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 35.2271,
+    longitude: -80.8431,
+  },
+  telephone: '(919) 871-4455',
+  email: '51statereno@gmail.com',
+  url: 'https://51stateconstruction.com/north-carolina',
+  areaServed: [
+    { '@type': 'City', name: 'Charlotte', containedIn: 'North Carolina' },
+    { '@type': 'City', name: 'Raleigh', containedIn: 'North Carolina' },
+    { '@type': 'City', name: 'Durham', containedIn: 'North Carolina' },
+    { '@type': 'City', name: 'Greensboro', containedIn: 'North Carolina' },
+  ],
+  priceRange: '$$',
+  openingHours: 'Mo-Fr 08:00-17:00',
+  hasMap: 'https://maps.google.com/?q=51st+State+Construction+Charlotte+NC',
+  sameAs: ['https://51stateconstruction.com'],
 };
 
 export default function NorthCarolinaPage() {
@@ -22,6 +59,10 @@ export default function NorthCarolinaPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
       <PremiumHero
         headline="Premium Commercial Roofing Across North Carolina"
         subheadline="Serving Charlotte, Raleigh, Greensboro, and beyond. Engineered for North Carolina's extreme weather — from winter snow to spring storms."
@@ -264,9 +305,9 @@ export default function NorthCarolinaPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { src: '/roof1.avif', alt: 'Commercial roof — North Carolina', label: 'Commercial Roofing' },
-              { src: '/ceiling%201.jpg', alt: 'Ceiling restoration project', label: 'Interior Ceiling' },
-              { src: '/ceiling%202.jpg', alt: 'Ceiling work in progress', label: 'Interior Ceiling' },
-              { src: '/ceiling%204.jpg', alt: 'Completed ceiling restoration', label: 'Interior Ceiling' },
+              { src: '/ceiling%201.jpg', alt: 'Interior & exterior finish project', label: 'Interior & Exterior Finishes' },
+              { src: '/ceiling%202.jpg', alt: 'Interior finish work in progress', label: 'Interior & Exterior Finishes' },
+              { src: '/ceiling%204.jpg', alt: 'Completed interior & exterior finish', label: 'Interior & Exterior Finishes' },
               { src: '/interior.jpg', alt: 'Interior build-out', label: 'Interior' },
               { src: '/interior%202.jpeg', alt: 'Interior project', label: 'Interior' },
               { src: '/interior%203.jpg', alt: 'Interior finish work', label: 'Interior' },
@@ -290,6 +331,39 @@ export default function NorthCarolinaPage() {
           <div className="text-center mt-8">
             <Link href="/gallery" className="btn-primary inline-block">View Full Gallery</Link>
           </div>
+        </div>
+      </section>
+
+      {/* Service Area Map */}
+      <section className="section-container">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-brand-dark mb-2">Our North Carolina Service Area</h2>
+          <p className="text-brand-gray">We serve Charlotte, Raleigh, Durham, Greensboro, and communities statewide.</p>
+        </div>
+        <ServiceAreaMap market="NC" />
+      </section>
+
+      {/* Estimator */}
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-brand-dark mb-2">Estimate Your Project</h2>
+              <p className="text-brand-gray">Real North Carolina market pricing — get a ballpark in seconds.</p>
+            </div>
+            <Estimator defaultCategory="roofing-tpo" market="NC" />
+          </div>
+        </div>
+      </section>
+
+      {/* Inspection Scheduler */}
+      <section className="section-container">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-brand-dark mb-2">Book Your Inspection</h2>
+            <p className="text-brand-gray">Select your preferred response window — we confirm within hours.</p>
+          </div>
+          <InspectionScheduler defaultInspectorType="roofing" locationMarket="NC" />
         </div>
       </section>
 

@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import TrustBar from '@/components/TrustBar';
 import CTABlock from '@/components/CTABlock';
+import InspectionScheduler from '@/components/InspectionScheduler';
+import Estimator from '@/components/Estimator';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import PremiumHero from '@/components/PremiumHero';
 import { ArrowRight, Zap, Shield, Clock, Layers, Search, Wrench, Building, Droplet, CheckCircle } from 'lucide-react';
@@ -269,6 +271,30 @@ export default function CommercialRoofingPage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Estimator */}
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-brand-dark mb-2">Estimate Your Project</h2>
+              <p className="text-brand-gray">Get a ballpark range based on real Florida market pricing.</p>
+            </div>
+            <Estimator defaultCategory="roofing-flat" market="FL" />
+          </div>
+        </div>
+      </section>
+
+      {/* Inspection Scheduler */}
+      <section className="section-container">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-brand-dark mb-2">Book Your Inspection</h2>
+            <p className="text-brand-gray">Select your preferred window — we respond within 24–72 hours.</p>
+          </div>
+          <InspectionScheduler defaultInspectorType="commercial" locationMarket="FL" />
         </div>
       </section>
 

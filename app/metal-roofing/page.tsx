@@ -2,12 +2,16 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import TrustBar from '@/components/TrustBar';
-import RoofEstimator from '@/components/RoofEstimator';
+import Estimator from '@/components/Estimator';
 import CTABlock from '@/components/CTABlock';
+import InspectionScheduler from '@/components/InspectionScheduler';
 import FAQAccordion from '@/components/FAQAccordion';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import PremiumHero from '@/components/PremiumHero';
 import { CheckCircle, Hammer, ShieldCheck, Zap } from 'lucide-react';
+import { getFAQs } from '@/lib/sanity';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Metal Roofing | Standing Seam Systems | 51st State Construction',
@@ -62,7 +66,10 @@ const faqItems = [
   },
 ];
 
-export default function MetalRoofingPage() {
+export default async function MetalRoofingPage() {
+  const sanityFaqs = await getFAQs('metal-roofing');
+  const faqs = sanityFaqs.length ? sanityFaqs : faqItems;
+
   return (
     <>
       <PremiumHero
@@ -161,7 +168,7 @@ export default function MetalRoofingPage() {
             Get Your Free Estimate
           </h2>
         </ScrollAnimation>
-        <RoofEstimator />
+        <Estimator defaultCategory="roofing-metal" market="FL" />
       </section>
 
       {/* FAQ */}
@@ -172,7 +179,18 @@ export default function MetalRoofingPage() {
               Metal Roofing Questions
             </h2>
           </ScrollAnimation>
-          <FAQAccordion items={faqItems} title="Metal Roofing FAQs" />
+          <FAQAccordion items={faqs} title="Metal Roofing FAQs" />
+        </div>
+      </section>
+
+      {/* Inspection Scheduler */}
+      <section className="section-container">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-brand-dark mb-2">Book Your Inspection</h2>
+            <p className="text-brand-gray">Select your preferred window — we respond within 24–72 hours.</p>
+          </div>
+          <InspectionScheduler defaultInspectorType="roofing" locationMarket="FL" />
         </div>
       </section>
 

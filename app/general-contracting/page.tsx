@@ -5,6 +5,7 @@ import TrustBar from '@/components/TrustBar';
 import { HardHat, Building2, Wrench, ClipboardList, CheckCircle, Users } from 'lucide-react';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import CTABlock from '@/components/CTABlock';
+import InspectionScheduler from '@/components/InspectionScheduler';
 
 export const metadata: Metadata = {
   title: 'General Contracting | 51st State Construction',
@@ -154,6 +155,17 @@ export default function GeneralContractingPage() {
               </ScrollAnimation>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Inspection Scheduler */}
+      <section className="section-container">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-brand-dark mb-2">Schedule a Site Walkthrough</h2>
+            <p className="text-brand-gray">We&apos;ll walk the site, review your plans, and put together a realistic scope.</p>
+          </div>
+          <InspectionScheduler defaultInspectorType="commercial" locationMarket="NATIONAL" />
         </div>
       </section>
 

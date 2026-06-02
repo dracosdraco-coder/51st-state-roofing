@@ -3,6 +3,9 @@ import Link from 'next/link';
 import PremiumHero from '@/components/PremiumHero';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import CTABlock from '@/components/CTABlock';
+import ServiceAreaMap from '@/components/ServiceAreaMap';
+import InspectionScheduler from '@/components/InspectionScheduler';
+import Estimator from '@/components/Estimator';
 import TrustBar from '@/components/TrustBar';
 import { CheckCircle, MapPin, Award, Sun, Waves, Wind, Zap, Building, Layers, Shield, Search } from 'lucide-react';
 
@@ -10,6 +13,39 @@ export const metadata: Metadata = {
   title: 'Commercial Roofing South Florida | Premium Contractor | 51st State',
   description:
     'Luxury commercial roofing services for Miami-Dade, Broward, and Palm Beach counties. TPO, metal, inspections. Licensed, insured, luxury service.',
+};
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'RoofingContractor',
+  name: '51st State Construction — South Florida',
+  image: 'https://51stateconstruction.com/51statelogo.png',
+  description: 'Luxury commercial roofing contractor serving Miami-Dade, Broward, and Palm Beach counties.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '123 Commercial Ave',
+    addressLocality: 'Fort Lauderdale',
+    addressRegion: 'FL',
+    postalCode: '33316',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 26.1224,
+    longitude: -80.1373,
+  },
+  telephone: '(561) 985-2484',
+  email: '51statereno@gmail.com',
+  url: 'https://51stateconstruction.com/south-florida',
+  areaServed: [
+    { '@type': 'County', name: 'Miami-Dade County', containedIn: 'Florida' },
+    { '@type': 'County', name: 'Broward County', containedIn: 'Florida' },
+    { '@type': 'County', name: 'Palm Beach County', containedIn: 'Florida' },
+  ],
+  priceRange: '$$',
+  openingHours: 'Mo-Fr 08:00-17:00',
+  hasMap: 'https://maps.google.com/?q=51st+State+Construction+Fort+Lauderdale+FL',
+  sameAs: ['https://51stateconstruction.com'],
 };
 
 export default function SouthFloridaPage() {
@@ -20,6 +56,10 @@ export default function SouthFloridaPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
       {/* Premium Hero */}
       <PremiumHero
         headline="Commercial Roofing Excellence for South Florida"
@@ -207,6 +247,39 @@ export default function SouthFloridaPage() {
               </ScrollAnimation>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Service Area Map */}
+      <section className="section-container">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-brand-dark mb-2">Our South Florida Service Area</h2>
+          <p className="text-brand-gray">We serve Miami-Dade, Broward, and Palm Beach counties — and surrounding communities.</p>
+        </div>
+        <ServiceAreaMap market="FL" />
+      </section>
+
+      {/* Estimator */}
+      <section className="bg-brand-gray-light">
+        <div className="section-container">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-brand-dark mb-2">Estimate Your Project</h2>
+              <p className="text-brand-gray">Real Florida market pricing — get a ballpark in seconds.</p>
+            </div>
+            <Estimator defaultCategory="roofing-tpo" market="FL" />
+          </div>
+        </div>
+      </section>
+
+      {/* Inspection Scheduler */}
+      <section className="section-container">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-brand-dark mb-2">Book Your Inspection</h2>
+            <p className="text-brand-gray">Select your preferred response window — we confirm within hours.</p>
+          </div>
+          <InspectionScheduler defaultInspectorType="roofing" locationMarket="FL" />
         </div>
       </section>
 
