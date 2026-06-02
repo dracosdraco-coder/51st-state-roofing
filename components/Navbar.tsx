@@ -130,10 +130,10 @@ export default function Navbar() {
           {/* Phone & CTA */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="tel:+15619852484"
+              href="tel:+19542478528"
               className="text-brand-dark font-semibold hover:text-brand-blue transition-colors text-sm"
             >
-              (561) 985-2484
+              (954) 247-8528
             </a>
             <Link href="/contact" className="btn-primary text-sm">
               Free Estimate
@@ -164,10 +164,10 @@ export default function Navbar() {
             ))}
             <div className="pt-4 border-t border-gray-200 mt-4">
               <a
-                href="tel:+15619852484"
+                href="tel:+19542478528"
                 className="block py-2 text-brand-dark font-semibold mb-4 text-sm"
               >
-                (561) 985-2484
+                (954) 247-8528
               </a>
               <Link href="/contact" className="btn-primary block text-center text-sm">
                 Free Estimate

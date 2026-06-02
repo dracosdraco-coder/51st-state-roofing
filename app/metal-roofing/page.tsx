@@ -77,8 +77,8 @@ export default async function MetalRoofingPage() {
         headline="Premium Metal Standing Seam Roofing"
         subheadline="Invest in a roof that lasts 40+ years. Hurricane-rated, energy-efficient, and built for South Florida's toughest conditions."
         primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
-        secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
-        phone="(561) 985-2484"
+        secondaryCTA={{ label: '(954) 247-8528', href: 'tel:+19542478528' }}
+        phone="(954) 247-8528"
       />
       <TrustBar />
 

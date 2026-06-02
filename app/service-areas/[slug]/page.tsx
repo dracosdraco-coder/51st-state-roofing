@@ -45,8 +45,8 @@ export default function ServiceAreaPage({ params }: { params: { slug: string } }
             <Link href="/contact" className="btn-primary">
               Get Free Estimate
             </Link>
-            <a href="tel:+15619852484" className="btn-secondary">
-              (561) 985-2484
+            <a href="tel:+19542478528" className="btn-secondary">
+              (954) 247-8528
             </a>
           </div>
         </div>

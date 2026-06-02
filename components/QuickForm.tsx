@@ -130,8 +130,8 @@ export default function QuickForm({
     }
   }
 
-  const phone = market === 'NC' ? '(919) 871-4455' : '(561) 985-2484';
-  const tel = market === 'NC' ? 'tel:+19198714455' : 'tel:+15619852484';
+  const phone = market === 'NC' ? '(954) 247-8528' : '(954) 247-8528';
+  const tel = market === 'NC' ? 'tel:+19542478528' : 'tel:+19542478528';
 
   const cardBg = dark ? 'bg-white/10 backdrop-blur border-white/20' : 'bg-white border-gray-200';
   const labelColor = dark ? 'text-white' : 'text-brand-dark';

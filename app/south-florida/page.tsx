@@ -35,7 +35,7 @@ const localBusinessSchema = {
     latitude: 26.1224,
     longitude: -80.1373,
   },
-  telephone: '(561) 985-2484',
+  telephone: '(954) 247-8528',
   email: '51statereno@gmail.com',
   url: 'https://51stateconstruction.vercel.app/south-florida',
   areaServed: [
@@ -71,9 +71,9 @@ export default function SouthFloridaPage() {
         }}
         secondaryCTA={{
           label: 'Call Now',
-          href: 'tel:+15619852484',
+          href: 'tel:+19542478528',
         }}
-        phone="(561) 985-2484"
+        phone="(954) 247-8528"
       />
 
       {/* Trust Bar */}

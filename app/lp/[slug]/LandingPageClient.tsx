@@ -22,9 +22,9 @@ interface Props {
 }
 
 const phoneByMarket: Record<string, string> = {
-  FL: '(561) 985-2484',
-  NC: '(919) 871-4455',
-  NATIONAL: '(561) 985-2484',
+  FL: '(954) 247-8528',
+  NC: '(954) 247-8528',
+  NATIONAL: '(954) 247-8528',
 };
 
 export default function LandingPageClient({ campaign, slug }: Props) {

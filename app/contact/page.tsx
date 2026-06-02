@@ -13,15 +13,15 @@ const contactDetails = [
   {
     icon: Phone,
     label: 'Florida',
-    value: '(561) 985-2484',
-    href: 'tel:+15619852484',
+    value: '(954) 247-8528',
+    href: 'tel:+19542478528',
     sub: 'Mon–Fri 8am–5pm',
   },
   {
     icon: Phone,
     label: 'North Carolina',
-    value: '(919) 871-4455',
-    href: 'tel:+19198714455',
+    value: '(954) 247-8528',
+    href: 'tel:+19542478528',
     sub: 'Mon–Fri 8am–5pm',
   },
   {
@@ -61,26 +61,26 @@ export default function ContactPage() {
               {/* Phone numbers prominent */}
               <div className="space-y-3 mb-8">
                 <a
-                  href="tel:+15619852484"
+                  href="tel:+19542478528"
                   className="flex items-center gap-3 group"
                 >
                   <div className="w-10 h-10 bg-brand-blue rounded-xl flex items-center justify-center shrink-0">
                     <Phone size={16} className="text-white" />
                   </div>
                   <div>
-                    <p className="text-white font-bold text-lg group-hover:text-brand-blue transition-colors">(561) 985-2484</p>
+                    <p className="text-white font-bold text-lg group-hover:text-brand-blue transition-colors">(954) 247-8528</p>
                     <p className="text-gray-400 text-xs">Florida · Mon–Fri 8am–5pm</p>
                   </div>
                 </a>
                 <a
-                  href="tel:+19198714455"
+                  href="tel:+19542478528"
                   className="flex items-center gap-3 group"
                 >
                   <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
                     <Phone size={16} className="text-white" />
                   </div>
                   <div>
-                    <p className="text-white font-bold text-lg group-hover:text-brand-blue transition-colors">(919) 871-4455</p>
+                    <p className="text-white font-bold text-lg group-hover:text-brand-blue transition-colors">(954) 247-8528</p>
                     <p className="text-gray-400 text-xs">North Carolina · Mon–Fri 8am–5pm</p>
                   </div>
                 </a>
@@ -163,7 +163,7 @@ export default function ContactPage() {
               <p className="font-semibold text-brand-dark text-sm">24/7 Emergency Service Available</p>
               <p className="text-xs text-brand-gray mt-0.5">Florida License CGC1527726 · Fully insured & bonded · ICRI certified</p>
             </div>
-            <a href="tel:+15619852484" className="ml-auto btn-primary text-sm whitespace-nowrap">
+            <a href="tel:+19542478528" className="ml-auto btn-primary text-sm whitespace-nowrap">
               Call Now
             </a>
           </div>

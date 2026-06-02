@@ -82,8 +82,8 @@ export default async function TPORoofingPage() {
         headline="TPO Flat Roofing"
         subheadline="Energy-efficient single-ply roofing perfect for South Florida commercial buildings. Reflective, durable, and built for the heat."
         primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
-        secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
-        phone="(561) 985-2484"
+        secondaryCTA={{ label: '(954) 247-8528', href: 'tel:+19542478528' }}
+        phone="(954) 247-8528"
       />
       <TrustBar />
 

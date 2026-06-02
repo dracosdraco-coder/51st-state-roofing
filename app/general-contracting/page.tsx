@@ -68,8 +68,8 @@ export default function GeneralContractingPage() {
         headline="Commercial Construction Done Right, Start to Finish"
         subheadline="51st State Construction manages the full scope — design coordination, permitting, subcontractors, and quality control — so your project delivers on time and on budget."
         primaryCTA={{ label: 'Start Your Project', href: '/contact' }}
-        secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
-        phone="(561) 985-2484"
+        secondaryCTA={{ label: '(954) 247-8528', href: 'tel:+19542478528' }}
+        phone="(954) 247-8528"
       />
       <TrustBar />
 

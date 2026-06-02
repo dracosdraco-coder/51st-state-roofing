@@ -37,7 +37,7 @@ const localBusinessSchema = {
     latitude: 35.2271,
     longitude: -80.8431,
   },
-  telephone: '(919) 871-4455',
+  telephone: '(954) 247-8528',
   email: '51statereno@gmail.com',
   url: 'https://51stateconstruction.vercel.app/north-carolina',
   areaServed: [
@@ -68,8 +68,8 @@ export default function NorthCarolinaPage() {
         headline="Premium Commercial Roofing Across North Carolina"
         subheadline="Serving Charlotte, Raleigh, Greensboro, and beyond. Engineered for North Carolina's extreme weather — from winter snow to spring storms."
         primaryCTA={{ label: 'Free Premium Inspection', href: '/contact' }}
-        secondaryCTA={{ label: 'Call Now', href: 'tel:+19198714455' }}
-        phone="(919) 871-4455"
+        secondaryCTA={{ label: 'Call Now', href: 'tel:+19542478528' }}
+        phone="(954) 247-8528"
         videoSrc="/home_video.mp4"
       />
 

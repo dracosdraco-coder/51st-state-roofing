@@ -40,7 +40,7 @@ export default function ServiceAreasPage() {
         headline="Service Areas"
         subheadline="Commercial roofing services throughout South Florida — Miami-Dade, Broward, and Palm Beach counties."
         primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
-        phone="(561) 985-2484"
+        phone="(954) 247-8528"
       />
 
       {/* Service Areas Grid */}
@@ -107,7 +107,7 @@ export default function ServiceAreasPage() {
               <div>
                 <h3 className="font-bold text-brand-dark mb-1">Local Team</h3>
                 <p className="text-sm text-brand-gray">
-                  Call our main line: (561) 985-2484
+                  Call our main line: (954) 247-8528
                 </p>
               </div>
             </div>

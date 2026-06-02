@@ -37,7 +37,7 @@ const localBusinessSchema = {
     addressRegion: 'FL',
     postalCode: '33316',
   },
-  telephone: '(561) 985-2484',
+  telephone: '(954) 247-8528',
   email: '51statereno@gmail.com',
   url: 'https://51stateconstruction.vercel.app',
   areaServed: ['Florida', 'North Carolina'],
@@ -112,8 +112,8 @@ export default async function Home() {
         headline="Commercial Construction You Can Count On"
         subheadline="Roofing, concrete restoration, general contracting, and custom millwork across Florida and North Carolina. One team, full accountability, licensed and certified."
         primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
-        secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
-        phone="(561) 985-2484"
+        secondaryCTA={{ label: '(954) 247-8528', href: 'tel:+19542478528' }}
+        phone="(954) 247-8528"
       />
 
       {/* Certifications Bar */}

@@ -69,8 +69,8 @@ export default function MillworkInteriorsPage() {
         headline="Custom Millwork & Turn-Key Interiors"
         subheadline="Architectural millwork, stonework fabrication, specialty finishes, and complete interior design-build — from concept to installed, under one contract."
         primaryCTA={{ label: 'Start Your Project', href: '/contact' }}
-        secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
-        phone="(561) 985-2484"
+        secondaryCTA={{ label: '(954) 247-8528', href: 'tel:+19542478528' }}
+        phone="(954) 247-8528"
       />
       <TrustBar />
 

@@ -73,8 +73,8 @@ export default function RoofInspectionPage() {
         headline="Professional Roof Inspections"
         subheadline="Comprehensive assessments to identify damage early, prevent costly repairs, and protect your commercial investment."
         primaryCTA={{ label: 'Schedule Free Inspection', href: '/contact' }}
-        secondaryCTA={{ label: 'Call (561) 985-2484', href: 'tel:+15619852484' }}
-        phone="(561) 985-2484"
+        secondaryCTA={{ label: 'Call (954) 247-8528', href: 'tel:+19542478528' }}
+        phone="(954) 247-8528"
       />
       <TrustBar />
 

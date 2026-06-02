@@ -5,7 +5,7 @@ import { getSiteSettings } from '@/lib/sanity';
 
 // Fallback values used until Site Settings is populated in Sanity Studio
 const defaults = {
-  phone: '(561) 985-2484',
+  phone: '(954) 247-8528',
   email: '51statereno@gmail.com',
   licenseNumber: 'CGC1527726',
   socialLinks: {

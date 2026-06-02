@@ -67,7 +67,7 @@ export default function ContactForm() {
         <p className="text-brand-gray">We'll get back to you within one business day.</p>
         <p className="text-sm text-brand-gray mt-3">
           Need it faster? Call{' '}
-          <a href="tel:+15619852484" className="text-brand-blue font-semibold">(561) 985-2484</a>
+          <a href="tel:+19542478528" className="text-brand-blue font-semibold">(954) 247-8528</a>
         </p>
       </div>
     );

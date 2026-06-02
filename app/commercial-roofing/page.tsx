@@ -98,8 +98,8 @@ export default function CommercialRoofingPage() {
         headline="Commercial Roofing Services for South Florida"
         subheadline="From TPO and metal systems to maintenance and repairs — 51st State Construction handles all commercial roofing needs. Licensed, insured, and ready to serve."
         primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
-        secondaryCTA={{ label: 'Call (561) 985-2484', href: 'tel:+15619852484' }}
-        phone="(561) 985-2484"
+        secondaryCTA={{ label: 'Call (954) 247-8528', href: 'tel:+19542478528' }}
+        phone="(954) 247-8528"
       />
       <TrustBar />
 
