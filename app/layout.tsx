@@ -118,13 +118,11 @@ export default function RootLayout({
           />
         )}
 
-        {/* CallRail Tracking */}
+        {/* CallRail Dynamic Number Insertion */}
         {process.env.NEXT_PUBLIC_CALLRAIL_ACCOUNT_ID && (
           <script
-            src={`https://d3mz1nqnhzpn8s.cloudfront.net/web/track.js`}
+            src={`//cdn.callrail.com/companies/${process.env.NEXT_PUBLIC_CALLRAIL_ACCOUNT_ID}/7c0f00bcdefbd51029d3/12/swap.js`}
             type="text/javascript"
-            data-account-id={process.env.NEXT_PUBLIC_CALLRAIL_ACCOUNT_ID}
-            data-number-pool-id={process.env.NEXT_PUBLIC_CALLRAIL_ORGANIC}
             async
           />
         )}
