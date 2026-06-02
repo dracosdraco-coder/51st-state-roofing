@@ -28,7 +28,7 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'GeneralContractor',
   name: '51st State Construction',
-  image: 'https://51stateconstruction.com/51statelogo.png',
+  image: 'https://51stateconstruction.vercel.app/51statelogo.png',
   description: 'Commercial roofing, concrete restoration, and general contracting serving Florida and North Carolina.',
   address: {
     '@type': 'PostalAddress',
@@ -39,7 +39,7 @@ const localBusinessSchema = {
   },
   telephone: '(561) 985-2484',
   email: '51statereno@gmail.com',
-  url: 'https://51stateconstruction.com',
+  url: 'https://51stateconstruction.vercel.app',
   areaServed: ['Florida', 'North Carolina'],
   priceRange: '$$',
   openingHours: 'Mo-Fr 08:00-17:00',

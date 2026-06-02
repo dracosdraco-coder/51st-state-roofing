@@ -21,7 +21,7 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'RoofingContractor',
   name: '51st State Construction — North Carolina',
-  image: 'https://51stateconstruction.com/51statelogo.png',
+  image: 'https://51stateconstruction.vercel.app/51statelogo.png',
   description: 'Premium commercial roofing contractor serving Charlotte, Raleigh, Durham, Greensboro, and all of North Carolina.',
   address: {
     '@type': 'PostalAddress',
@@ -38,7 +38,7 @@ const localBusinessSchema = {
   },
   telephone: '(919) 871-4455',
   email: '51statereno@gmail.com',
-  url: 'https://51stateconstruction.com/north-carolina',
+  url: 'https://51stateconstruction.vercel.app/north-carolina',
   areaServed: [
     { '@type': 'City', name: 'Charlotte', containedIn: 'North Carolina' },
     { '@type': 'City', name: 'Raleigh', containedIn: 'North Carolina' },
@@ -48,7 +48,7 @@ const localBusinessSchema = {
   priceRange: '$$',
   openingHours: 'Mo-Fr 08:00-17:00',
   hasMap: 'https://maps.google.com/?q=51st+State+Construction+Charlotte+NC',
-  sameAs: ['https://51stateconstruction.com'],
+  sameAs: ['https://51stateconstruction.vercel.app'],
 };
 
 export default function NorthCarolinaPage() {

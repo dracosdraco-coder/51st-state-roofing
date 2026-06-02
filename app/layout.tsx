@@ -21,13 +21,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://51stateconstruction.com',
+    url: 'https://51stateconstruction.vercel.app',
     title: '51st State Construction | Commercial Roofing Services | South Florida',
     description:
       'Commercial roofing contractor in South Florida. TPO, metal, and flat roof services.',
     images: [
       {
-        url: 'https://51stateconstruction.com/og-image.jpg',
+        url: 'https://51stateconstruction.vercel.app/og-image.jpg',
         width: 1200,
         height: 630,
         alt: '51st State Construction',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '51st State Construction | Commercial Roofing Services | South Florida',
     description: 'Commercial roofing contractor in South Florida.',
-    images: ['https://51stateconstruction.com/og-image.jpg'],
+    images: ['https://51stateconstruction.vercel.app/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -145,7 +145,7 @@ export default function RootLayout({
         )}
 
         {/* Canonical URL */}
-        <link rel="canonical" href="https://51stateconstruction.com" />
+        <link rel="canonical" href="https://51stateconstruction.vercel.app" />
 
         {/* Mobile / PWA */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
