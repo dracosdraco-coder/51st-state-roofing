@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import TrustBar from '@/components/TrustBar';
+import QuickForm from '@/components/QuickForm';
 import CTABlock from '@/components/CTABlock';
 import InspectionScheduler from '@/components/InspectionScheduler';
 import Estimator from '@/components/Estimator';
@@ -101,6 +102,13 @@ export default function CommercialRoofingPage() {
         phone="(561) 985-2484"
       />
       <TrustBar />
+
+      {/* Quick Form — above fold conversion */}
+      <section className="bg-brand-blue-pale border-b border-blue-100">
+        <div className="max-w-3xl mx-auto px-4 md:px-8 py-10">
+          <QuickForm market="FL" defaultService="roofing" headline="Get a Free Commercial Roofing Estimate" subheadline="Same-day response · Licensed GC · PE quality control" />
+        </div>
+      </section>
 
       {/* Overview Section */}
       <section className="section-container">

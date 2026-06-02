@@ -9,6 +9,7 @@ import ServiceAreaMap from '@/components/ServiceAreaMap';
 import InspectionScheduler from '@/components/InspectionScheduler';
 import Estimator from '@/components/Estimator';
 import TrustBar from '@/components/TrustBar';
+import QuickForm from '@/components/QuickForm';
 import { CheckCircle, MapPin, Wind, Snowflake, Sun, Droplets, Building, Layers, Shield, Search } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -74,6 +75,13 @@ export default function NorthCarolinaPage() {
 
       {/* Trust Bar */}
       <TrustBar />
+
+      {/* Quick Form — above fold conversion */}
+      <section className="bg-brand-blue-pale border-b border-blue-100">
+        <div className="max-w-3xl mx-auto px-4 md:px-8 py-10">
+          <QuickForm market="NC" headline="Get a Free North Carolina Roofing Estimate" subheadline="Same-day response · Charlotte, Raleigh, Greensboro & beyond" />
+        </div>
+      </section>
 
       {/* Why North Carolina Trusts Us */}
       <section className="section-container">

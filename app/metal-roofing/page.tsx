@@ -2,6 +2,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import TrustBar from '@/components/TrustBar';
+import QuickForm from '@/components/QuickForm';
 import Estimator from '@/components/Estimator';
 import CTABlock from '@/components/CTABlock';
 import InspectionScheduler from '@/components/InspectionScheduler';
@@ -80,6 +81,13 @@ export default async function MetalRoofingPage() {
         phone="(561) 985-2484"
       />
       <TrustBar />
+
+      {/* Quick Form — above fold conversion */}
+      <section className="bg-brand-blue-pale border-b border-blue-100">
+        <div className="max-w-3xl mx-auto px-4 md:px-8 py-10">
+          <QuickForm market="FL" defaultService="roofing" headline="Get a Free Metal Roofing Estimate" subheadline="40+ year lifespan · 160 mph wind rated · Same-day response" />
+        </div>
+      </section>
 
       {/* What is Metal Roofing Section */}
       <section className="section-container">

@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CookieConsent from '@/components/CookieConsent';
+import StickyCallBar from '@/components/StickyCallBar';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -179,6 +180,9 @@ export default function RootLayout({
 
         {/* Cookie Consent Banner */}
         <CookieConsent />
+
+        {/* Sticky mobile call bar */}
+        <StickyCallBar />
       </body>
     </html>
   );

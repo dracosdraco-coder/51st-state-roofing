@@ -1,0 +1,272 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import { CheckCircle, AlertCircle, MapPin } from 'lucide-react';
+import { trackLeadSubmit } from '@/lib/gtag';
+
+type ServiceChip = {
+  label: string;
+  value: string;
+};
+
+const SERVICE_CHIPS: ServiceChip[] = [
+  { label: 'Roofing', value: 'roofing' },
+  { label: 'Inspection', value: 'roofing' },
+  { label: 'TPO / Flat Roof', value: 'roofing' },
+  { label: 'Metal Roofing', value: 'roofing' },
+  { label: 'Concrete Restoration', value: 'concrete' },
+  { label: 'Interior & Exterior', value: 'interior' },
+  { label: 'General Contracting', value: 'commercial' },
+  { label: 'Millwork', value: 'millwork' },
+];
+
+interface Props {
+  market?: 'FL' | 'NC' | 'NATIONAL';
+  defaultService?: string;
+  headline?: string;
+  subheadline?: string;
+  dark?: boolean;
+}
+
+declare global {
+  interface Window {
+    google: any;
+    initPlacesAutocomplete?: () => void;
+  }
+}
+
+export default function QuickForm({
+  market = 'NATIONAL',
+  defaultService,
+  headline = 'Get a Free Estimate',
+  subheadline = 'We respond within 24 hours. No pressure.',
+  dark = false,
+}: Props) {
+  const [selectedService, setSelectedService] = useState<string>(defaultService || '');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [address, setAddress] = useState('');
+  const addressRef = useRef<HTMLInputElement>(null);
+  const autocompleteRef = useRef<any>(null);
+
+  // Load Google Places if API key is configured
+  useEffect(() => {
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
+    if (!apiKey || apiKey === 'YOUR_GOOGLE_PLACES_API_KEY') return;
+    if (window.google?.maps?.places) {
+      attachAutocomplete();
+      return;
+    }
+
+    window.initPlacesAutocomplete = attachAutocomplete;
+    if (!document.getElementById('google-places-script')) {
+      const script = document.createElement('script');
+      script.id = 'google-places-script';
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initPlacesAutocomplete`;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+  }, []);
+
+  function attachAutocomplete() {
+    if (!addressRef.current || !window.google?.maps?.places) return;
+    autocompleteRef.current = new window.google.maps.places.Autocomplete(addressRef.current, {
+      types: ['address'],
+      componentRestrictions: { country: 'us' },
+    });
+    autocompleteRef.current.addListener('place_changed', () => {
+      const place = autocompleteRef.current.getPlace();
+      if (place.formatted_address) setAddress(place.formatted_address);
+    });
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus('submitting');
+    setErrorMsg('');
+
+    const fd = new FormData(e.currentTarget);
+    const params = new URLSearchParams(window.location.search);
+    const fullName = (fd.get('name') as string).trim();
+    const [firstName, ...rest] = fullName.split(' ');
+    const lastName = rest.join(' ') || '-';
+
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          phone: fd.get('phone'),
+          email: fd.get('email'),
+          propertyAddress: address || (fd.get('address') as string),
+          serviceType: selectedService || 'general',
+          additionalNotes: selectedService ? `Service interest: ${selectedService}` : undefined,
+          locationMarket: market,
+          pageSource: window.location.pathname,
+          utmSource: params.get('utm_source') ?? undefined,
+          utmCampaign: params.get('utm_campaign') ?? undefined,
+          utmMedium: params.get('utm_medium') ?? undefined,
+          utmContent: params.get('utm_content') ?? undefined,
+          utmTerm: params.get('utm_term') ?? undefined,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Submission failed');
+
+      trackLeadSubmit({
+        locationMarket: market,
+        pageSource: window.location.pathname,
+        conversionLabel: process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL_LEAD,
+      });
+
+      setStatus('success');
+    } catch (err: any) {
+      setErrorMsg(err.message || 'Something went wrong. Please try again.');
+      setStatus('error');
+    }
+  }
+
+  const phone = market === 'NC' ? '(919) 871-4455' : '(561) 985-2484';
+  const tel = market === 'NC' ? 'tel:+19198714455' : 'tel:+15619852484';
+
+  const cardBg = dark ? 'bg-white/10 backdrop-blur border-white/20' : 'bg-white border-gray-200';
+  const labelColor = dark ? 'text-white' : 'text-brand-dark';
+  const inputClass = `w-full border ${dark ? 'border-white/30 bg-white/10 text-white placeholder:text-white/50 focus:border-white' : 'border-gray-200 bg-white text-brand-dark placeholder:text-gray-400 focus:border-brand-blue'} rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors`;
+
+  if (status === 'success') {
+    return (
+      <div className={`rounded-2xl border p-8 text-center ${cardBg}`}>
+        <CheckCircle size={40} className="text-green-400 mx-auto mb-3" />
+        <h3 className={`text-xl font-bold mb-1 ${dark ? 'text-white' : 'text-brand-dark'}`}>Request Received</h3>
+        <p className={dark ? 'text-white/70 text-sm' : 'text-brand-gray text-sm'}>
+          We&apos;ll call you within 24 hours.
+        </p>
+        <a href={tel} className="inline-flex items-center gap-2 mt-4 text-brand-blue font-semibold text-sm hover:underline">
+          Or call us now: {phone}
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`rounded-2xl border shadow-sm ${dark ? 'bg-white/5 backdrop-blur border-white/10' : 'bg-white border-gray-200'} p-6 md:p-8`}>
+      {(headline || subheadline) && (
+        <div className="mb-5">
+          {headline && <h3 className={`text-xl font-bold mb-1 ${dark ? 'text-white' : 'text-brand-dark'}`}>{headline}</h3>}
+          {subheadline && <p className={`text-sm ${dark ? 'text-white/60' : 'text-brand-gray'}`}>{subheadline}</p>}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Service chips */}
+        <div>
+          <p className={`text-xs font-semibold uppercase tracking-wide mb-2 ${dark ? 'text-white/60' : 'text-brand-gray'}`}>
+            What do you need?
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {SERVICE_CHIPS.map(chip => (
+              <button
+                key={chip.label}
+                type="button"
+                onClick={() => setSelectedService(chip.value === selectedService && chip.label !== selectedService ? chip.value : chip.value)}
+                className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
+                  selectedService === chip.value && SERVICE_CHIPS.find(c => c.value === chip.value)?.label === chip.label
+                    ? 'bg-brand-blue text-white border-brand-blue'
+                    : selectedService === chip.value
+                    ? 'bg-brand-blue text-white border-brand-blue'
+                    : dark
+                    ? 'bg-white/10 text-white border-white/20 hover:bg-white/20'
+                    : 'bg-white text-brand-dark border-gray-200 hover:border-brand-blue'
+                }`}
+              >
+                {chip.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Name + Phone row */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label className={`block text-xs font-semibold mb-1.5 ${labelColor}`}>Full Name</label>
+            <input
+              name="name"
+              required
+              autoComplete="name"
+              placeholder="John Smith"
+              className={inputClass}
+            />
+          </div>
+          <div>
+            <label className={`block text-xs font-semibold mb-1.5 ${labelColor}`}>Phone</label>
+            <input
+              name="phone"
+              type="tel"
+              required
+              autoComplete="tel"
+              placeholder="(555) 000-0000"
+              className={inputClass}
+            />
+          </div>
+        </div>
+
+        {/* Email */}
+        <div>
+          <label className={`block text-xs font-semibold mb-1.5 ${labelColor}`}>Email</label>
+          <input
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            placeholder="john@company.com"
+            className={inputClass}
+          />
+        </div>
+
+        {/* Address with Places */}
+        <div className="relative">
+          <label className={`block text-xs font-semibold mb-1.5 ${labelColor}`}>
+            Property Address <span className={`font-normal ${dark ? 'text-white/40' : 'text-brand-gray'}`}>(optional)</span>
+          </label>
+          <div className="relative">
+            <MapPin size={15} className={`absolute left-3 top-1/2 -translate-y-1/2 ${dark ? 'text-white/40' : 'text-brand-gray'}`} />
+            <input
+              ref={addressRef}
+              name="address"
+              type="text"
+              autoComplete="street-address"
+              placeholder="Start typing your address..."
+              value={address}
+              onChange={e => setAddress(e.target.value)}
+              className={`${inputClass} pl-9`}
+            />
+          </div>
+        </div>
+
+        {status === 'error' && (
+          <div className="flex items-start gap-2 text-red-400 bg-red-50 rounded-xl px-4 py-3 text-sm">
+            <AlertCircle size={15} className="shrink-0 mt-0.5" />
+            {errorMsg}
+          </div>
+        )}
+
+        <button
+          type="submit"
+          disabled={status === 'submitting'}
+          className="w-full bg-brand-blue text-white font-bold py-3.5 rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed text-sm"
+        >
+          {status === 'submitting' ? 'Sending…' : 'Get Free Estimate'}
+        </button>
+
+        <div className="flex items-center justify-center gap-2 pt-1">
+          <span className={`text-xs ${dark ? 'text-white/40' : 'text-brand-gray'}`}>or call directly</span>
+          <a href={tel} className="text-brand-blue text-xs font-bold hover:underline">{phone}</a>
+        </div>
+      </form>
+    </div>
+  );
+}

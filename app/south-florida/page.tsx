@@ -7,6 +7,7 @@ import ServiceAreaMap from '@/components/ServiceAreaMap';
 import InspectionScheduler from '@/components/InspectionScheduler';
 import Estimator from '@/components/Estimator';
 import TrustBar from '@/components/TrustBar';
+import QuickForm from '@/components/QuickForm';
 import { CheckCircle, MapPin, Award, Sun, Waves, Wind, Zap, Building, Layers, Shield, Search } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -77,6 +78,13 @@ export default function SouthFloridaPage() {
 
       {/* Trust Bar */}
       <TrustBar />
+
+      {/* Quick Form — above fold conversion */}
+      <section className="bg-brand-blue-pale border-b border-blue-100">
+        <div className="max-w-3xl mx-auto px-4 md:px-8 py-10">
+          <QuickForm market="FL" headline="Get a Free South Florida Roofing Estimate" subheadline="Same-day response · Licensed GC · HVHZ certified" />
+        </div>
+      </section>
 
       {/* Why South Florida Trusts Us */}
       <section className="section-container">
