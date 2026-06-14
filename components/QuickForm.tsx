@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { CheckCircle, AlertCircle, MapPin } from 'lucide-react';
+import { CheckCircle, AlertCircle, MapPin, Phone, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
 import { trackLeadSubmit } from '@/lib/gtag';
 
 type ServiceChip = {
@@ -15,9 +15,8 @@ const SERVICE_CHIPS: ServiceChip[] = [
   { label: 'TPO / Flat Roof', value: 'roofing' },
   { label: 'Metal Roofing', value: 'roofing' },
   { label: 'Concrete Restoration', value: 'concrete' },
-  { label: 'Interior & Exterior', value: 'interior' },
+  { label: 'Siding & Exterior', value: 'siding' },
   { label: 'General Contracting', value: 'commercial' },
-  { label: 'Millwork', value: 'millwork' },
 ];
 
 interface Props {
@@ -42,7 +41,9 @@ export default function QuickForm({
   subheadline = 'We respond within 24 hours. No pressure.',
   dark = false,
 }: Props) {
-  const [selectedService, setSelectedService] = useState<string>(defaultService || '');
+  const [selectedChip, setSelectedChip] = useState<string>(
+    SERVICE_CHIPS.find(c => c.value === defaultService)?.label || ''
+  );
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [address, setAddress] = useState('');
@@ -91,6 +92,7 @@ export default function QuickForm({
     const fullName = (fd.get('name') as string).trim();
     const [firstName, ...rest] = fullName.split(' ');
     const lastName = rest.join(' ') || '-';
+    const serviceType = SERVICE_CHIPS.find(c => c.label === selectedChip)?.value || 'general';
 
     try {
       const res = await fetch('/api/leads', {
@@ -102,8 +104,8 @@ export default function QuickForm({
           phone: fd.get('phone'),
           email: fd.get('email'),
           propertyAddress: address || (fd.get('address') as string),
-          serviceType: selectedService || 'general',
-          additionalNotes: selectedService ? `Service interest: ${selectedService}` : undefined,
+          serviceType,
+          additionalNotes: selectedChip ? `Service interest: ${selectedChip}` : undefined,
           locationMarket: market,
           pageSource: window.location.pathname,
           utmSource: params.get('utm_source') ?? undefined,
@@ -130,10 +132,10 @@ export default function QuickForm({
     }
   }
 
-  const phone = market === 'NC' ? '(954) 247-8528' : '(954) 247-8528';
-  const tel = market === 'NC' ? 'tel:+19542478528' : 'tel:+19542478528';
+  const phone = '(954) 247-8528';
+  const tel = 'tel:+19542478528';
 
-  const cardBg = dark ? 'bg-white/10 backdrop-blur border-white/20' : 'bg-white border-gray-200';
+  const cardBg = dark ? 'bg-white/5 backdrop-blur border-white/10' : 'bg-white border-gray-200';
   const labelColor = dark ? 'text-white' : 'text-brand-dark';
   const inputClass = `w-full border ${dark ? 'border-white/30 bg-white/10 text-white placeholder:text-white/50 focus:border-white' : 'border-gray-200 bg-white text-brand-dark placeholder:text-gray-400 focus:border-brand-blue'} rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors`;
 
@@ -143,17 +145,23 @@ export default function QuickForm({
         <CheckCircle size={40} className="text-green-400 mx-auto mb-3" />
         <h3 className={`text-xl font-bold mb-1 ${dark ? 'text-white' : 'text-brand-dark'}`}>Request Received</h3>
         <p className={dark ? 'text-white/70 text-sm' : 'text-brand-gray text-sm'}>
-          We&apos;ll call you within 24 hours.
+          We&apos;ll call you within 24 hours — usually much sooner.
         </p>
         <a href={tel} className="inline-flex items-center gap-2 mt-4 text-brand-blue font-semibold text-sm hover:underline">
-          Or call us now: {phone}
+          <Phone size={14} /> Or call us now: {phone}
         </a>
       </div>
     );
   }
 
   return (
-    <div className={`rounded-2xl border shadow-sm ${dark ? 'bg-white/5 backdrop-blur border-white/10' : 'bg-white border-gray-200'} p-6 md:p-8`}>
+    <div className={`rounded-2xl border shadow-sm ${cardBg} p-6 md:p-8`}>
+      {/* Motivation strip */}
+      <div className={`flex items-center gap-2 text-xs font-semibold mb-5 px-3 py-2 rounded-lg ${dark ? 'bg-brand-blue/20 text-blue-200' : 'bg-brand-blue-pale text-brand-blue'}`}>
+        <Clock size={13} className="shrink-0" />
+        Most requests get a same-day response — free &amp; no obligation
+      </div>
+
       {(headline || subheadline) && (
         <div className="mb-5">
           {headline && <h3 className={`text-xl font-bold mb-1 ${dark ? 'text-white' : 'text-brand-dark'}`}>{headline}</h3>}
@@ -172,11 +180,9 @@ export default function QuickForm({
               <button
                 key={chip.label}
                 type="button"
-                onClick={() => setSelectedService(chip.value === selectedService && chip.label !== selectedService ? chip.value : chip.value)}
+                onClick={() => setSelectedChip(chip.label)}
                 className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
-                  selectedService === chip.value && SERVICE_CHIPS.find(c => c.value === chip.value)?.label === chip.label
-                    ? 'bg-brand-blue text-white border-brand-blue'
-                    : selectedService === chip.value
+                  selectedChip === chip.label
                     ? 'bg-brand-blue text-white border-brand-blue'
                     : dark
                     ? 'bg-white/10 text-white border-white/20 hover:bg-white/20'
@@ -257,14 +263,23 @@ export default function QuickForm({
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="w-full bg-brand-blue text-white font-bold py-3.5 rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed text-sm"
+          className="w-full bg-brand-blue text-white font-bold py-3.5 rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed text-sm flex items-center justify-center gap-2"
         >
-          {status === 'submitting' ? 'Sending…' : 'Get Free Estimate'}
+          {status === 'submitting' ? 'Sending…' : (
+            <>Get My Free Estimate <ArrowRight size={15} /></>
+          )}
         </button>
+
+        <p className={`flex items-center justify-center gap-1.5 text-[11px] text-center ${dark ? 'text-white/40' : 'text-brand-gray'}`}>
+          <ShieldCheck size={12} className="shrink-0" />
+          Licensed GC CGC1527726 · Your information is never sold or shared
+        </p>
 
         <div className="flex items-center justify-center gap-2 pt-1">
           <span className={`text-xs ${dark ? 'text-white/40' : 'text-brand-gray'}`}>or call directly</span>
-          <a href={tel} className="text-brand-blue text-xs font-bold hover:underline">{phone}</a>
+          <a href={tel} className="inline-flex items-center gap-1 text-brand-blue text-xs font-bold hover:underline">
+            <Phone size={11} /> {phone}
+          </a>
         </div>
       </form>
     </div>

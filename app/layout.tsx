@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CookieConsent from '@/components/CookieConsent';
 import StickyCallBar from '@/components/StickyCallBar';
+import CallRailScript from '@/components/CallRailScript';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -22,13 +23,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://51stateconstruction.vercel.app',
+    url: 'https://www.51ststateconstruction.com',
     title: '51st State Construction | Commercial Roofing Services | South Florida',
     description:
       'Commercial roofing contractor in South Florida. TPO, metal, and flat roof services.',
     images: [
       {
-        url: 'https://51stateconstruction.vercel.app/og-image.jpg',
+        url: 'https://www.51ststateconstruction.com/og-image.jpg',
         width: 1200,
         height: 630,
         alt: '51st State Construction',
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '51st State Construction | Commercial Roofing Services | South Florida',
     description: 'Commercial roofing contractor in South Florida.',
-    images: ['https://51stateconstruction.vercel.app/og-image.jpg'],
+    images: ['https://www.51ststateconstruction.com/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -118,14 +119,8 @@ export default function RootLayout({
           />
         )}
 
-        {/* CallRail Dynamic Number Insertion */}
-        {process.env.NEXT_PUBLIC_CALLRAIL_ACCOUNT_ID && (
-          <script
-            src={`//cdn.callrail.com/companies/${process.env.NEXT_PUBLIC_CALLRAIL_ACCOUNT_ID}/7c0f00bcdefbd51029d3/12/swap.js`}
-            type="text/javascript"
-            async
-          />
-        )}
+        {/* CallRail Dynamic Number Insertion — picks FL or NC number pool by page market */}
+        <CallRailScript />
 
         {/* No-script image pixel for Facebook */}
         {process.env.NEXT_PUBLIC_FB_PIXEL_ID && (
@@ -144,7 +139,7 @@ export default function RootLayout({
         )}
 
         {/* Canonical URL */}
-        <link rel="canonical" href="https://51stateconstruction.vercel.app" />
+        <link rel="canonical" href="https://www.51ststateconstruction.com" />
 
         {/* Mobile / PWA */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />

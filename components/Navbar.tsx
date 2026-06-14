@@ -26,11 +26,6 @@ const servicesMenu = [
     href: '/concrete-restoration',
     description: 'ICRI-certified structural repair & waterproofing',
   },
-  {
-    label: 'Millwork & Interiors',
-    href: '/millwork-interiors',
-    description: 'Custom millwork, stonework & turn-key interior build',
-  },
 ];
 
 const mobileLinks = [
@@ -39,7 +34,6 @@ const mobileLinks = [
   { href: '/north-carolina', label: 'Roofing — North Carolina' },
   { href: '/general-contracting', label: 'General Contracting' },
   { href: '/concrete-restoration', label: 'Concrete Restoration' },
-  { href: '/millwork-interiors', label: 'Millwork & Interiors' },
   { href: '/estimator', label: 'Instant Estimator' },
   { href: '/locations', label: 'Find a Location' },
   { href: '/certifications', label: 'Certifications' },

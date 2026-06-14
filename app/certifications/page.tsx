@@ -8,7 +8,7 @@ import CTABlock from '@/components/CTABlock';
 
 export const metadata: Metadata = {
   title: 'Certifications & Accreditations | 51st State Construction',
-  description: 'AIA continuing education provider, ICRI member, and COCPB certified. 51st State Construction holds industry-leading certifications in concrete restoration and commercial construction.',
+  description: 'BBB A+ accredited, OSHA compliant, AIA continuing education provider, ICRI member, and COCPB certified. 51st State Construction holds industry-leading certifications and manufacturer approvals in concrete restoration and commercial construction.',
 };
 
 const certifications = [
@@ -88,6 +88,53 @@ const certifications = [
     website: null,
     websiteLabel: null,
   },
+  {
+    logo: '/certs/bbb-accredited-aplus.png',
+    name: 'BBB — Better Business Bureau Accredited Business (A+ Rating)',
+    acronym: 'BBB A+',
+    logoWidth: 130,
+    logoHeight: 145,
+    category: 'Trust & Accreditation',
+    categoryIcon: Shield,
+    description:
+      '51st State Construction is a BBB Accredited Business holding an A+ rating — the highest rating the Better Business Bureau awards. Accreditation requires a demonstrated commitment to honest advertising, transparent business practices, and prompt resolution of customer concerns.',
+    whatItMeans: [
+      'A+ rating — the highest BBB rating available',
+      'Verified business practices and transparent advertising',
+      'Commitment to responsive, good-faith resolution of any customer concern',
+      'Independently monitored accreditation, not a self-reported claim',
+    ],
+    website: 'https://www.bbb.org',
+    websiteLabel: 'bbb.org',
+  },
+  {
+    logo: '/certs/osha.png',
+    name: 'OSHA — Occupational Safety & Health Administration Compliance',
+    acronym: 'OSHA',
+    logoWidth: 160,
+    logoHeight: 68,
+    category: 'Jobsite Safety',
+    categoryIcon: Shield,
+    description:
+      'Every 51st State Construction crew operates under an OSHA-compliant jobsite safety program, with trained personnel, documented safety procedures, and regular site safety audits. This protects our workers, your property, and your liability exposure on every project.',
+    whatItMeans: [
+      'OSHA-trained crews on every job site',
+      'Documented safety plans, fall protection, and equipment protocols',
+      'Reduced liability exposure for property owners and general contractors',
+      'Routine site safety audits and incident reporting procedures',
+    ],
+    website: 'https://www.osha.gov',
+    websiteLabel: 'osha.gov',
+  },
+];
+
+// Manufacturer-approved applicator logos (from current manufacturer approval certificates)
+const manufacturerApprovals = [
+  { name: 'Soprema', logo: '/certs/soprema.png', width: 150, height: 79 },
+  { name: 'Tremco', logo: '/certs/tremco.png', width: 170, height: 43 },
+  { name: 'Pecora', logo: '/certs/pecora.png', width: 140, height: 47 },
+  { name: 'Henry / Carlisle', logo: '/certs/henry-carlisle.png', width: 160, height: 73 },
+  { name: 'Sika', logo: '/certs/sika.png', width: 90, height: 90 },
 ];
 
 const trustPoints = [
@@ -102,7 +149,7 @@ export default function CertificationsPage() {
     <>
       <PremiumHero
         headline="Certifications & Accreditations"
-        subheadline="ICRI member, AIA continuing education provider, COCPB certified, and PBCC member. Here is what each credential means and why it matters for your project."
+        subheadline="BBB A+ accredited, OSHA compliant, ICRI member, AIA continuing education provider, COCPB certified, and PBCC member. Here is what each credential means and why it matters for your project."
         primaryCTA={{ label: 'View Our Services', href: '/concrete-restoration' }}
         secondaryCTA={{ label: 'Contact Us', href: '/contact' }}
         showPhone={false}
@@ -176,6 +223,30 @@ export default function CertificationsPage() {
         </div>
       </section>
 
+      {/* Manufacturer Approvals */}
+      <section className="bg-white">
+        <div className="section-container">
+          <ScrollAnimation type="fade-up">
+            <h2 className="text-2xl font-bold text-brand-dark mb-2 text-center">Manufacturer-Approved Applicator</h2>
+            <p className="text-brand-gray text-center mb-10 max-w-2xl mx-auto">
+              Approved to install and warranty roofing, waterproofing, and sealant systems from leading manufacturers.
+            </p>
+          </ScrollAnimation>
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 bg-gray-50 rounded-2xl border border-gray-200 px-8 py-10">
+            {manufacturerApprovals.map((m) => (
+              <Image
+                key={m.name}
+                src={m.logo}
+                alt={`${m.name} approved applicator`}
+                width={m.width}
+                height={m.height}
+                className="object-contain"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Why It Matters */}
       <section className="bg-brand-gray-light">
         <div className="section-container">
@@ -209,6 +280,18 @@ export default function CertificationsPage() {
                   <div className="flex justify-between border-b border-white/20 pb-3">
                     <span className="text-white/70">Florida Contractor License</span>
                     <span className="font-semibold">CGC1527726</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/20 pb-3">
+                    <span className="text-white/70">North Carolina License</span>
+                    <span className="font-semibold">#106057</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/20 pb-3">
+                    <span className="text-white/70">BBB Rating</span>
+                    <span className="font-semibold">A+</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/20 pb-3">
+                    <span className="text-white/70">OSHA Compliance</span>
+                    <span className="font-semibold">Active</span>
                   </div>
                   <div className="flex justify-between border-b border-white/20 pb-3">
                     <span className="text-white/70">ICRI Membership</span>

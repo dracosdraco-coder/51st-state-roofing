@@ -9,8 +9,8 @@ export type EstimatorCategory =
   | 'roofing-tpo'
   | 'roofing-metal'
   | 'roofing-flat'
+  | 'roofing-shingle'
   | 'siding-exterior'
-  | 'interior-finishes'
   | 'commercial';
 
 export type Market = 'FL' | 'NC' | 'NATIONAL';
@@ -77,6 +77,20 @@ export const estimatorCategories: Record<EstimatorCategory, CategoryPricing> = {
     maxSqft: 150000,
     notes: 'Includes vapor barrier, base sheet, and cap sheet. Ponding water analysis available.',
   },
+  'roofing-shingle': {
+    label: 'Shingle Roofing',
+    description: 'Architectural asphalt shingle systems for sloped multi-family and commercial roofs.',
+    baseRange: {
+      FL: { low: 4.00, high: 7.50, unit: 'sqft' },
+      NC: { low: 3.50, high: 6.50, unit: 'sqft' },
+      NATIONAL: { low: 3.75, high: 7.00, unit: 'sqft' },
+    },
+    materialMultiplier: { standard: 1.0, premium: 1.3, elite: 1.6 },
+    complexityMultiplier: { simple: 1.0, moderate: 1.2, complex: 1.45 },
+    minSqft: 1000,
+    maxSqft: 60000,
+    notes: 'Includes tear-off, synthetic underlayment, and architectural shingles. Common for townhomes, condos, and sloped multi-family roofs.',
+  },
   'siding-exterior': {
     label: 'Siding & Exterior Cladding',
     description: 'Fiber cement, EIFS, stucco, and composite cladding systems.',
@@ -90,20 +104,6 @@ export const estimatorCategories: Record<EstimatorCategory, CategoryPricing> = {
     minSqft: 500,
     maxSqft: 50000,
     notes: 'Includes WRB, framing inspection, finish coat, and trim. EIFS warranty available.',
-  },
-  'interior-finishes': {
-    label: 'Interior & Exterior Finishes',
-    description: 'Specialty ceilings, drywall, architectural millwork, and stonework.',
-    baseRange: {
-      FL: { low: 10.00, high: 28.00, unit: 'sqft' },
-      NC: { low: 9.00, high: 24.00, unit: 'sqft' },
-      NATIONAL: { low: 9.50, high: 26.00, unit: 'sqft' },
-    },
-    materialMultiplier: { standard: 1.0, premium: 1.4, elite: 1.85 },
-    complexityMultiplier: { simple: 1.0, moderate: 1.3, complex: 1.65 },
-    minSqft: 200,
-    maxSqft: 30000,
-    notes: 'Scope includes design-build coordination. Custom millwork quoted separately.',
   },
   'commercial': {
     label: 'Large Commercial / General Contracting',

@@ -6,7 +6,7 @@ import ScrollAnimation from '@/components/ScrollAnimation';
 
 export const metadata: Metadata = {
   title: 'Free Estimate | 51st State Construction | Florida & North Carolina',
-  description: 'Get a free estimate for commercial roofing, concrete restoration, general contracting, or millwork. Florida and North Carolina. Same-day response.',
+  description: 'Get a free estimate for commercial roofing, concrete restoration, or general contracting. Florida and North Carolina. Same-day response.',
 };
 
 const contactDetails = [
@@ -55,7 +55,7 @@ export default function ContactPage() {
                 Get Your Free<br />Estimate Today
               </h1>
               <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                Commercial roofing, concrete restoration, general contracting, and custom millwork — across Florida and North Carolina. Tell us what you need, we&apos;ll respond within 24 hours.
+                Commercial roofing, concrete restoration, and general contracting — across Florida and North Carolina. Tell us what you need, we&apos;ll respond within 24 hours.
               </p>
 
               {/* Phone numbers prominent */}
@@ -161,7 +161,7 @@ export default function ContactPage() {
             <Clock size={20} className="text-brand-blue shrink-0" />
             <div>
               <p className="font-semibold text-brand-dark text-sm">24/7 Emergency Service Available</p>
-              <p className="text-xs text-brand-gray mt-0.5">Florida License CGC1527726 · Fully insured & bonded · ICRI certified</p>
+              <p className="text-xs text-brand-gray mt-0.5">FL License CGC1527726 · NC License #106057 · Fully insured & bonded · ICRI certified</p>
             </div>
             <a href="tel:+19542478528" className="ml-auto btn-primary text-sm whitespace-nowrap">
               Call Now

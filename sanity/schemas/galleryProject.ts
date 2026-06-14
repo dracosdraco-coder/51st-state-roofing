@@ -21,8 +21,6 @@ export default {
           { title: 'TPO Roofing', value: 'tpo-roofing' },
           { title: 'Roof Inspection', value: 'roof-inspection' },
           { title: 'Concrete Restoration', value: 'concrete-restoration' },
-          { title: 'Interior & Exterior Finishes', value: 'interior-exterior-finishes' },
-          { title: 'Millwork & Interiors', value: 'millwork-interiors' },
           { title: 'General Contracting', value: 'general-contracting' },
         ],
       },

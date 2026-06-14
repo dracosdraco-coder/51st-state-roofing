@@ -15,14 +15,14 @@ const markets = {
     id: 'FL' as Market,
     name: 'South Florida',
     tagline: 'Miami-Dade · Broward · Palm Beach',
-    description: 'Our Florida team handles commercial roofing, concrete restoration, general contracting, and interior & exterior finishes across South Florida\'s three major counties.',
+    description: 'Our Florida team handles commercial roofing, concrete restoration, and general contracting across South Florida\'s three major counties.',
     phone: '(954) 247-8528',
     tel: 'tel:+19542478528',
     email: '51statereno@gmail.com',
     address: 'Fort Lauderdale, FL 33316',
     hours: 'Mon – Fri, 8am – 5pm',
     license: 'FL GC License CGC1527726',
-    services: ['Commercial Roofing', 'TPO & Metal Roofing', 'Concrete Restoration', 'Interior & Exterior Finishes', 'General Contracting', 'Roof Inspection'],
+    services: ['Commercial Roofing', 'TPO & Metal Roofing', 'Concrete Restoration', 'General Contracting', 'Roof Inspection'],
     counties: [
       {
         name: 'Miami-Dade County',
@@ -52,7 +52,7 @@ const markets = {
     address: 'Charlotte, NC 28209',
     hours: 'Mon – Fri, 8am – 5pm',
     license: 'NC Licensed & Insured',
-    services: ['Commercial Roofing', 'Metal Roofing', 'General Contracting', 'Interior & Exterior Finishes', 'Roof Inspection', 'Storm Damage Repair'],
+    services: ['Commercial Roofing', 'Metal Roofing', 'General Contracting', 'Roof Inspection', 'Storm Damage Repair'],
     counties: [
       {
         name: 'Charlotte Metro',
@@ -61,6 +61,10 @@ const markets = {
       {
         name: 'Triangle Region',
         cities: ['Raleigh', 'Durham', 'Chapel Hill', 'Cary', 'Apex', 'Wake Forest', 'Morrisville'],
+      },
+      {
+        name: 'Sandhills Region',
+        cities: ['Fayetteville', 'Cameron', 'Southern Pines', 'Pinehurst', 'Spring Lake'],
       },
       {
         name: 'Piedmont Triad',

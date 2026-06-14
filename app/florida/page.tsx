@@ -19,7 +19,7 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'RoofingContractor',
   name: '51st State Construction — Florida',
-  image: 'https://51stateconstruction.vercel.app/51statelogo.png',
+  image: 'https://www.51ststateconstruction.com/51statelogo.png',
   description: 'Licensed commercial roofing contractor serving Miami-Dade, Broward, and Palm Beach counties.',
   address: {
     '@type': 'PostalAddress',
@@ -36,7 +36,7 @@ const localBusinessSchema = {
   },
   telephone: '(954) 247-8528',
   email: '51statereno@gmail.com',
-  url: 'https://51stateconstruction.vercel.app/florida',
+  url: 'https://www.51ststateconstruction.com/florida',
   areaServed: [
     { '@type': 'County', name: 'Miami-Dade County', containedIn: 'Florida' },
     { '@type': 'County', name: 'Broward County', containedIn: 'Florida' },
@@ -45,7 +45,7 @@ const localBusinessSchema = {
   priceRange: '$$',
   openingHours: 'Mo-Fr 08:00-17:00',
   hasMap: 'https://maps.google.com/?q=51st+State+Construction+Fort+Lauderdale+FL',
-  sameAs: ['https://51stateconstruction.vercel.app'],
+  sameAs: ['https://www.51ststateconstruction.com'],
 };
 
 const services = [

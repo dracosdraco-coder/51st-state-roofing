@@ -22,7 +22,7 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'RoofingContractor',
   name: '51st State Construction — North Carolina',
-  image: 'https://51stateconstruction.vercel.app/51statelogo.png',
+  image: 'https://www.51ststateconstruction.com/51statelogo.png',
   description: 'Premium commercial roofing contractor serving Charlotte, Raleigh, Durham, Greensboro, and all of North Carolina.',
   address: {
     '@type': 'PostalAddress',
@@ -39,7 +39,7 @@ const localBusinessSchema = {
   },
   telephone: '(954) 247-8528',
   email: '51statereno@gmail.com',
-  url: 'https://51stateconstruction.vercel.app/north-carolina',
+  url: 'https://www.51ststateconstruction.com/north-carolina',
   areaServed: [
     { '@type': 'City', name: 'Charlotte', containedIn: 'North Carolina' },
     { '@type': 'City', name: 'Raleigh', containedIn: 'North Carolina' },
@@ -49,7 +49,7 @@ const localBusinessSchema = {
   priceRange: '$$',
   openingHours: 'Mo-Fr 08:00-17:00',
   hasMap: 'https://maps.google.com/?q=51st+State+Construction+Charlotte+NC',
-  sameAs: ['https://51stateconstruction.vercel.app'],
+  sameAs: ['https://www.51ststateconstruction.com'],
 };
 
 export default function NorthCarolinaPage() {
@@ -313,13 +313,13 @@ export default function NorthCarolinaPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { src: '/roof1.avif', alt: 'Commercial roof — North Carolina', label: 'Commercial Roofing' },
-              { src: '/ceiling%201.jpg', alt: 'Interior & exterior finish project', label: 'Interior & Exterior Finishes' },
-              { src: '/ceiling%202.jpg', alt: 'Interior finish work in progress', label: 'Interior & Exterior Finishes' },
-              { src: '/ceiling%204.jpg', alt: 'Completed interior & exterior finish', label: 'Interior & Exterior Finishes' },
-              { src: '/interior.jpg', alt: 'Interior build-out', label: 'Interior' },
-              { src: '/interior%202.jpeg', alt: 'Interior project', label: 'Interior' },
-              { src: '/interior%203.jpg', alt: 'Interior finish work', label: 'Interior' },
-              { src: '/interior%204.jpg', alt: 'Interior completed', label: 'Interior' },
+              { src: '/gallery/structural-repair-1.jpg', alt: 'Concrete structural repair', label: 'Concrete Restoration' },
+              { src: '/gallery/historic-restoration-1.jpg', alt: 'Historic building restoration', label: 'Concrete Restoration' },
+              { src: '/gallery/structural-repair-3.jpg', alt: 'Concrete structural repair', label: 'Concrete Restoration' },
+              { src: '/gallery/concrete-repair-1.jpg', alt: 'Concrete anchor & splice repair', label: 'Concrete Restoration' },
+              { src: '/gallery/historic-restoration-3.jpg', alt: 'Historic building restoration', label: 'Concrete Restoration' },
+              { src: '/gallery/structural-repair-5.jpg', alt: 'Concrete structural repair', label: 'Concrete Restoration' },
+              { src: '/gallery/structural-repair-7.jpg', alt: 'Concrete structural repair', label: 'Concrete Restoration' },
             ].map((photo, i) => (
               <ScrollAnimation key={i} type="fade-up" delay={i * 0.05}>
                 <div className="relative h-60 rounded-xl overflow-hidden group">

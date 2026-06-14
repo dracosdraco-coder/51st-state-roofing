@@ -13,8 +13,8 @@ export interface LeadData {
   additionalNotes?: string;
   pageSource?: string;
   // Service & scheduling
-  serviceType?: 'roofing' | 'siding' | 'interior' | 'commercial' | 'general' | 'concrete' | 'millwork';
-  inspectorType?: 'roofing' | 'siding' | 'interior' | 'commercial';
+  serviceType?: 'roofing' | 'siding' | 'commercial' | 'general' | 'concrete';
+  inspectorType?: 'roofing' | 'siding' | 'commercial';
   preferredWindow?: '24hr' | '48hr' | '72hr';
   // Location
   locationMarket?: 'NC' | 'FL' | 'NATIONAL';
@@ -122,6 +122,60 @@ export async function sendLeadToUCM(leadData: LeadData): Promise<boolean> {
     return true;
   } catch (error) {
     console.error('Error sending lead to UCM:', error);
+    return false;
+  }
+}
+
+export interface CallData {
+  event_type?: string;
+  id?: string;
+  caller_number?: string;
+  duration?: number | string;
+  start_time?: string;
+  end_time?: string;
+  answered?: boolean | string;
+  direction?: string;
+  tracking_number?: string;
+  source?: string;
+  utm_source?: string;
+  utm_campaign?: string;
+  utm_medium?: string;
+  utm_term?: string;
+  utm_content?: string;
+  landing_url?: string;
+  referring_url?: string;
+  recording_player?: string;
+  company_name?: string;
+  note?: string;
+}
+
+/**
+ * Send a CallRail call event to Google Sheets via Apps Script web app
+ */
+export async function sendCallToGoogleSheets(callData: CallData): Promise<boolean> {
+  const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+
+  if (!webhookUrl) {
+    console.warn('GOOGLE_SHEETS_WEBHOOK_URL not configured');
+    return false;
+  }
+
+  try {
+    const response = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...callData, type: 'call' }),
+    });
+
+    if (!response.ok) {
+      console.error(`Google Sheets call webhook failed: ${response.status}`, await response.text());
+      return false;
+    }
+
+    console.log('Call successfully sent to Google Sheets');
+    return true;
+  } catch (error) {
+    console.error('Error sending call to Google Sheets:', error);
     return false;
   }
 }

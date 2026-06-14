@@ -10,7 +10,7 @@ interface Campaign {
   headline: string;
   subheadline: string;
   ctaLabel: string;
-  inspectorType: 'roofing' | 'siding' | 'interior' | 'commercial';
+  inspectorType: 'roofing' | 'siding' | 'commercial';
   market: 'FL' | 'NC' | 'NATIONAL';
   trust: string[];
   badge: string;

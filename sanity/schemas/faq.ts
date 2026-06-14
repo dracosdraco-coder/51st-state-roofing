@@ -28,7 +28,6 @@ export default {
           { title: 'Commercial Roofing', value: 'commercial-roofing' },
           { title: 'Roof Inspection', value: 'roof-inspection' },
           { title: 'Concrete Restoration', value: 'concrete-restoration' },
-          { title: 'Millwork & Interiors', value: 'millwork-interiors' },
           { title: 'General Contracting', value: 'general-contracting' },
           { title: 'Florida', value: 'florida' },
           { title: 'North Carolina', value: 'north-carolina' },

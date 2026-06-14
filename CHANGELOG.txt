@@ -2,25 +2,19 @@
 Format: [STATUS] ITEM — File(s) — Description
 Statuses: [ ] TODO  [~] IN PROGRESS  [x] DONE
 
-Last updated: 2026-05-28
+Last updated: 2026-06-14
 
 =============================================================
-PHASE 1 — CONTENT & TERMINOLOGY FIXES
+PHASE 1 — CONTENT & TERMINOLOGY FIXES (historical)
 =============================================================
 
 [x] 1.1  RENAME "Ceiling Restoration" → "Interior & Exterior Finishes"
-         Files changed:
-           - app/gallery/page.tsx — category label, image alts, description copy
-           - app/page.tsx — homepage gallery image labels and alt text
-           - app/north-carolina/page.tsx — gallery item labels and alt text
+         (Superseded by Phase 4 — this category was later removed entirely,
+         see 4.1 below)
 
 [x] 1.2  Verified Navbar — no "Ceiling Restoration" label found
-         File: components/Navbar.tsx — no changes needed
 
 [x] 1.3  Gallery page description copy updated
-         File: app/gallery/page.tsx
-         From: "Roofing, interiors, and ceiling restoration across both markets."
-         To:   "Roofing, interior & exterior finishes across both markets."
 
 
 =============================================================
@@ -48,10 +42,11 @@ PHASE 2A — MULTI-DESTINATION LEAD PIPELINE
                 GOOGLE_BUSINESS_LOCATION_ID_NC, GOOGLE_BUSINESS_LOCATION_ID_FL,
                 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
 
-[ ] 2.6  CREATE GOOGLE APPS SCRIPT WEB APP (manual external step)
-         Action: Set up Apps Script in target Google Sheet.
-         Accepts POST JSON → appends row. Paste URL into GOOGLE_SHEETS_WEBHOOK_URL.
-         See: https://developers.google.com/apps-script/guides/web
+[x] 2.6  Google Apps Script web app created
+         File: scripts/google-apps-script.js (NEW)
+         Handles both lead rows and CallRail call rows, builds a dashboard
+         tab, an "Intake Script" CSR tab, and emails admin notifications.
+         MANUAL STEP REMAINING — see "MANUAL SETUP STEPS" below.
 
 [ ] 2.7  TEST dual-device real-time submission
          QA: Submit from two devices simultaneously.
@@ -62,42 +57,48 @@ PHASE 2A — MULTI-DESTINATION LEAD PIPELINE
 PHASE 2B — LOCATION SPECIFICITY
 =============================================================
 
-[x] 3.1  locationMarket prop wired through InspectionScheduler (Phase 2D)
-         Each location page passes its market to the scheduler hidden field.
-
-[x] 3.2  GBP location ID mapping
-         File: lib/projex.ts — getGBPLocationId() maps NC/FL to env vars
-         File: app/api/leads/route.ts — attached to enrichedLead before dispatch
-
+[x] 3.1  locationMarket prop wired through InspectionScheduler
+[x] 3.2  GBP location ID mapping — lib/projex.ts getGBPLocationId()
 [x] 3.3  Sanity serviceArea schema — added market + googleBusinessLocationId fields
-         File: sanity/schemas/serviceArea.ts
-
 [x] 3.4  LocalBusiness JSON-LD schema markup on all location pages
-         Files:
-           - app/florida/page.tsx — RoofingContractor, FL address, FL areaServed
-           - app/south-florida/page.tsx — RoofingContractor, FL address
-           - app/north-carolina/page.tsx — RoofingContractor, NC address, NC areaServed
+         (FL + NC, including NC license number CGC1527726 / #106057)
 
 
 =============================================================
 PHASE 2C — CMS / SITE CONTROLLER (SANITY STUDIO)
 =============================================================
 
-[x] 4.1  Expanded siteSettings Sanity schema
-         File: sanity/schemas/siteSettings.ts
-         Added groups: Contact & Business, Homepage Copy, Service Sections, Social & Links
-         Added fields: heroHeadline, heroSubheadline, CTAs, servicePages array with
-                       per-page copy blocks (all 8 service pages), phoneNC, addressNC,
-                       googleBusiness social link
+[x] 4.1  REMOVED "Millwork & Interiors" service line and the
+         "Interior & Exterior Finishes" / "Millwork & Interiors" gallery
+         categories entirely (no longer offered as a service line)
+         Files changed:
+           - app/millwork-interiors/page.tsx — DELETED
+           - components/Navbar.tsx — removed Millwork & Interiors menu item
+                                       and mobile link
+           - components/Footer.tsx — removed Millwork & Interiors footer link,
+                                       added separate FL/NC license display
+           - sanity/schemas/faq.ts — removed "Millwork & Interiors" category
+           - sanity/schemas/galleryProject.ts — removed "Interior & Exterior
+                                       Finishes" and "Millwork & Interiors"
+                                       categories
+           - sanity/schemas/siteSettings.ts — removed Millwork/Interior page
+                                       keys, added licenseNumberNC field
+           - app/contact/page.tsx, app/locations/LocationsClient.tsx,
+             app/estimator/EstimatorClient.tsx, app/estimator/page.tsx,
+             app/lp/[slug]/page.tsx, app/lp/[slug]/LandingPageClient.tsx,
+             components/InspectionScheduler.tsx, lib/projex.ts — removed
+             "interior"/"millwork" from copy and InspectorType/serviceType
+             unions
+           - app/lp/[slug]/page.tsx — replaced /lp/interior-fl campaign with
+             /lp/siding-fl (Siding & Exterior Cladding, FL)
 
-[x] 4.2  Expanded galleryProject schema with category taxonomy + market field
-         File: sanity/schemas/galleryProject.ts
-         Added: category (8 options incl. "Interior & Exterior Finishes"),
-                market (FL/NC/NATIONAL), mainImage, additionalImages, featured flag
+[x] 4.2  Added North Carolina contractor's license (#106057)
+         Files: components/Footer.tsx, app/contact/page.tsx,
+                sanity/schemas/siteSettings.ts (licenseNumberNC field)
 
-[x] 4.3  Expanded serviceArea schema with market + GBP fields
-         File: sanity/schemas/serviceArea.ts
-         Added: market, googleBusinessLocationId, preview block
+[x] 4.3  Added Sandhills Region (Fayetteville, Cameron, Southern Pines,
+         Pinehurst, Spring Lake) to NC service area coverage
+         File: app/locations/LocationsClient.tsx
 
 [ ] 4.4  Wire homepage hero/services copy from Sanity (next sprint)
          Files: app/page.tsx — replace hardcoded strings with GROQ queries
@@ -112,76 +113,60 @@ PHASE 2D — INSPECTION SCHEDULER COMPONENT
 =============================================================
 
 [x] 5.1  Created InspectionScheduler component
-         File: components/InspectionScheduler.tsx (NEW)
+         File: components/InspectionScheduler.tsx
          Props: defaultInspectorType, locationMarket
-         Features: inspector type selector (4 types), 24/48/72hr window selector,
-                   contact fields, UTM passthrough, success/error states
+         Inspector types: roofing, siding, commercial (interior removed, 4.1)
 
-[x] 5.2  Added InspectionScheduler to all service pages
-         Files (all updated with import + section before CTABlock):
-           - app/roof-inspection/page.tsx — roofing / FL
-           - app/commercial-roofing/page.tsx — commercial / FL
-           - app/metal-roofing/page.tsx — roofing / FL
-           - app/tpo-roofing/page.tsx — roofing / FL
-           - app/millwork-interiors/page.tsx — interior / NATIONAL
-           - app/concrete-restoration/page.tsx — commercial / NATIONAL
-           - app/general-contracting/page.tsx — commercial / NATIONAL
+[x] 5.2  Added InspectionScheduler to all active service pages
+         Files: app/roof-inspection, app/commercial-roofing, app/metal-roofing,
+                app/tpo-roofing, app/concrete-restoration,
+                app/general-contracting
 
 [x] 5.3  /api/leads updated to accept and forward inspectorType + preferredWindow
-         File: app/api/leads/route.ts — fields pass through to all 3 destinations
 
 
 =============================================================
-PHASE 2E — ESTIMATOR EXPANSION
+PHASE 2E — ESTIMATOR REDESIGN
 =============================================================
 
-[x] 6.1  Created multi-category Estimator component
-         File: components/Estimator.tsx (NEW)
-         Categories: TPO Roofing, Metal Roofing, Flat Roofing, Siding & Exterior,
-                     Interior & Exterior Finishes, Large Commercial
-         Props: defaultCategory, market (FL/NC/NATIONAL)
-         Features: material tier selector, complexity selector, calculated range,
-                   email estimate capture (fires /api/leads with estimateResult)
+[x] 6.1  Rebuilt Estimator as a 4-step wizard
+         File: components/Estimator.tsx
+         Steps: category → project details (market/sqft/material/complexity)
+                → contact info → results + email capture
+         Categories: TPO Roofing, Metal Roofing, Flat/Modified Bitumen,
+                      Shingle Roofing, Siding & Exterior Cladding,
+                      Large Commercial / General Contracting
+         Category cards (icons, labels) are data-driven from
+         estimatorCategories — adding a category to lib/estimatorData.ts
+         automatically surfaces it in the UI.
 
-[x] 6.2  Created market-specific pricing data
-         File: lib/estimatorData.ts (NEW)
-         Contains: FL and NC pricing ranges per category, multipliers for material
-                   tier and complexity, calculateEstimate() helper
-         NOTE: Pricing ranges must be reviewed and confirmed before going live.
+[x] 6.2  Added Shingle Roofing pricing category
+         File: lib/estimatorData.ts
+         FL $4.00–$7.50/sqft, NC $3.50–$6.50/sqft, NATIONAL $3.75–$7.00/sqft
+         Covers tear-off, synthetic underlayment, architectural shingles —
+         common for townhomes, condos, and sloped multi-family roofs.
+         NOTE: All pricing ranges (including this new category) must be
+         reviewed and confirmed before going live — see N3.
 
-[x] 6.3  Replaced RoofEstimator with new Estimator on roofing pages
-         Files: app/metal-roofing/page.tsx, app/tpo-roofing/page.tsx
+[x] 6.3  Removed old single-page RoofEstimator component (superseded by 6.1)
+         File: components/RoofEstimator.tsx — DELETED (zero references)
 
-[x] 6.4  Added Estimator to additional service pages
-         Files: app/commercial-roofing/page.tsx, app/millwork-interiors/page.tsx,
-                app/concrete-restoration/page.tsx
-         Location pages: app/florida/page.tsx, app/south-florida/page.tsx,
-                         app/north-carolina/page.tsx
+[x] 6.4  Estimator present on roofing, commercial, concrete restoration,
+         general contracting, and all three location pages (FL/South FL/NC)
 
 
 =============================================================
 PHASE 3A — SERVICE AREA MAP
 =============================================================
 
-[x] 7.1  Created ServiceAreaMap component
-         File: components/ServiceAreaMap.tsx (NEW)
-         Props: market (FL | NC)
-         Features: Google Maps embed (uses NEXT_PUBLIC_GOOGLE_MAPS_API_KEY),
-                   graceful fallback city grid if no API key configured,
-                   city chip list below map
-
-[x] 7.2  Added ServiceAreaMap to all location pages
-         Files:
-           - app/florida/page.tsx — FL map + estimator + scheduler before CTABlock
-           - app/south-florida/page.tsx — FL map + estimator + scheduler before CTABlock
-           - app/north-carolina/page.tsx — NC map + estimator + scheduler before CTABlock
-
-[x] 7.3  GeoCoordinates included in LocalBusiness JSON-LD (Phase 2B)
+[x] 7.1  Created ServiceAreaMap component (Google Maps embed + city grid fallback)
+[x] 7.2  Added ServiceAreaMap to all location pages (FL, South FL, NC)
+[x] 7.3  GeoCoordinates included in LocalBusiness JSON-LD
          FL center: 26.1224, -80.1373 (Fort Lauderdale)
          NC center: 35.2271, -80.8431 (Charlotte)
 
 [ ] 7.4  Commission hero imagery per service category (external / creative)
-         Action: Photography or licensed stock for all 6 service categories.
+         Action: Photography or licensed stock for all service categories.
          Replace placeholder public/ images when assets are ready.
 
 
@@ -189,55 +174,211 @@ PHASE 3A — SERVICE AREA MAP
 PHASE 3B — CAMPAIGN LANDING PAGES
 =============================================================
 
-[x] 8.1  Campaign landing page route created
-         Files:
-           - app/lp/[slug]/page.tsx — static params, metadata (noindex), campaign data
-           - app/lp/[slug]/LandingPageClient.tsx — client component, UTM capture
-         Available slugs (routes):
+[x] 8.1  Campaign landing page route — app/lp/[slug]
+         Available slugs:
            /lp/roofing-fl     — Florida roofing
            /lp/roofing-nc     — North Carolina roofing
            /lp/tpo-fl         — TPO roofing FL
            /lp/metal-fl       — Metal roofing FL
-           /lp/interior-fl    — Interior & Exterior Finishes FL
+           /lp/siding-fl      — Siding & Exterior Cladding FL (replaces
+                                  the old /lp/interior-fl campaign)
            /lp/commercial-nc  — Commercial GC NC
 
-[x] 8.2  UTM passthrough wired
-         LandingPageClient reads all utm_* URL params on mount.
-         InspectionScheduler reads them from window.location.search on submit.
-         All UTM fields pass through /api/leads to Projex, Sheets, and UCM.
+[x] 8.2  UTM passthrough wired (LandingPageClient + InspectionScheduler →
+         /api/leads → Projex, Sheets, UCM)
 
 [x] 8.3  Landing pages are noindex (robots: index false)
-         These pages are for paid ad traffic only — not for organic indexing.
 
 
 =============================================================
-NEXT TASKS (IDENTIFIED DURING THIS SPRINT)
+PHASE 4 — CRO REDESIGN: QUICKFORM, CALLRAIL, GALLERY, CERTIFICATIONS
 =============================================================
 
-[ ] N1   Set up Google Apps Script web app and paste URL into GOOGLE_SHEETS_WEBHOOK_URL
-         (Manual external step — see item 2.6)
+[x] 9.1  Rebuilt QuickForm lead-capture component
+         File: components/QuickForm.tsx
+         Used across ~9 pages (homepage, service pages, contact, landing pages).
+         Service chips are now tracked by unique label (fixes a bug where
+         chips sharing a `value` would all highlight together).
 
-[ ] N2   Confirm Sanity Studio at /studio works in dev and production
+[x] 9.2  Removed unused legacy ContactForm component
+         File: components/ContactForm.tsx — DELETED (superseded by QuickForm,
+         zero references)
 
-[ ] N3   Review and approve pricing ranges in lib/estimatorData.ts before going live
+[x] 9.3  Removed unused BackgroundVideo component
+         File: components/BackgroundVideo.tsx — DELETED (zero references)
 
-[ ] N4   Add NEXT_PUBLIC_GOOGLE_MAPS_API_KEY to Vercel project settings
-         (ServiceAreaMap gracefully falls back to city grid without it)
+[x] 9.4  Redesigned Certifications page
+         File: app/certifications/page.tsx
+         Added cert logos: public/certs/ (Tremco, Soprema, OSHA,
+         Henry/Carlisle, Sika, Pecora, BBB A+ accredited)
 
-[ ] N5   Wire homepage hero/services copy from Sanity (app/page.tsx → GROQ)
+[x] 9.5  Redesigned Gallery page
+         File: app/gallery/page.tsx
+         New project photos: public/gallery/ (historic restoration,
+         structural/concrete repair, Carlyle Fort Lauderdale, Moon Bay,
+         Mirador 1200, Bay Place Condo, Aegean Condominium, etc.)
+
+[x] 9.6  Swapped placeholder/test phone number to (954) 247-8528 across
+         the site
+
+[x] 9.7  CallRail Dynamic Number Insertion
+         File: components/CallRailScript.tsx (NEW)
+         Loads swap.js for a single shared "Organic" pool across all pages
+         (NEXT_PUBLIC_CALLRAIL_POOL, with a built-in default fallback) — FL
+         vs NC pool split was simplified to one pool for now.
+         Wired into app/layout.tsx (replaces inline CallRail script).
+         CALLRAIL_WEBHOOK_SECRET and NEXT_PUBLIC_CALLRAIL_ACCOUNT_ID confirmed
+         present in .env.local and Vercel (Production).
+
+[x] 9.8  CallRail webhook endpoint
+         File: app/api/callrail-webhook/route.ts (NEW)
+         Verifies CALLRAIL_WEBHOOK_SECRET, forwards call events to Google
+         Sheets via lib/projex.ts sendCallToGoogleSheets()
+
+[x] 9.9  Google Apps Script — admin notifications + CSR intake script
+         File: scripts/google-apps-script.js
+         - notifyAdminLead() / notifyAdminCall() — emails adminfl@ / adminnc@
+           51ststateconstruction.com on new leads/calls
+         - buildIntakeScript() — generates an "Intake Script" tab with a
+           baseline CSR Q&A flow
+         - setScriptProperties() — now also sets ADMIN_EMAIL_FL,
+           ADMIN_EMAIL_NC, ADMIN_NOTIFICATIONS_ENABLED
+         MANUAL STEP REMAINING — see "MANUAL SETUP STEPS" below.
+
+[x] 9.10 Updated .env.local.example
+         - Renamed GOOGLE_PLACES_API_KEY → NEXT_PUBLIC_GOOGLE_PLACES_API_KEY
+           (must be public to load client-side)
+         - Added NEXT_PUBLIC_CALLRAIL_POOL, CALLRAIL_WEBHOOK_SECRET
+         - Added Apps Script setup notes (admin emails, Intake Script tab)
+
+[x] 9.11 Env var fixes applied to .env.local AND Vercel
+         - Renamed GOOGLE_PLACES_API_KEY → NEXT_PUBLIC_GOOGLE_PLACES_API_KEY
+           in .env.local (no real key set yet — still a placeholder)
+         - Added NEXT_PUBLIC_GOOGLE_MAPS_API_KEY (real key) to .env.local
+           and Vercel Production
+         - Updated GOOGLE_SHEETS_WEBHOOK_URL to the redeployed Apps Script
+           /exec URL in .env.local and Vercel Production
+         NOTE: Vercel CLI v54.2.0 has a bug adding NEXT_PUBLIC_* vars to the
+         "Preview" environment (git_branch_required loop) — Production is
+         set; add Preview values via the Vercel dashboard if needed, or
+         upgrade the CLI (`npm i -g vercel@latest`).
+
+
+=============================================================
+PHASE 5 — DEAD CODE CLEANUP
+=============================================================
+
+[x] 10.1 Removed components/BackgroundVideo.tsx (0 references)
+[x] 10.2 Removed components/ContactForm.tsx (0 references, superseded by QuickForm)
+[x] 10.3 Removed components/RoofEstimator.tsx (0 references, superseded by Estimator)
+[x] 10.4 Removed lib/analytics.ts (0 references — all 14 exports unused;
+         the active analytics helper is lib/gtag.ts, used by StickyCallBar)
+         Also removed the stale "(used by lib/analytics.ts setupCallRail)"
+         comment from .env.local.example
+
+
+=============================================================
+MANUAL SETUP STEPS (do these before / at launch)
+=============================================================
+
+See the "MANUAL SETUP STEPS" section at the end of this file for the full
+checklist — CallRail pools, Google Apps Script deployment, admin mailboxes,
+env var renames, and pricing review.
+
+
+=============================================================
+NEXT TASKS
+=============================================================
+
+[ ] N1   Confirm Sanity Studio at /studio works in dev and production
+
+[ ] N2   Review and approve ALL pricing ranges in lib/estimatorData.ts
+         before going live — including the new Shingle Roofing category
+
+[x] N3   Add NEXT_PUBLIC_GOOGLE_MAPS_API_KEY to Vercel project settings — DONE
+         (added to Production; ServiceAreaMap gracefully falls back to a
+         city grid if ever unset)
+
+[ ] N4   Wire homepage hero/services copy from Sanity (app/page.tsx → GROQ)
          Prerequisite: Sanity project ID + token set in env
 
-[ ] N6   Commission/source hero imagery for all 6 service categories
-         Replace placeholder ceiling/interior public/ images
+[ ] N5   Commission/source real hero + project imagery for all service
+         categories to replace any remaining placeholder images
 
-[ ] N7   Facebook and Google ad creative specs — per campaign slug
+[ ] N6   Facebook and Google ad creative specs — per campaign slug
          Target each /lp/* page with the matching utm_campaign value
+         (note: /lp/interior-fl is now /lp/siding-fl — update any ad
+         configs that reference the old slug)
 
-[ ] N8   Add UTM param passing to the Estimator email form
+[ ] N7   Add UTM param passing to the Estimator email form
          (InspectionScheduler already does this; Estimator needs same treatment)
 
-[ ] N9   Before/after gallery format in Sanity galleryProject schema
+[ ] N8   Before/after gallery format in Sanity galleryProject schema
          Schema has beforeImage/afterImage — need a BeforeAfterSlider component
 
-[ ] N10  Add the Estimator to roof-inspection and general-contracting pages
-         (Currently only has the scheduler)
+[ ] N9   Do a live end-to-end test now that env vars are wired up: submit a
+         lead AND place a test call to (954) 247-8528, verify rows appear in
+         Google Sheets (new Apps Script deployment), Projex, UCM, and that
+         admin notification emails (adminfl@ / adminnc@) arrive
+
+[ ] N10  Swap the test phone number (954) 247-8528 back to the real
+         production number(s) before launch — the CallRail "Organic" pool
+         is already wired up as the single shared pool for now (see 9.7)
+
+
+=============================================================
+MANUAL SETUP STEPS — DETAIL
+=============================================================
+
+1. CALLRAIL — DONE for now (single "Organic" pool)
+   - NEXT_PUBLIC_CALLRAIL_ACCOUNT_ID and CALLRAIL_WEBHOOK_SECRET are already
+     set in .env.local and Vercel (Production).
+   - components/CallRailScript.tsx now loads a single shared swap.js pool
+     for every page (FL and NC) via NEXT_PUBLIC_CALLRAIL_POOL, falling back
+     to a built-in default if unset. The old FL/NC pool split was removed
+     for now per your request.
+   - OPEN ITEM: confirm in the CallRail dashboard that the "Organic" pool's
+     swap script path matches the built-in default
+     (7c0f00bcdefbd51029d3/12). If it's different, set
+     NEXT_PUBLIC_CALLRAIL_POOL=<that path> in .env.local and Vercel.
+   - When ready to split FL/NC traffic into separate pools again, reintroduce
+     a pathname check in CallRailScript.tsx (NC pages = /north-carolina*).
+
+2. GOOGLE APPS SCRIPT
+   - GOOGLE_SHEETS_WEBHOOK_URL is updated in .env.local and Vercel
+     Production to the new deployment:
+     https://script.google.com/macros/s/AKfycbyepswae-6lq_YHsew7pRnyLwI9PJXMqLHkJEugW3ylfOUvS7pD2-Cm_o5M-LZchksKwQ/exec
+   - In that deployment's Apps Script editor, paste the latest
+     scripts/google-apps-script.js if it hasn't been updated there yet.
+   - Run setScriptProperties() once (fill in ADMIN_EMAIL_FL /
+     ADMIN_EMAIL_NC if different from adminfl@ / adminnc@
+     51ststateconstruction.com).
+   - Run buildIntakeScript() once to create the "Intake Script" CSR tab.
+   - Confirm setupTriggers() and buildDashboard() still run cleanly.
+
+3. ADMIN MAILBOXES
+   - Create adminfl@51ststateconstruction.com and
+     adminnc@51ststateconstruction.com if they don't already exist — these
+     receive new-lead / new-call notification emails from Apps Script.
+
+4. ENV VARS — DONE
+   - NEXT_PUBLIC_GOOGLE_PLACES_API_KEY renamed (in .env.local) from
+     GOOGLE_PLACES_API_KEY — still needs a real key value (currently a
+     placeholder) before address autocomplete will work.
+   - NEXT_PUBLIC_GOOGLE_MAPS_API_KEY added to .env.local and Vercel
+     Production.
+   - GOOGLE_SHEETS_WEBHOOK_URL updated (see step 2).
+
+5. PRICING REVIEW
+   - Review every category's baseRange (FL/NC/NATIONAL) and multipliers in
+     lib/estimatorData.ts, including the new 'roofing-shingle' category,
+     against current real-world costs before launch.
+
+6. PHONE NUMBER SWAP
+   - Once CallRail pools are configured (step 1), confirm whether
+     (954) 247-8528 should remain the default/fallback number or be
+     replaced by the production number(s) — currently used as the
+     fallback across the site (see N10).
+
+7. DNS / DOMAIN CUTOVER (user-handled)
+   - Point 51ststateconstruction.com at this deployment when ready to launch.

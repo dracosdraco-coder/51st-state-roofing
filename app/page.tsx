@@ -6,7 +6,7 @@ import TrustBar from '@/components/TrustBar';
 import CTABlock from '@/components/CTABlock';
 import TestimonialBlock from '@/components/TestimonialBlock';
 import ScrollAnimation from '@/components/ScrollAnimation';
-import { CheckCircle, ArrowRight, HardHat, Layers, Award, Hammer } from 'lucide-react';
+import { CheckCircle, ArrowRight, HardHat, Layers, Award } from 'lucide-react';
 import { getTestimonials } from '@/lib/sanity';
 
 export const revalidate = 60;
@@ -28,7 +28,7 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'GeneralContractor',
   name: '51st State Construction',
-  image: 'https://51stateconstruction.vercel.app/51statelogo.png',
+  image: 'https://www.51ststateconstruction.com/51statelogo.png',
   description: 'Commercial roofing, concrete restoration, and general contracting serving Florida and North Carolina.',
   address: {
     '@type': 'PostalAddress',
@@ -39,7 +39,7 @@ const localBusinessSchema = {
   },
   telephone: '(954) 247-8528',
   email: '51statereno@gmail.com',
-  url: 'https://51stateconstruction.vercel.app',
+  url: 'https://www.51ststateconstruction.com',
   areaServed: ['Florida', 'North Carolina'],
   priceRange: '$$',
   openingHours: 'Mo-Fr 08:00-17:00',
@@ -67,13 +67,6 @@ const services = [
     href: '/concrete-restoration',
     tag: 'ICRI · AIA CE · COCPB',
   },
-  {
-    icon: Hammer,
-    title: 'Millwork & Interiors',
-    description: 'Custom architectural millwork, stonework, specialty finishes, and turn-key interior design-build from concept through installed.',
-    href: '/millwork-interiors',
-    tag: 'Florida & North Carolina',
-  },
 ];
 
 const reasons = [
@@ -87,9 +80,9 @@ const reasons = [
 
 const projectPhotos = [
   { src: '/roof1.avif', alt: 'Commercial roofing — North Carolina', label: 'Commercial Roofing' },
-  { src: '/ceiling%201.jpg', alt: 'Interior & exterior finish work', label: 'Interior & Exterior Finishes' },
-  { src: '/interior%203.jpg', alt: 'Interior build-out', label: 'Interior' },
-  { src: '/ceiling%202.jpg', alt: 'Interior finish work in progress', label: 'Interior & Exterior Finishes' },
+  { src: '/gallery/mirador-1200.jpg', alt: 'Mirador 1200 — Miami Beach', label: 'Concrete Restoration' },
+  { src: '/gallery/carlyle-fort-lauderdale.jpg', alt: 'The Carlyle — Fort Lauderdale', label: 'Concrete Restoration' },
+  { src: '/gallery/historic-restoration-1.jpg', alt: 'Historic building restoration', label: 'Concrete Restoration' },
 ];
 
 const fallbackTestimonials = [
@@ -110,7 +103,7 @@ export default async function Home() {
 
       <PremiumHero
         headline="Commercial Construction You Can Count On"
-        subheadline="Roofing, concrete restoration, general contracting, and custom millwork across Florida and North Carolina. One team, full accountability, licensed and certified."
+        subheadline="Roofing, concrete restoration, and general contracting across Florida and North Carolina. One team, full accountability, licensed and certified."
         primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
         secondaryCTA={{ label: '(954) 247-8528', href: 'tel:+19542478528' }}
         phone="(954) 247-8528"
@@ -139,7 +132,7 @@ export default async function Home() {
           <div className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-3">What We Do</h2>
             <p className="text-brand-gray max-w-xl">
-              Four focused service lines across Florida and North Carolina — under one licensed, certified company.
+              Three focused service lines across Florida and North Carolina — under one licensed, certified company.
             </p>
           </div>
         </ScrollAnimation>
@@ -170,11 +163,11 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Interior photo background section */}
+      {/* Concrete restoration photo background section */}
       <section className="relative h-[480px] overflow-hidden">
         <Image
-          src="/interior%202.jpeg"
-          alt="51st State Construction interior work"
+          src="/gallery/mirador-1200.jpg"
+          alt="51st State Construction concrete restoration — Mirador 1200, Miami Beach"
           fill
           className="object-cover"
           priority={false}
@@ -183,15 +176,15 @@ export default async function Home() {
         <div className="relative z-10 h-full flex items-center">
           <div className="max-w-6xl mx-auto px-4 md:px-8 w-full">
             <ScrollAnimation type="fade-up">
-              <p className="text-brand-blue font-semibold text-sm mb-3 tracking-wide uppercase">Custom Millwork & Interiors</p>
+              <p className="text-brand-blue font-semibold text-sm mb-3 tracking-wide uppercase">ICRI-Certified Structural Repair</p>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 max-w-2xl leading-tight">
-                Built to Spec.<br />From Concept to Installed.
+                Restored to Spec.<br />Built to Last.
               </h2>
               <p className="text-gray-300 max-w-xl mb-8 leading-relaxed">
-                Architectural millwork, stonework fabrication, specialty finishes, and complete interior design-build — delivered by craftsmen who work directly from your architect&apos;s drawings.
+                Structural concrete repair, waterproofing, and protective coatings for high-rises, parking structures, and historic buildings — backed by ICRI Technical Guidelines and PE quality control on every job.
               </p>
-              <Link href="/millwork-interiors" className="btn-primary inline-flex items-center gap-2">
-                View Millwork & Interiors <ArrowRight size={16} />
+              <Link href="/concrete-restoration" className="btn-primary inline-flex items-center gap-2">
+                View Concrete Restoration <ArrowRight size={16} />
               </Link>
             </ScrollAnimation>
           </div>
@@ -262,16 +255,16 @@ export default async function Home() {
           <ScrollAnimation type="fade-left">
             <div className="grid grid-cols-2 gap-4 h-full">
               <div className="relative rounded-2xl overflow-hidden h-64">
-                <Image src="/ceiling%204.jpg" alt="Interior & exterior finish project" fill className="object-cover" />
+                <Image src="/gallery/aegean-condominium.jpg" alt="Aegean Condominium — beachfront restoration" fill className="object-cover" />
               </div>
               <div className="relative rounded-2xl overflow-hidden h-64 mt-8">
-                <Image src="/interior%204.jpg" alt="Interior project" fill className="object-cover" />
+                <Image src="/gallery/moon-bay.jpg" alt="Moon Bay — concrete restoration" fill className="object-cover" />
               </div>
               <div className="relative rounded-2xl overflow-hidden h-48">
-                <Image src="/interior.jpg" alt="Interior build-out" fill className="object-cover" />
+                <Image src="/gallery/structural-repair-4.jpg" alt="Concrete structural repair" fill className="object-cover" />
               </div>
               <div className="relative rounded-2xl overflow-hidden h-48 -mt-4">
-                <Image src="/ceiling%201.jpg" alt="Interior finish work" fill className="object-cover" />
+                <Image src="/gallery/historic-restoration-2.jpg" alt="Historic building restoration" fill className="object-cover" />
               </div>
             </div>
           </ScrollAnimation>

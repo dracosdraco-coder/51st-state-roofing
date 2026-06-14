@@ -28,7 +28,7 @@ const howItWorks = [
   {
     step: '01',
     title: 'Pick your project type',
-    body: 'Choose from roofing, siding, interior finishes, or large commercial scope.',
+    body: 'Choose from roofing, siding & exterior, or large commercial scope.',
   },
   {
     step: '02',
@@ -65,7 +65,7 @@ export default function EstimatorClient() {
             Know Your Numbers<br />Before You Call Anyone
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
-            Real market pricing for Florida and North Carolina commercial projects — roofing, siding, interior finishes, and large commercial scopes. No email required to see your range.
+            Real market pricing for Florida and North Carolina commercial projects — roofing, siding &amp; exterior, and large commercial scopes. No email required to see your range.
           </p>
 
           {/* Market selector */}

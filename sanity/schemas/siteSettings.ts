@@ -42,7 +42,13 @@ export default {
     },
     {
       name: 'licenseNumber',
-      title: 'License Number',
+      title: 'License Number (Florida)',
+      type: 'string',
+      group: 'contact',
+    },
+    {
+      name: 'licenseNumberNC',
+      title: 'License Number (North Carolina)',
       type: 'string',
       group: 'contact',
     },
@@ -124,7 +130,7 @@ export default {
               name: 'pageKey',
               title: 'Page Key',
               type: 'string',
-              description: 'Matches the URL slug (e.g. "commercial-roofing", "millwork-interiors")',
+              description: 'Matches the URL slug (e.g. "commercial-roofing", "concrete-restoration")',
               options: {
                 list: [
                   { title: 'Commercial Roofing', value: 'commercial-roofing' },
@@ -132,8 +138,6 @@ export default {
                   { title: 'TPO Roofing', value: 'tpo-roofing' },
                   { title: 'Roof Inspection', value: 'roof-inspection' },
                   { title: 'Concrete Restoration', value: 'concrete-restoration' },
-                  { title: 'Millwork & Interiors', value: 'millwork-interiors' },
-                  { title: 'Interior & Exterior Finishes', value: 'interior-exterior-finishes' },
                   { title: 'General Contracting', value: 'general-contracting' },
                 ],
               },

@@ -7,7 +7,7 @@ const campaigns: Record<string, {
   headline: string;
   subheadline: string;
   ctaLabel: string;
-  inspectorType: 'roofing' | 'siding' | 'interior' | 'commercial';
+  inspectorType: 'roofing' | 'siding' | 'commercial';
   market: 'FL' | 'NC' | 'NATIONAL';
   trust: string[];
   badge: string;
@@ -48,14 +48,14 @@ const campaigns: Record<string, {
     trust: ['140+ MPH Wind Rated', 'HVHZ Certified', '40-Year Lifespan', 'Licensed GC'],
     badge: 'South Florida Metal Roofing',
   },
-  'interior-fl': {
-    headline: 'Interior & Exterior Finishes — South Florida Commercial',
-    subheadline: 'Specialty ceilings, architectural millwork, and exterior cladding. Design-build delivery.',
-    ctaLabel: 'Schedule Site Visit',
-    inspectorType: 'interior',
+  'siding-fl': {
+    headline: 'Siding & Exterior Cladding — South Florida Commercial',
+    subheadline: 'Fiber cement, EIFS, stucco, and composite cladding systems. Free estimate, same week.',
+    ctaLabel: 'Get Free Estimate',
+    inspectorType: 'siding',
     market: 'FL',
-    trust: ['Design-Build', 'Architect Coordination', 'Custom Millwork', 'Licensed GC'],
-    badge: 'Interior & Exterior Specialists',
+    trust: ['EIFS Warranty Available', 'Hurricane-Rated Systems', 'Licensed GC', 'No-Pressure Estimate'],
+    badge: 'South Florida Exterior Specialists',
   },
   'commercial-nc': {
     headline: 'Commercial Construction & General Contracting — NC',

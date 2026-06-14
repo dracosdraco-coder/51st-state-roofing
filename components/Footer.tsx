@@ -8,6 +8,7 @@ const defaults = {
   phone: '(954) 247-8528',
   email: '51statereno@gmail.com',
   licenseNumber: 'CGC1527726',
+  licenseNumberNC: '#106057',
   socialLinks: {
     facebook: 'https://facebook.com/51stateconstruction',
     instagram: 'https://instagram.com/51stateconstruction',
@@ -21,6 +22,7 @@ export default async function Footer() {
   const phone = settings?.phone || defaults.phone;
   const email = settings?.email || defaults.email;
   const license = settings?.licenseNumber || defaults.licenseNumber;
+  const licenseNC = settings?.licenseNumberNC || defaults.licenseNumberNC;
   const fb = settings?.socialLinks?.facebook || defaults.socialLinks.facebook;
   const ig = settings?.socialLinks?.instagram || defaults.socialLinks.instagram;
   const li = settings?.socialLinks?.linkedin || defaults.socialLinks.linkedin;
@@ -69,7 +71,6 @@ export default async function Footer() {
                 { href: '/north-carolina', label: 'Roofing — North Carolina' },
                 { href: '/general-contracting', label: 'General Contracting' },
                 { href: '/concrete-restoration', label: 'Concrete Restoration' },
-                { href: '/millwork-interiors', label: 'Millwork & Interiors' },
                 { href: '/certifications', label: 'Certifications' },
               ].map(link => (
                 <li key={link.href}>
@@ -128,7 +129,10 @@ export default async function Footer() {
                 </a>
               </li>
               <li className="text-gray-400 pt-1">
-                <strong className="text-gray-300">License:</strong> {license}
+                <strong className="text-gray-300">FL License:</strong> {license}
+              </li>
+              <li className="text-gray-400">
+                <strong className="text-gray-300">NC License:</strong> {licenseNC}
               </li>
             </ul>
           </div>

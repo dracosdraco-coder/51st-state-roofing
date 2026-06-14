@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Calendar, Clock, CheckCircle, AlertCircle, ChevronDown } from 'lucide-react';
 import { trackLeadSubmit } from '@/lib/gtag';
 
-type InspectorType = 'roofing' | 'siding' | 'interior' | 'commercial';
+type InspectorType = 'roofing' | 'siding' | 'commercial';
 type TimeWindow = '24hr' | '48hr' | '72hr';
 type Market = 'NC' | 'FL' | 'NATIONAL';
 
@@ -16,7 +16,6 @@ interface Props {
 const inspectorLabels: Record<InspectorType, string> = {
   roofing: 'Roofing',
   siding: 'Siding & Exterior',
-  interior: 'Interior Finishes',
   commercial: 'Large Commercial',
 };
 
