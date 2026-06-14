@@ -18,13 +18,11 @@ const marketConfig: Record<'FL' | 'NC', {
   zoom: number;
   cities: ServiceCity[];
   label: string;
-  embedQuery: string;
 }> = {
   FL: {
     center: { lat: 26.1224, lng: -80.1373 },
     zoom: 9,
     label: 'South Florida Service Area',
-    embedQuery: 'South+Florida+commercial+roofing+service+area',
     cities: [
       { name: 'Fort Lauderdale', lat: 26.1224, lng: -80.1373 },
       { name: 'Miami', lat: 25.7617, lng: -80.1918 },
@@ -40,7 +38,6 @@ const marketConfig: Record<'FL' | 'NC', {
     center: { lat: 35.2271, lng: -80.8431 },
     zoom: 7,
     label: 'North Carolina Service Area',
-    embedQuery: 'North+Carolina+commercial+roofing+service+area',
     cities: [
       { name: 'Charlotte', lat: 35.2271, lng: -80.8431 },
       { name: 'Raleigh', lat: 35.7796, lng: -78.6382 },
@@ -84,7 +81,7 @@ export default function ServiceAreaMap({ market }: Props) {
     );
   }
 
-  const embedSrc = `https://www.google.com/maps/embed/v1/search?key=${apiKey}&q=${config.embedQuery}&center=${config.center.lat},${config.center.lng}&zoom=${config.zoom}`;
+  const embedSrc = `https://www.google.com/maps/embed/v1/view?key=${apiKey}&center=${config.center.lat},${config.center.lng}&zoom=${config.zoom}`;
 
   return (
     <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
