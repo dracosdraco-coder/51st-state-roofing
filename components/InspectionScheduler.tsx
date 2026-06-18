@@ -42,7 +42,7 @@ export default function InspectionScheduler({
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const phone = locationMarket === 'NC' ? '(954) 247-8528' : '(954) 247-8528';
+  const phone = locationMarket === 'NC' ? '(561) 985-2484' : '(561) 985-2484';
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));

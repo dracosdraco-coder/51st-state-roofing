@@ -37,7 +37,7 @@ const localBusinessSchema = {
     addressRegion: 'FL',
     postalCode: '33316',
   },
-  telephone: '(954) 247-8528',
+  telephone: '(561) 985-2484',
   email: '51statereno@gmail.com',
   url: 'https://www.51ststateconstruction.com',
   areaServed: ['Florida', 'North Carolina'],
@@ -105,8 +105,8 @@ export default async function Home() {
         headline="Commercial Construction You Can Count On"
         subheadline="Roofing, concrete restoration, and general contracting across Florida and North Carolina. One team, full accountability, licensed and certified."
         primaryCTA={{ label: 'Get Free Estimate', href: '/contact' }}
-        secondaryCTA={{ label: '(954) 247-8528', href: 'tel:+19542478528' }}
-        phone="(954) 247-8528"
+        secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
+        phone="(561) 985-2484"
       />
 
       {/* Certifications Bar */}

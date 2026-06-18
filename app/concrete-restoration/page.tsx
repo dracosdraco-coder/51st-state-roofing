@@ -73,8 +73,8 @@ export default function ConcreteRestorationPage() {
         headline="Concrete Restoration & Structural Repair"
         subheadline="ICRI-certified concrete restoration, steel repair, waterproofing, and EIFS systems for commercial and industrial properties across Florida and North Carolina."
         primaryCTA={{ label: 'Request an Assessment', href: '/contact' }}
-        secondaryCTA={{ label: '(954) 247-8528', href: 'tel:+19542478528' }}
-        phone="(954) 247-8528"
+        secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
+        phone="(561) 985-2484"
       />
       <TrustBar />
 

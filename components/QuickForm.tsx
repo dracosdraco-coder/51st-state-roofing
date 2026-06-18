@@ -132,8 +132,8 @@ export default function QuickForm({
     }
   }
 
-  const phone = '(954) 247-8528';
-  const tel = 'tel:+19542478528';
+  const phone = '(561) 985-2484';
+  const tel = 'tel:+15619852484';
 
   const cardBg = dark ? 'bg-white/5 backdrop-blur border-white/10' : 'bg-white border-gray-200';
   const labelColor = dark ? 'text-white' : 'text-brand-dark';

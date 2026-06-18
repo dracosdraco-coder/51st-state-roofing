@@ -13,14 +13,14 @@ const marketDetails = {
   FL: {
     label: 'South Florida',
     sublabel: 'Miami-Dade · Broward · Palm Beach',
-    phone: '(954) 247-8528',
-    tel: 'tel:+19542478528',
+    phone: '(561) 985-2484',
+    tel: 'tel:+15619852484',
   },
   NC: {
     label: 'North Carolina',
     sublabel: 'Charlotte · Raleigh · Greensboro · Durham',
-    phone: '(954) 247-8528',
-    tel: 'tel:+19542478528',
+    phone: '(561) 985-2484',
+    tel: 'tel:+15619852484',
   },
 };
 

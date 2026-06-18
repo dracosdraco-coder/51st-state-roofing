@@ -321,9 +321,15 @@ NEXT TASKS
          Google Sheets (new Apps Script deployment), Projex, UCM, and that
          admin notification emails (adminfl@ / adminnc@) arrive
 
-[ ] N10  Swap the test phone number (954) 247-8528 back to the real
-         production number(s) before launch — the CallRail "Organic" pool
-         is already wired up as the single shared pool for now (see 9.7)
+[x] N10  Swapped the test phone number (954) 247-8528 back to the real
+         production number (561) 985-2484 site-wide (static/fallback text,
+         tel: links, and LocalBusiness JSON-LD).
+         OPEN ITEM: this only changes what's displayed before CallRail's
+         swap.js replaces it. Still need to log into the CallRail dashboard
+         and set the "Organic" pool's (and any other pool's) destination/
+         forwarding number to (561) 985-2484 — otherwise calls placed to
+         the dynamically-inserted tracking number will keep ringing
+         wherever that pool was forwarding before.
 
 
 =============================================================
@@ -374,11 +380,20 @@ MANUAL SETUP STEPS — DETAIL
      lib/estimatorData.ts, including the new 'roofing-shingle' category,
      against current real-world costs before launch.
 
-6. PHONE NUMBER SWAP
-   - Once CallRail pools are configured (step 1), confirm whether
-     (954) 247-8528 should remain the default/fallback number or be
-     replaced by the production number(s) — currently used as the
-     fallback across the site (see N10).
+6. PHONE NUMBER SWAP — DONE in code, OPEN in CallRail
+   - Static/fallback number is now (561) 985-2484 site-wide (see N10).
+   - STILL NEEDED: update the destination/forwarding number on the
+     CallRail "Organic" pool (and any other active pool) to
+     (561) 985-2484 in the CallRail dashboard — code changes alone don't
+     affect where calls to the swapped-in tracking number actually ring.
+   - Also check Sanity Studio (/studio → Site Settings → Phone Number):
+     if "Phone Number (Florida)" was already populated there, it
+     overrides the code default in the footer — update it too.
+   - CallRail DNI is temporarily DISABLED (app/layout.tsx — <CallRailScript />
+     and its import are commented out) until the destination number above
+     is confirmed in the CallRail dashboard. Every page now shows the
+     static (561) 985-2484 number with no swap. Re-enable by uncommenting
+     both lines in app/layout.tsx once CallRail is activated.
 
 7. DNS / DOMAIN CUTOVER (user-handled)
    - Point 51ststateconstruction.com at this deployment when ready to launch.

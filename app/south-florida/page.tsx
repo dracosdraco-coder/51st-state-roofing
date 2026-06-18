@@ -35,7 +35,7 @@ const localBusinessSchema = {
     latitude: 26.1224,
     longitude: -80.1373,
   },
-  telephone: '(954) 247-8528',
+  telephone: '(561) 985-2484',
   email: '51statereno@gmail.com',
   url: 'https://www.51ststateconstruction.com/south-florida',
   areaServed: [
@@ -71,9 +71,9 @@ export default function SouthFloridaPage() {
         }}
         secondaryCTA={{
           label: 'Call Now',
-          href: 'tel:+19542478528',
+          href: 'tel:+15619852484',
         }}
-        phone="(954) 247-8528"
+        phone="(561) 985-2484"
       />
 
       {/* Trust Bar */}

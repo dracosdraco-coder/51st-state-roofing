@@ -37,7 +37,7 @@ const localBusinessSchema = {
     latitude: 35.2271,
     longitude: -80.8431,
   },
-  telephone: '(954) 247-8528',
+  telephone: '(561) 985-2484',
   email: '51statereno@gmail.com',
   url: 'https://www.51ststateconstruction.com/north-carolina',
   areaServed: [
@@ -68,8 +68,8 @@ export default function NorthCarolinaPage() {
         headline="Premium Commercial Roofing Across North Carolina"
         subheadline="Serving Charlotte, Raleigh, Greensboro, and beyond. Engineered for North Carolina's extreme weather — from winter snow to spring storms."
         primaryCTA={{ label: 'Free Premium Inspection', href: '/contact' }}
-        secondaryCTA={{ label: 'Call Now', href: 'tel:+19542478528' }}
-        phone="(954) 247-8528"
+        secondaryCTA={{ label: 'Call Now', href: 'tel:+15619852484' }}
+        phone="(561) 985-2484"
         videoSrc="/home_video.mp4"
       />
 

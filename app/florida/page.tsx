@@ -34,7 +34,7 @@ const localBusinessSchema = {
     latitude: 26.1224,
     longitude: -80.1373,
   },
-  telephone: '(954) 247-8528',
+  telephone: '(561) 985-2484',
   email: '51statereno@gmail.com',
   url: 'https://www.51ststateconstruction.com/florida',
   areaServed: [
@@ -110,8 +110,8 @@ export default function FloridaPage() {
         headline="Commercial Roofing Built for Florida"
         subheadline="Miami-Dade, Broward, and Palm Beach county's trusted commercial roofing contractor. Hurricane-rated systems, HVHZ certified, and PE quality control on every job."
         primaryCTA={{ label: 'Get Free Inspection', href: '/contact' }}
-        secondaryCTA={{ label: '(954) 247-8528', href: 'tel:+19542478528' }}
-        phone="(954) 247-8528"
+        secondaryCTA={{ label: '(561) 985-2484', href: 'tel:+15619852484' }}
+        phone="(561) 985-2484"
         videoSrc="/home_video.mp4"
       />
       <TrustBar />

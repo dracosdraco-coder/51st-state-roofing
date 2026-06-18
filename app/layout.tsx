@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CookieConsent from '@/components/CookieConsent';
 import StickyCallBar from '@/components/StickyCallBar';
-import CallRailScript from '@/components/CallRailScript';
+// import CallRailScript from '@/components/CallRailScript'; // disabled until CallRail is activated
 
 const inter = Inter({
   subsets: ['latin'],
@@ -119,8 +119,9 @@ export default function RootLayout({
           />
         )}
 
-        {/* CallRail Dynamic Number Insertion — picks FL or NC number pool by page market */}
-        <CallRailScript />
+        {/* CallRail Dynamic Number Insertion — temporarily disabled until CallRail
+            is activated (destination number confirmed). Re-enable by uncommenting. */}
+        {/* <CallRailScript /> */}
 
         {/* No-script image pixel for Facebook */}
         {process.env.NEXT_PUBLIC_FB_PIXEL_ID && (

@@ -187,7 +187,7 @@ Elegant hero section with scroll animations:
   headline="Commercial Roofing Excellence for South Florida"
   subheadline="Serving Miami-Dade, Broward, and Palm Beach counties..."
   primaryCTA={{ label: 'Free Inspection', href: '/contact' }}
-  phone="(954) 247-8528"
+  phone="(561) 985-2484"
 />
 ```
 

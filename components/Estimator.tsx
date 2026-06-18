@@ -47,9 +47,9 @@ const categoryIcons: Record<EstimatorCategory, LucideIcon> = {
 const STEP_LABELS = ['Project Type', 'Square Footage', 'Materials & Scope', 'Your Estimate'];
 
 const phoneByMarket: Record<Market, { label: string; tel: string }> = {
-  FL: { label: '(954) 247-8528', tel: 'tel:+19542478528' },
-  NC: { label: '(954) 247-8528', tel: 'tel:+19542478528' },
-  NATIONAL: { label: '(954) 247-8528', tel: 'tel:+19542478528' },
+  FL: { label: '(561) 985-2484', tel: 'tel:+15619852484' },
+  NC: { label: '(561) 985-2484', tel: 'tel:+15619852484' },
+  NATIONAL: { label: '(561) 985-2484', tel: 'tel:+15619852484' },
 };
 
 export default function Estimator({ defaultCategory = 'roofing-tpo', market = 'FL' }: Props) {

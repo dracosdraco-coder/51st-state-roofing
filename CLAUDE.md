@@ -55,13 +55,16 @@ roofing / general contracting company operating in two markets:
   estimator, scheduler, landing pages). Don't reintroduce references to it.
 - `QuickForm.tsx` service chips must use a unique `label` per chip — chips
   with a shared `value` previously caused multiple chips to highlight at once.
-- `CallRailScript.tsx` picks the FL vs NC swap-script pool based on
-  `usePathname()` (NC pages use `NEXT_PUBLIC_CALLRAIL_POOL_NC`, everything
-  else uses `_FL`), falling back to a shared default if pools aren't configured.
+- `CallRailScript.tsx` loads a single shared swap.js pool (`NEXT_PUBLIC_CALLRAIL_POOL`,
+  with a built-in default fallback) for all pages — the old FL/NC pool split
+  was removed. It is currently **disabled**: the import and `<CallRailScript />`
+  in `app/layout.tsx` are commented out until CallRail is activated (the
+  destination/forwarding number must be set to `(561) 985-2484` in the
+  CallRail dashboard first — re-enable by uncommenting both lines).
 - `.env.local` is gitignored. `.env.local.example` documents every required
   var — check it before assuming an integration is unconfigured.
-- The phone number `(954) 247-8528` is currently used site-wide as a
-  test/placeholder number — see `CHANGELOG.txt` N10 before launch.
+- `(561) 985-2484` is the real production phone number, used site-wide as
+  of `CHANGELOG.txt` N10 (replacing the old `(954) 247-8528` test number).
 
 ## Where to look for outstanding work
 
